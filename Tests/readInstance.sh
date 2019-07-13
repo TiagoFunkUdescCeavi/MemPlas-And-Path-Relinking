@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cp "../MemPlas Project/Debug/MemPlas" "./"
+cp "../Project/Debug/Project" "./"
 
 for arq in ../Instances/n/*
 do
-    ./MemPlas $arq
+    ./Project $arq
 done

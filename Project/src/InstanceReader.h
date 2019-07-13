@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
 
 #include "GLOBAL.h"
 
@@ -16,8 +17,8 @@ void readInstance( string file ){
 	ifstream arq( file.c_str(), ios::in );
 
 	if( !arq ){
-		cout << "Error on open file: " << file << endl;
-		// todo exception in read file error.
+		string s = "Error on open file: " + file;
+		throw runtime_error( s );
 	}
 
 	while( arq >> aux ){
@@ -81,6 +82,12 @@ void readInstance( string file ){
 	}
 
 	bonus_satisfaction_GLOBAL = vector;
+
+	arq >> aux;
+	if( aux != "EOF" ){
+		string s = "Read of file has incorrect: " + file;
+		throw runtime_error( s );
+	}
 }
 
 #endif /* SRC_INSTANCEREADER_H_ */
