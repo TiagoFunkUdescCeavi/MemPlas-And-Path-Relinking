@@ -1,43 +1,34 @@
 
 #include <iostream>
+#include <string>
+#include <cstdlib>
 
-#include "GLOBAL.h"
 #include "InstanceReader.h"
+#include "Algorithm.h"
 
 using namespace std;
 
 int main( int argc, char* argv[] ){
-	file_GLOBAL = argv[ 1 ];
+
+	string file = argv[ 1 ];
+	int sizePopulation = stoi( argv[ 2 ] );
+	int sizePlasmideo = stoi( argv[ 3 ] );
+	double cross = stod( argv[ 4 ] );
+	double elite = stod( argv[ 5 ] );
+	int limitIterations = stoi( argv[ 6 ] );
+
+	srand( 0 );
 
 	try{
-		readInstance( file_GLOBAL );
+		readInstance( file );
 	} catch (exception &e) {
 		cout << e.what() << endl;
 		return 1;
 	}
 
-//	Car c = cars_GLOBAL[ 0 ];
-//	cout << c.dimension << endl;
-//
-//	for( int i = 0; i < numberCities_GLOBAL; i++ ){
-//		for( int j = 0; j < numberCities_GLOBAL; j++ ){
-//			cout << c.edge_weigth[ i ][ j ] << " ";
-//		}
-//		cout << endl;
-//	}
-//	cout << endl;
-//	for( int i = 0; i < numberCities_GLOBAL; i++ ){
-//		for( int j = 0; j < numberCities_GLOBAL; j++ ){
-//			cout << c.return_rate[ i ][ j ] << " ";
-//		}
-//		cout << endl;
-//	}
-//
-//	cout << endl;
-//	cout << endl;
-//	for( int i = 0; i < numberCities_GLOBAL; i++ ){
-//		cout << bonus_satisfaction_GLOBAL[i] << " ";
-//	}
-//	cout << endl;
+	lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
+
+	cout << "ok" << endl;
+
 	return 0;
 }
