@@ -11,6 +11,7 @@ using namespace std;
 
 void readInstance( string file ){
 	int cities, cars;
+	int satisfaction_sum;
 	int* vector;
 	int** matrix;
 	string aux;
@@ -77,11 +78,14 @@ void readInstance( string file ){
 
 	arq >> aux;
 	vector = new int[ cities ];
+	satisfaction_sum = 0;
 	for( int i = 0; i < cities; i++ ){
 		arq >> vector[ i ];
+		satisfaction_sum += vector[ i ];
 	}
 
 	bonus_satisfaction_GLOBAL = vector;
+	satisfaction_total_GLOBAL = satisfaction_sum;
 
 	arq >> aux;
 	if( aux != "EOF" ){

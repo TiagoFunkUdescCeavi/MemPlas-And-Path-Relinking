@@ -1,6 +1,8 @@
 #ifndef SRC_ALGORITHM_H_
 #define SRC_ALGORITHM_H_
 
+#include "Validate.h"
+
 #include "GenerateInitialPopulation.h"
 
 void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
@@ -13,6 +15,8 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 
 	numberItetarions++;
 	population = generateInitialPopulation( sizePopulation );
+
+	bool test = checkPopulation( population );
 
 }
 

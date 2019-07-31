@@ -33,16 +33,16 @@ Solution::Solution( int sizeSolution ){
 void Solution::calculeFitness(){
 	fitness = 0;
 	for( int i = 0; i < sizeSolution; i++ ){
-		if( i < 1 ){
+		if( i < 0 ){
 			break;
 		}
-		fitness += bonus_satisfaction_GLOBAL[ cities[ i-1 ] ];
+		fitness += bonus_satisfaction_GLOBAL[ cities[ i ] ];
 	}
 }
 
 string Solution::toString(){
-	string s = "";
-	string s2 = "";
+	string s = ">";
+	string s2 = "*";
 	for( int i = 0; i < sizeSolution; i++ ){
 		s += to_string( cities[i] ) + "\t";
 		s2 += to_string( cars[i] ) + "\t";

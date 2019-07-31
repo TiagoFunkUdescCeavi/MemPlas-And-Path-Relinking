@@ -21,14 +21,11 @@ int main( int argc, char* argv[] ){
 
 	try{
 		readInstance( file );
+		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
+		cout << "ok" << endl;
 	} catch (exception &e) {
 		cout << e.what() << endl;
 		return 1;
 	}
-
-	lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
-
-	cout << "ok" << endl;
-
 	return 0;
 }
