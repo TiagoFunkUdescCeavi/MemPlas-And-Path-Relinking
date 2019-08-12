@@ -18,7 +18,6 @@ bool checkPopulation( vector< Solution* > population ){
 			isOk( population[ i ] );
 		} catch (exception &e) {
 			count++;
-			myPrint( i, true );
 			myPrint( e.what(), true );
 //			return false;
 		}

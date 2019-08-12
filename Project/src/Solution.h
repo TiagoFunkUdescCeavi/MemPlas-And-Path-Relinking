@@ -4,6 +4,7 @@
 #include <string>
 
 #include "GLOBAL.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ public:
 
 	Solution( int sizeSolution );
 	void calculeFitness();
+	void addEnd( int city, int car );
 	string toString();
 
 };
@@ -37,6 +39,20 @@ void Solution::calculeFitness(){
 			break;
 		}
 		fitness += bonus_satisfaction_GLOBAL[ cities[ i ] ];
+	}
+}
+
+void Solution::addEnd( int city, int car ){
+	for( int i = 0; i < sizeSolution; i++ ){
+		if( cities[ i ] == -1 && cars[ i ] == -1 ){
+			cities[ i ] = city;
+			cars[ i ] = car;
+			if( i != sizeSolution-1 ){
+				cities[ i+1 ] = -1;
+				cars[ i+1 ] = -1;
+			}
+			break;
+		}
 	}
 }
 

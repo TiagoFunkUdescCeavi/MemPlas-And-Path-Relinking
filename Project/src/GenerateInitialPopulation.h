@@ -2,6 +2,7 @@
 #define SRC_GENERATEINITIALPOPULATION_H_
 
 #include <stdexcept>
+#include <bits/stdc++.h>
 
 #include "Solution.h"
 #include "GLOBAL.h"
@@ -12,7 +13,7 @@ int selectCityWithHeuristic( int car, int cityInit, vector< int > citiesNotVisit
 
 vector< Solution* > generateInitialPopulation( int sizePopulation ){
 	bool firstCity;
-	int count, pos;
+	int pos;
 	int myCar, destinyCity, nextCity;
 	Solution* mySolution = 0;
 	vector< int > carsNotUsed;
@@ -20,9 +21,7 @@ vector< Solution* > generateInitialPopulation( int sizePopulation ){
 	vector< Solution* > population( sizePopulation );
 
 	for( int i = 0; i < sizePopulation; i++ ){
-		myPrint( i, true );
 		firstCity = true;
-		count = 0;
 		carsNotUsed = initAndShuffle( numberCars_GLOBAL, false );
 		citiesNotVisited = initAndShuffle( numberCities_GLOBAL, true );
 		mySolution = new Solution( numberCities_GLOBAL );
@@ -44,18 +43,15 @@ vector< Solution* > generateInitialPopulation( int sizePopulation ){
 					nextCity = citiesNotVisited[ pos ];
 					citiesNotVisited.erase( citiesNotVisited.begin() + pos );
 				}
-
-				mySolution->cars[ count ] = myCar;
-				mySolution->cities[ count ] = nextCity;
-				count++;
+				mySolution->addEnd(nextCity, myCar );
 //				myPrint( mySolution->toString(), true );
 			}while( destinyCity != nextCity );
 
 			mySolution->calculeFitness();
-		}while( mySolution->fitness < 0.8*satisfaction_total_GLOBAL );
+		}while( mySolution->fitness < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
 
 		population[ i ] = mySolution;
-		myPrint( mySolution->toString(), true );
+//		myPrint( "new solution", true );
 	}
 	for( int i = 0; i < (int) population.size(); i++ ){
 		if( population[ i ] != 0 ){
@@ -87,7 +83,7 @@ vector< int > initAndShuffle( int vectorSize, bool hasCities ){
 }
 
 int selectCityWithHeuristic( int car, int cityInit, vector< int > citiesNotVisited ){
-	int value, min = 999999, pos = 0;
+	int value, min = INT_MAX, pos = 0;
 	for( int i = 0; i < (int) citiesNotVisited.size(); i++ ){
 		value = cars_GLOBAL[ car ].edge_weigth[ cityInit ][ citiesNotVisited[ i ] ];
 		if( min > value && value != 0 ){

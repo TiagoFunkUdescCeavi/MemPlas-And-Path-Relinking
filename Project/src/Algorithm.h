@@ -4,20 +4,23 @@
 #include "Validate.h"
 
 #include "GenerateInitialPopulation.h"
+#include "MultiOperatorsLocalSearch.h"
 
 void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
 
-	int numberItetarions = 0;
+	bool test;
+	int numberIterations = 0;
 	vector< Solution* > population;
 	vector< Solution* > elitePopulation;
 	vector< Solution* > selection;
 	vector< Solution* > offspring;
 
-	numberItetarions++;
+	numberIterations++;
 	population = generateInitialPopulation( sizePopulation );
+	test = checkPopulation( population );
 
-	bool test = checkPopulation( population );
-
+	population = multiOperatorsLocalSearch( population );
+	test = checkPopulation( population );
 }
 
 #endif /* SRC_ALGORITHM_H_ */
