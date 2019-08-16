@@ -4,18 +4,36 @@
 #include <bits/stdc++.h>
 
 vector< Solution* > removeSaving( vector< Solution* > population ){
+	bool go_ahead;
 	int minCity, posMin;
-	Solution* ind = 0;
+	Solution* ind;
 	vector< Solution* > sol;
 	sol = population;
+
 	for( int i = 0; i < (int) sol.size(); i++ ){
+		go_ahead = true;
 		ind = sol[ i ];
 
-		while( ind->fitness > minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
-			minCity = -1;
+		while( go_ahead ){
+			minCity = INT_MAX;
 			posMin = -1;
-			for( int j = 0; j < ind->sizeSolution; j++ ){
 
+			for( int j = 0; j < ind->sizeSolution; j++ ){
+				if( ind->cities[ j ] == -1 ){
+					break;
+				} else if( bonus_satisfaction_GLOBAL[ ind->cities[ j ] ] < minCity ){
+					minCity = bonus_satisfaction_GLOBAL[ ind->cities[ j ] ];
+					posMin = j;
+				}
+			}
+
+			ind->calculeFitness();
+
+			if( ind->fitness-bonus_satisfaction_GLOBAL[ minCity ]
+						< minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+				go_ahead = false;
+			}else {
+				ind->removeIndex( posMin );
 			}
 		}
 	}

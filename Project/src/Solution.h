@@ -17,7 +17,10 @@ public:
 
 	Solution( int sizeSolution );
 	void calculeFitness();
+
 	void addEnd( int city, int car );
+	void removeIndex( int index );
+
 	string toString();
 
 };
@@ -54,6 +57,20 @@ void Solution::addEnd( int city, int car ){
 			break;
 		}
 	}
+}
+
+void Solution::removeIndex( int index ){
+	myPrint( this->toString(), true );
+	for( int i = 0; i < this->sizeSolution; i++ ){
+		if( i > index ){
+			this->cities[ i-1 ] = this->cities[ i ];
+			this->cars[ i-1 ] = this->cars[ i ];
+			if( cities[ i ] == -1 ){
+				break;
+			}
+		}
+	}
+	myPrint( this->toString(), true );
 }
 
 string Solution::toString(){
