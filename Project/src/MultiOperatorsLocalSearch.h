@@ -27,9 +27,9 @@ vector< Solution* > removeSaving( vector< Solution* > population ){
 				}
 			}
 
-			ind->calculeFitness();
+			ind->calculeSatisfaction();
 
-			if( ind->fitness-bonus_satisfaction_GLOBAL[ minCity ]
+			if( ind->satisfaction-bonus_satisfaction_GLOBAL[ minCity ]
 						< minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 				go_ahead = false;
 			}else {

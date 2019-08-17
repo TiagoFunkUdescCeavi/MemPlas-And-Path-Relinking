@@ -55,8 +55,8 @@ void readInstance( string file ){
 			}
 		}
 
-		cars_GLOBAL[ car ].dimension = cities;
-		cars_GLOBAL[ car ].edge_weigth = matrix;
+		cars_GLOBAL[ car ]->dimension = cities;
+		cars_GLOBAL[ car ]->edge_weigth = matrix;
 	}
 
 	arq >> aux;
@@ -73,7 +73,7 @@ void readInstance( string file ){
 			}
 		}
 
-		cars_GLOBAL[ car ].return_rate = matrix;
+		cars_GLOBAL[ car ]->return_rate = matrix;
 	}
 
 	arq >> aux;

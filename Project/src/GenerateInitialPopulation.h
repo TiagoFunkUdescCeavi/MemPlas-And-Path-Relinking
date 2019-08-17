@@ -47,14 +47,15 @@ vector< Solution* > generateInitialPopulation( int sizePopulation ){
 //				myPrint( mySolution->toString(), true );
 			}while( destinyCity != nextCity );
 
-			mySolution->calculeFitness();
-		}while( mySolution->fitness < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
+			mySolution->calculeSatisfaction();
+		}while( mySolution->satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
 
 		population[ i ] = mySolution;
 //		myPrint( "new solution", true );
 	}
 	for( int i = 0; i < (int) population.size(); i++ ){
 		if( population[ i ] != 0 ){
+			population[ i ]->calculeSatisfaction();
 			population[ i ]->calculeFitness();
 		}
 	}
@@ -85,7 +86,7 @@ vector< int > initAndShuffle( int vectorSize, bool hasCities ){
 int selectCityWithHeuristic( int car, int cityInit, vector< int > citiesNotVisited ){
 	int value, min = INT_MAX, pos = 0;
 	for( int i = 0; i < (int) citiesNotVisited.size(); i++ ){
-		value = cars_GLOBAL[ car ].edge_weigth[ cityInit ][ citiesNotVisited[ i ] ];
+		value = cars_GLOBAL[ car ]->edge_weigth[ cityInit ][ citiesNotVisited[ i ] ];
 		if( min > value && value != 0 ){
 			min = value;
 			pos = i;

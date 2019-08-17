@@ -7,8 +7,24 @@
 #include "Algorithm.h"
 
 using namespace std;
+//
+//#define CATCH_CONFIG_RUNNER
+//#include "tests/catch.hpp"
+//
+//int main( int argc, char* argv[] ){
+//	Catch::Session().run( 1, argv );
+//	return 0;
+//}
 
 int main( int argc, char* argv[] ){
+
+	const int SIZE = 3;
+	Solution* sol = new Solution( SIZE );
+	sol->addEnd( 1, 1 );
+	sol->addEnd( 2, 2 );
+	sol->addEnd( 3, 3 );
+
+	sol->removeIndex( 0 );
 
 	string file = argv[ 1 ];
 	int sizePopulation = stoi( argv[ 2 ] );
