@@ -58,6 +58,7 @@ void Solution::calculeSatisfaction(){
 }
 
 void Solution::addEnd( int city, int car ){
+	bool full = true;
 	for( int i = 0; i < sizeSolution; i++ ){
 		if( cities[ i ] == -1 && cars[ i ] == -1 ){
 			cities[ i ] = city;
@@ -66,8 +67,12 @@ void Solution::addEnd( int city, int car ){
 				cities[ i+1 ] = -1;
 				cars[ i+1 ] = -1;
 			}
+			full = false;
 			break;
 		}
+	}
+	if( full ){
+		throw runtime_error( "Attempting to add to a full solution" );
 	}
 }
 
