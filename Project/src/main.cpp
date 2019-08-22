@@ -1,4 +1,4 @@
-
+//
 //#include <iostream>
 //#include <string>
 //#include <cstdlib>
@@ -7,7 +7,7 @@
 //#include "Algorithm.h"
 //
 //using namespace std;
-
+//
 //int main( int argc, char* argv[] ){
 //
 //	string file = argv[ 1 ];

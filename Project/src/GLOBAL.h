@@ -7,13 +7,13 @@
 
 using namespace std;
 
-int numberCars_GLOBAL;
-int numberCities_GLOBAL;
+extern int numberCars_GLOBAL;
+extern int numberCities_GLOBAL;
 
-vector< Car* > cars_GLOBAL;
-int* bonus_satisfaction_GLOBAL;
-int satisfaction_total_GLOBAL;
+extern vector< Car* > cars_GLOBAL;
+extern int* bonus_satisfaction_GLOBAL;
+extern int satisfaction_total_GLOBAL;
 
-double minimal_satisfaction_GLOBAL = 0.8;
+extern double minimal_satisfaction_GLOBAL;
 
 #endif /* SRC_GLOBAL_H_ */
