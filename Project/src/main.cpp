@@ -10,23 +10,26 @@
 //
 //int main( int argc, char* argv[] ){
 //
+//	cout << "parameters: ";
 //	string file = argv[ 1 ];
 //	int sizePopulation = stoi( argv[ 2 ] );
 //	int sizePlasmideo = stoi( argv[ 3 ] );
 //	double cross = stod( argv[ 4 ] );
 //	double elite = stod( argv[ 5 ] );
 //	int limitIterations = stoi( argv[ 6 ] );
+//	cout << "ok" << endl;
 //
 //	srand( 0 );
 //
-//	cout << "Parametros" << endl;
 //	try{
+//		cout << "instance read: ";
 //		readInstance( file );
-//		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
 //		cout << "ok" << endl;
+//		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
 //	} catch (exception &e) {
 //		cout << e.what() << endl;
 //		return 1;
 //	}
+//	cout << "end of execution" << endl;
 //	return 0;
 //}

@@ -15,12 +15,13 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 	vector< Solution* > selection;
 	vector< Solution* > offspring;
 
-	numberIterations++;
+	myPrint( "generation of population: ", false );
 	population = generateInitialPopulation( sizePopulation );
-	test = checkPopulation( population );
-
-	population = multiOperatorsLocalSearch( population );
-	test = checkPopulation( population );
+	myPrint( "ok" , true );
+//	test = checkPopulation( population );
+//
+//	population = multiOperatorsLocalSearch( population );
+//	test = checkPopulation( population );
 }
 
 #endif /* SRC_ALGORITHM_H_ */

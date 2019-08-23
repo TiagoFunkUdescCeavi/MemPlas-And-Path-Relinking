@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 #include "GLOBAL.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -55,6 +56,7 @@ void readInstance( string file ){
 			}
 		}
 
+		cars_GLOBAL[ car ] = new Car();
 		cars_GLOBAL[ car ]->dimension = cities;
 		cars_GLOBAL[ car ]->edge_weigth = matrix;
 	}

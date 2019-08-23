@@ -11,22 +11,32 @@ Solution::Solution( int sizeSolution ){
 }
 
 void Solution::calculeFitness(){
-	fitness = 0;
+	this->fitness = 0;
+	int previous_car = -1;
 	Car* myCar = 0;
-	for( int i = 0; i < sizeSolution; i++ ){
-		myCar = cars_GLOBAL[ cars[ i ] ];
-		fitness += myCar->edge_weigth[ cities[ i ] ][ cities[ i+1 ] ];
-		fitness += myCar->return_rate[ cities[ i ] ][ cities[ i+1 ] ];
+	for( int i = 0; i < this->sizeSolution-1; i++ ){
+		if( cities[ i ] == -1 ){
+			break;
+		}
+		if( i == 0 ){
+			previous_car = this->cars[ i ];
+		}
+		myCar = cars_GLOBAL[ this->cars[ i ] ];
+		this->fitness += myCar->edge_weigth[ this->cities[ i ] ][ this->cities[ i+1 ] ];
+		this->fitness += myCar->return_rate[ previous_car ][ this->cities[ i+1 ] ];
+		if( previous_car != this->cars[ i ] ){
+			previous_car = this->cars[ i ];
+		}
 	}
 }
 
 void Solution::calculeSatisfaction(){
-	satisfaction = 0;
+	this->satisfaction = 0;
 	for( int i = 0; i < sizeSolution; i++ ){
 		if( cities[ i ] == -1 ){
 			break;
 		}
-		satisfaction += bonus_satisfaction_GLOBAL[ cities[ i ] ];
+		this->satisfaction += bonus_satisfaction_GLOBAL[ cities[ i ] ];
 	}
 }
 

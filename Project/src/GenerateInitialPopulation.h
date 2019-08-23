@@ -44,16 +44,17 @@ vector< Solution* > generateInitialPopulation( int sizePopulation ){
 					citiesNotVisited.erase( citiesNotVisited.begin() + pos );
 				}
 				mySolution->addEnd(nextCity, myCar );
-//				myPrint( mySolution->toString(), true );
 			}while( destinyCity != nextCity );
 
 			mySolution->calculeSatisfaction();
 		}while( mySolution->satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
 
 		population[ i ] = mySolution;
-//		myPrint( "new solution", true );
 	}
+
 	for( int i = 0; i < (int) population.size(); i++ ){
+		myPrint( "solucao: ", false );
+		myPrint( i, true );
 		if( population[ i ] != 0 ){
 			population[ i ]->calculeSatisfaction();
 			population[ i ]->calculeFitness();
