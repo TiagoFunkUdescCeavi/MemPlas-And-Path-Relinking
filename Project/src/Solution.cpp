@@ -5,8 +5,8 @@ Solution::Solution( int sizeSolution ){
 	cities = new int[ sizeSolution ];
 	cars = new int[ sizeSolution ];
 	for( int i = 0; i < sizeSolution; i++ ){
-		cars[ i ] = -1;
 		cities[ i ] = -1;
+		cars[ i ] = -1;
 	}
 }
 
@@ -51,13 +51,14 @@ void Solution::addEnd( int city, int car ){
 
 void Solution::removeIndex( int index ){
 	if( index < 0 || index >= this->sizeSolution ){
-		throw runtime_error( "Index for city / car pair removal in solution is not valid. " );
+		throw runtime_error( "Index for city/car pair removal in solution is not valid. " );
 	}
 	if( index == this->sizeSolution-1){
 		this->cities[ index ] = -1;
 		this->cars[ index ] = -1;
+		return;
 	}
-	for( int i = 0; i < this->sizeSolution-1; i++ ){
+	for( int i = 0; i < this->sizeSolution; i++ ){
 		if( i > index ){
 			this->cities[ i-1 ] = this->cities[ i ];
 			this->cars[ i-1 ] = this->cars[ i ];
@@ -66,6 +67,8 @@ void Solution::removeIndex( int index ){
 			}
 		}
 	}
+	this->cities[ sizeSolution-1 ] = -1;
+	this->cars[ sizeSolution-1 ] = -1;
 }
 
 string Solution::toString(){
