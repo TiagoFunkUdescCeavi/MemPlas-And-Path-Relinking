@@ -24,7 +24,7 @@ vector< Solution* > generateInitialPopulation( int sizePopulation ){
 		firstCity = true;
 		carsNotUsed = initAndShuffle( numberCars_GLOBAL, false );
 		citiesNotVisited = initAndShuffle( numberCities_GLOBAL, true );
-		mySolution = new Solution( numberCities_GLOBAL );
+		mySolution = new Solution( numberCities_GLOBAL+1 );
 
 		do{
 			myCar = carsNotUsed[ 0 ];
@@ -49,18 +49,17 @@ vector< Solution* > generateInitialPopulation( int sizePopulation ){
 			mySolution->calculeSatisfaction();
 		}while( mySolution->satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
 
+		mySolution->addEnd( 0, myCar );
+
 		population[ i ] = mySolution;
 	}
 
 	for( int i = 0; i < (int) population.size(); i++ ){
-		myPrint( "solucao: ", false );
-		myPrint( i, true );
 		if( population[ i ] != 0 ){
 			population[ i ]->calculeSatisfaction();
 			population[ i ]->calculeFitness();
 		}
 	}
-	myPrint( "Ok", true );
 	return population;
 }
 

@@ -15,6 +15,7 @@ public:
 	int* cars = 0;
 	int fitness = 0;
 	int satisfaction = 0;
+	int position = 0;
 
 	Solution( int sizeSolution );
 	void calculeFitness();

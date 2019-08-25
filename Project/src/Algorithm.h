@@ -18,7 +18,7 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 	myPrint( "generation of population: ", false );
 	population = generateInitialPopulation( sizePopulation );
 	myPrint( "ok" , true );
-//	test = checkPopulation( population );
+	test = checkPopulation( population );
 //
 //	population = multiOperatorsLocalSearch( population );
 //	test = checkPopulation( population );

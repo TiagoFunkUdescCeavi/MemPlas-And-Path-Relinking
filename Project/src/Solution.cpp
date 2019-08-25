@@ -41,44 +41,44 @@ void Solution::calculeSatisfaction(){
 }
 
 void Solution::addEnd( int city, int car ){
-	bool full = true;
-	for( int i = 0; i < sizeSolution; i++ ){
-		if( cities[ i ] == -1 && cars[ i ] == -1 ){
-			cities[ i ] = city;
-			cars[ i ] = car;
-			if( i != sizeSolution-1 ){
-				cities[ i+1 ] = -1;
-				cars[ i+1 ] = -1;
-			}
-			full = false;
-			break;
-		}
-	}
-	if( full ){
+	if( this->position == this->sizeSolution ){
 		throw runtime_error( "Attempting to add to a full solution" );
 	}
+	this->cities[ position ] = city;
+	this->cars[ position ] = car;
+	this->position++;
 }
 
 void Solution::removeIndex( int index ){
-	if( index < 0 || index >= this->sizeSolution ){
+	if( index < 0 || index > this->sizeSolution-1 ){
 		throw runtime_error( "Index for city/car pair removal in solution is not valid. " );
 	}
-	if( index == this->sizeSolution-1){
+	if( index == this->sizeSolution-1 && this->position == this->sizeSolution ){
 		this->cities[ index ] = -1;
-		this->cars[ index ] = -1;
-		return;
-	}
-	for( int i = 0; i < this->sizeSolution; i++ ){
-		if( i > index ){
-			this->cities[ i-1 ] = this->cities[ i ];
-			this->cars[ i-1 ] = this->cars[ i ];
-			if( cities[ i ] == -1 ){
+		this->cars[ index  ] = -1;
+		this->position--;
+	}else if( this->position == this->sizeSolution && index < this->position ){
+		for( int i = 0; i < this->sizeSolution; i++ ){
+			if( i >= index ){
+				this->cities[ i ] = this->cities[ i+1 ];
+				this->cars[ i ] = this->cars[ i+1 ];
+			}
+		}
+		this->cities[ this->sizeSolution-1 ] = -1;
+		this->cars[ this->sizeSolution-1 ] = -1;
+		this->position--;
+	}else if( index < this->position ){
+		for( int i = 0; i < this->sizeSolution; i++ ){
+			if( i >= index ){
+				this->cities[ i ] = this->cities[ i+1 ];
+				this->cars[ i ] = this->cars[ i+1 ];
+			}
+			if( this->cities[ i ] == -1 ){
 				break;
 			}
 		}
+		this->position--;
 	}
-	this->cities[ sizeSolution-1 ] = -1;
-	this->cars[ sizeSolution-1 ] = -1;
 }
 
 string Solution::toString(){
