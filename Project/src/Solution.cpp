@@ -12,30 +12,36 @@ Solution::Solution( int sizeSolution ){
 
 void Solution::calculeFitness(){
 	this->fitness = 0;
-	int previous_car = -1;
+	int previous_car = 0;
+	int rent_city = 0;
+	int weigth = -1, rate = -1;
 	Car* myCar = 0;
-	for( int i = 0; i < this->sizeSolution-1; i++ ){
-		if( cities[ i ] == -1 ){
-			break;
-		}
-		if( i == 0 ){
-			previous_car = this->cars[ i ];
-		}
+	for( int i = 0; i < this->position-1; i++ ){
 		myCar = cars_GLOBAL[ this->cars[ i ] ];
-		this->fitness += myCar->edge_weigth[ this->cities[ i ] ][ this->cities[ i+1 ] ];
-		this->fitness += myCar->return_rate[ previous_car ][ this->cities[ i+1 ] ];
-		if( previous_car != this->cars[ i ] ){
-			previous_car = this->cars[ i ];
+		weigth = myCar->edge_weigth[ this->cities[ i ] ][ this->cities[ i+1 ] ];
+		myPrint( weigth, true );
+		this->fitness += weigth;
+		if( previous_car != this->cars[ i+1 ] ){
+			rate = myCar->return_rate[ rent_city ][ this->cities[ i+1 ] ];
+			myPrint(">>",false);
+			myPrint( rate, true );
+			this->fitness += rate;
+			previous_car = this->cars[ i+1 ];
+			rent_city = this->cities[ i+1 ];
 		}
 	}
+	myPrint( previous_car, false );
+	myPrint( "-", false );
+	myPrint( rent_city, true );
+	rate = myCar->return_rate[ rent_city ][ 0 ];
+	myPrint(">>",false);
+	myPrint( rate, true );
+	this->fitness += rate;
 }
 
 void Solution::calculeSatisfaction(){
 	this->satisfaction = 0;
-	for( int i = 0; i < sizeSolution; i++ ){
-		if( cities[ i ] == -1 ){
-			break;
-		}
+	for( int i = 0; i < this->position-1; i++ ){
 		this->satisfaction += bonus_satisfaction_GLOBAL[ cities[ i ] ];
 	}
 }
