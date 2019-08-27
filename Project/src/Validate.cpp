@@ -1,17 +1,14 @@
 #include "Validate.h"
 
-bool checkPopulation( vector< Solution* > population ){
-	int count = 0;
+void checkPopulation( vector< Solution* > population ){
 	for( int i = 0; i < (int) population.size(); i++ ){
 		try{
 			isOk( population[ i ] );
 		} catch (exception &e) {
-			count++;
+			myPrint( i, true );
 			myPrint( e.what(), true );
-//			return false;
 		}
 	}
-	return true;
 }
 
 int findFinalPosition( Solution* sol ){

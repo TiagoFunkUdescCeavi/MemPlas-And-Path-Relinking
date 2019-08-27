@@ -6,39 +6,48 @@
 vector< Solution* > removeSaving( vector< Solution* > population ){
 	bool go_ahead;
 	int minCity, posMin;
-	Solution* ind;
-	vector< Solution* > sol;
-	sol = population;
+	Solution* dad = 0;
+	Solution* sol = 0;
+	vector< Solution* > newPopulation( population.size() );
 
-	for( int i = 0; i < (int) sol.size(); i++ ){
+	for( int i = 0; i < (int) population.size(); i++ ){
 		go_ahead = true;
-		ind = sol[ i ];
+		sol = population[ i ];
+		dad = sol->copy();
 
 		while( go_ahead ){
 			minCity = INT_MAX;
 			posMin = -1;
 
-			for( int j = 0; j < ind->sizeSolution; j++ ){
-				if( ind->cities[ j ] == -1 ){
+			for( int j = 1; j < sol->position-1; j++ ){
+				if( sol->cities[ j ] == -1 ){
 					break;
-				} else if( bonus_satisfaction_GLOBAL[ ind->cities[ j ] ] < minCity ){
-					minCity = bonus_satisfaction_GLOBAL[ ind->cities[ j ] ];
+				} else if( bonus_satisfaction_GLOBAL[ sol->cities[ j ] ] < minCity ){
+					minCity = bonus_satisfaction_GLOBAL[ sol->cities[ j ] ];
 					posMin = j;
 				}
 			}
 
-			ind->calculeSatisfaction();
+			sol->calculeSatisfaction();
 
-			if( ind->satisfaction-bonus_satisfaction_GLOBAL[ minCity ]
+			if( sol->satisfaction-bonus_satisfaction_GLOBAL[ minCity ]
 						< minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 				go_ahead = false;
 			}else {
-				ind->removeIndex( posMin );
+				sol->removeIndex( posMin );
 			}
 		}
-	}
 
-	return sol;
+		sol->calculeFitness();
+		dad->calculeFitness();
+
+		if( sol->fitness < dad->fitness ){
+			newPopulation[i] = sol;
+		}else{
+			newPopulation[i] = dad;
+		}
+	}
+	return newPopulation;
 }
 
 vector< Solution* > invertSolution( vector< Solution* > population ){
@@ -80,11 +89,11 @@ vector< Solution* > multiOperatorsLocalSearch( vector< Solution* > population){
 	vector< Solution* > sol;
 	sol = population;
 	sol = removeSaving( sol );
-	sol = invertSolution( sol );
-	sol = invertSavingCity( sol );
-	sol = replaceSavingCity( sol );
-	sol = replaceSavingCar( sol );
-	sol = operator_2opt( sol );
+//	sol = invertSolution( sol );
+//	sol = invertSavingCity( sol );
+//	sol = replaceSavingCity( sol );
+//	sol = replaceSavingCar( sol );
+//	sol = operator_2opt( sol );
 	return sol;
 }
 

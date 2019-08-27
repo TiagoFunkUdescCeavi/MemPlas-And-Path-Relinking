@@ -24,6 +24,7 @@ public:
 	void addEnd( int city, int car );
 	void removeIndex( int index );
 
+	Solution* copy();
 	string toString();
 
 };

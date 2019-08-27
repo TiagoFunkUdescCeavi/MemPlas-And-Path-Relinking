@@ -10,6 +10,6 @@
 #include "utils.h"
 
 bool isOk( Solution* mySolution );
-bool checkPopulation( vector< Solution* > population );
+void checkPopulation( vector< Solution* > population );
 
 #endif /* SRC_VALIDATE_H_ */
