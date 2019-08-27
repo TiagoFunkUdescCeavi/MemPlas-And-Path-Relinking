@@ -51,10 +51,32 @@ vector< Solution* > removeSaving( vector< Solution* > population ){
 }
 
 vector< Solution* > invertSolution( vector< Solution* > population ){
-	vector< Solution* > sol;
-	sol = population;
+	Solution* dad = 0;
+	Solution* sol = 0;
+	vector< Solution* > newPopulation( population.size() );
 
-	return sol;
+	for( int i = 0; i < (int) population.size(); i++ ){
+		dad = population[ i ];
+		sol = new Solution( dad->sizeSolution );
+
+		for( int j = dad->position-1; j >= 0; j-- ){
+			if( dad->cars[ j ] != dad->cars[ j-1 ] && j != 0 ){
+				sol->addEnd( dad->cities[ j ], dad->cars[ j-1 ] );
+			}else{
+				sol->addEnd( dad->cities[ j ], dad->cars[ j ] );
+			}
+		}
+
+		sol->calculeFitness();
+		dad->calculeFitness();
+
+		if( sol->fitness < dad->fitness ){
+			newPopulation[i] = sol;
+		}else{
+			newPopulation[i] = dad;
+		}
+	}
+	return newPopulation;
 }
 
 vector< Solution* > invertSavingCity( vector< Solution* > population ){
@@ -87,9 +109,8 @@ vector< Solution* > operator_2opt( vector< Solution* > population ){
 
 vector< Solution* > multiOperatorsLocalSearch( vector< Solution* > population){
 	vector< Solution* > sol;
-	sol = population;
-	sol = removeSaving( sol );
-//	sol = invertSolution( sol );
+	sol = removeSaving( population );
+	sol = invertSolution( sol );
 //	sol = invertSavingCity( sol );
 //	sol = replaceSavingCity( sol );
 //	sol = replaceSavingCar( sol );

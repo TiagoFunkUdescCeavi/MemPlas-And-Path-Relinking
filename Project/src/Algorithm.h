@@ -22,6 +22,7 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 	myPrint( "multi operator local search: ", true );
 	population = multiOperatorsLocalSearch( population );
 	myPrint( "ok" , true );
+
 	myPrint( "check population: ", true );
 	checkPopulation( population );
 	myPrint( "ok" , true );

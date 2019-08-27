@@ -7,6 +7,7 @@ void checkPopulation( vector< Solution* > population ){
 		} catch (exception &e) {
 			myPrint( i, true );
 			myPrint( e.what(), true );
+			myPrint( population[i]->toString(), true );
 		}
 	}
 }
