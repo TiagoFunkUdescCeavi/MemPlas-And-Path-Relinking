@@ -115,3 +115,5 @@ bool isOk( Solution* sol ){
 	checkRepetition( sol, finalPosition );
 	return true;
 }
+
+
