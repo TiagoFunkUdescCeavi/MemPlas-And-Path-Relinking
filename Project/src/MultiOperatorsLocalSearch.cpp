@@ -79,10 +79,45 @@ vector< Solution* > invertSolution( vector< Solution* > population ){
 }
 
 vector< Solution* > invertSavingCity( vector< Solution* > population ){
-	vector< Solution* > sol;
-	sol = population;
+	int oldCity = -1;
+	bool* cityWasUsed = 0;
+	Solution* dad = 0;
+	Solution* sol = 0;
+	vector< Solution* > newPopulation( population.size() );
 
-	return sol;
+	for( int i = 0; i < population.size(); i++ ){
+		sol = population[ i ];
+		dad = sol->copy();
+
+		cityWasUsed = new bool[ numberCities_GLOBAL ];
+		for( int j = 0; j < numberCities_GLOBAL; j++ ){
+			cityWasUsed[ j ] = false;
+		}
+		for( int j = 0; j < sol->position; j++ ){
+			cityWasUsed[ sol->cities[ j ] ] = true;
+		}
+		for( int j = 0; j < numberCities_GLOBAL; j++ ){
+			if( !cityWasUsed[ j ] ){
+
+				for( int k = 1; k < sol->position-1; k++ ){
+					oldCity = sol->cities[ k ];
+					sol->insertCityAt( k, j );
+
+					sol->calculeFitness();
+					dad->calculeFitness();
+
+					if( sol->fitness < dad->fitness ){
+						dad = sol->copy();
+						sol->insertCityAt( k, oldCity );
+					}else{
+						sol->insertCityAt( k, oldCity );
+					}
+				}
+			}
+		}
+		newPopulation[i] = dad;
+	}
+	return newPopulation;
 }
 
 vector< Solution* > replaceSavingCity( vector< Solution* > population ){
@@ -110,7 +145,7 @@ vector< Solution* > multiOperatorsLocalSearch( vector< Solution* > population){
 	vector< Solution* > sol;
 	sol = removeSaving( population );
 	sol = invertSolution( sol );
-//	sol = invertSavingCity( sol );
+	sol = invertSavingCity( sol );
 //	sol = replaceSavingCity( sol );
 //	sol = replaceSavingCar( sol );
 //	sol = operator_2opt( sol );

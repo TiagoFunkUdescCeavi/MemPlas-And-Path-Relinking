@@ -11,24 +11,27 @@ Solution::Solution( int sizeSolution ){
 }
 
 void Solution::calculeFitness(){
-	this->fitness = 0;
-	int previous_car = 0;
-	int rent_city = 0;
-	int weigth = -1, rate = -1;
-	Car* myCar = 0;
-	for( int i = 0; i < this->position-1; i++ ){
-		myCar = cars_GLOBAL[ this->cars[ i ] ];
-		weigth = myCar->edge_weigth[ this->cities[ i ] ][ this->cities[ i+1 ] ];
-		this->fitness += weigth;
-		if( previous_car != this->cars[ i+1 ] ){
-			rate = myCar->return_rate[ rent_city ][ this->cities[ i+1 ] ];
-			this->fitness += rate;
-			previous_car = this->cars[ i+1 ];
-			rent_city = this->cities[ i+1 ];
+	if( !calculatedFitness ){
+		this->fitness = 0;
+		int previous_car = 0;
+		int rent_city = 0;
+		int weigth = -1, rate = -1;
+		Car* myCar = 0;
+		for( int i = 0; i < this->position-1; i++ ){
+			myCar = cars_GLOBAL[ this->cars[ i ] ];
+			weigth = myCar->edge_weigth[ this->cities[ i ] ][ this->cities[ i+1 ] ];
+			this->fitness += weigth;
+			if( previous_car != this->cars[ i+1 ] ){
+				rate = myCar->return_rate[ rent_city ][ this->cities[ i+1 ] ];
+				this->fitness += rate;
+				previous_car = this->cars[ i+1 ];
+				rent_city = this->cities[ i+1 ];
+			}
 		}
+		rate = myCar->return_rate[ rent_city ][ 0 ];
+		this->fitness += rate;
+		this->calculatedFitness = true;
 	}
-	rate = myCar->return_rate[ rent_city ][ 0 ];
-	this->fitness += rate;
 }
 
 void Solution::calculeSatisfaction(){
@@ -45,6 +48,7 @@ void Solution::addEnd( int city, int car ){
 	this->cities[ position ] = city;
 	this->cars[ position ] = car;
 	this->position++;
+	this->calculatedFitness = false;
 }
 
 void Solution::removeIndex( int index ){
@@ -77,6 +81,15 @@ void Solution::removeIndex( int index ){
 		}
 		this->position--;
 	}
+	this->calculatedFitness = false;
+}
+
+void Solution::insertCityAt( int index, int city ){
+	if( index < 0 || index >= this->position ){
+		throw runtime_error( "Invalid index to insert\n" );
+	}
+	this->cities[ index ] = city;
+	this->calculatedFitness = false;
 }
 
 Solution* Solution::copy(){
@@ -92,7 +105,6 @@ Solution* Solution::copy(){
 	for( int i = 0; i < this->sizeSolution; i++ ){
 		s->cars[ i ] = this->cars[ i ];
 	}
-
 	return s;
 }
 

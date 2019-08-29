@@ -31,14 +31,13 @@ int main( int argc, char* argv[] ){
 //		vector< Solution* > population(1);
 //		Solution* s = new Solution( 8 );
 //		s->addEnd(0,0);
-//		s->addEnd(1,0);
-//		s->addEnd(2,1);
-//		s->addEnd(3,1);
-//		s->addEnd(4,2);
-//		s->addEnd(5,2);
-//		s->addEnd(0,2);
+//		s->addEnd(2,0);
+//		s->addEnd(3,0);
+//		s->addEnd(4,0);
+//		s->addEnd(5,0);
+//		s->addEnd(0,0);
 //		population[0] = s;
-//		invertSolution(population);
+//		invertSavingCity( population );
 
 		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
 	} catch (exception &e) {

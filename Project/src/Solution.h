@@ -9,6 +9,9 @@
 using namespace std;
 
 class Solution{
+private:
+	bool calculatedFitness = false;
+
 public:
 	int sizeSolution = 0;
 	int* cities = 0;
@@ -23,6 +26,7 @@ public:
 
 	void addEnd( int city, int car );
 	void removeIndex( int index );
+	void insertCityAt( int index, int city );
 
 	Solution* copy();
 	string toString();

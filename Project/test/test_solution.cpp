@@ -253,3 +253,52 @@ TEST( , REMOVE_INDEX_FAIL ){
 	EXPECT_EQ( sol->cities[ 1 ], 2 );
 	EXPECT_EQ( sol->cities[ 2 ], 3 );
 }
+
+TEST( , INSERT_AT ){
+	const int SIZE = 3;
+	Solution* sol = new Solution( SIZE );
+	sol->addEnd( 1, 1 );
+	sol->addEnd( 2, 2 );
+	sol->addEnd( 3, 3 );
+
+	sol->insertCityAt(1,4);
+
+	EXPECT_EQ( sol->cars[ 0 ], 1 );
+	EXPECT_EQ( sol->cars[ 1 ], 4 );
+	EXPECT_EQ( sol->cars[ 2 ], 3 );
+
+	EXPECT_EQ( sol->cities[ 0 ], 1 );
+	EXPECT_EQ( sol->cities[ 1 ], 2 );
+	EXPECT_EQ( sol->cities[ 2 ], 3 );
+}
+
+
+TEST( , INSERT_AT_FAIL ){
+	const int SIZE = 3;
+	Solution* sol = new Solution( SIZE );
+	sol->addEnd( 1, 1 );
+	sol->addEnd( 2, 2 );
+	sol->addEnd( 3, 3 );
+
+	try{
+		sol->insertCityAt(4,4);
+		FAIL();
+	}catch( runtime_error& exc ){
+		ASSERT_STREQ( "Invalid index to insert\n", exc.what() );
+	}
+}
+
+TEST( , INSERT_AT_FAIL_2 ){
+	const int SIZE = 3;
+	Solution* sol = new Solution( SIZE );
+	sol->addEnd( 1, 1 );
+	sol->addEnd( 2, 2 );
+	sol->addEnd( 3, 3 );
+
+	try{
+		sol->insertCityAt(-1,4);
+		FAIL();
+	}catch( runtime_error& exc ){
+		ASSERT_STREQ( "Invalid index to insert\n", exc.what() );
+	}
+}
