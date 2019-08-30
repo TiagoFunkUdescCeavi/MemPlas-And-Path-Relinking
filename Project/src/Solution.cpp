@@ -115,6 +115,14 @@ void Solution::insertCityAt( int index, int city ){
 	this->calculatedFitness = false;
 }
 
+void Solution::insertCarAt( int index, int car ){
+	if( index < 0 || index > this->position ){
+		throw runtime_error( "Invalid index to insert car.\n" );
+	}
+	this->cars[ index ] = car;
+	this->calculatedFitness = false;
+}
+
 Solution* Solution::copy(){
 	Solution* s = new Solution( this->sizeSolution );
 	s->position = this->position;

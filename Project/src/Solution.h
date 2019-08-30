@@ -28,6 +28,7 @@ public:
 	void removeIndex( int index );
 	void addCityAt( int index, int city );
 	void insertCityAt( int index, int city );
+	void insertCarAt( int index, int car );
 
 	Solution* copy();
 	string toString();
