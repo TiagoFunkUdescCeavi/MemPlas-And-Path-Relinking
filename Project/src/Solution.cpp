@@ -84,9 +84,32 @@ void Solution::removeIndex( int index ){
 	this->calculatedFitness = false;
 }
 
-void Solution::insertCityAt( int index, int city ){
+void Solution::addCityAt( int index, int city ){
 	if( index < 0 || index >= this->position ){
-		throw runtime_error( "Invalid index to insert\n" );
+		throw runtime_error( "Invalid index to add city.\n" );
+	}
+	if( index == this->position ){
+		this->cities[ index ] = city;
+	}else{
+		for( int i = this->position; i >= 0; i-- ){
+			if( i > index ){
+				this->cities[ i+1 ] = this->cities[ i ];
+				this->cars[ i+1 ] = this->cars[ i ];
+			}else if( i == index ){
+				this->cities[ i+1 ] = this->cities[ i ];
+				this->cars[ i+1 ] = this->cars[ i ];
+				this->cities[ i ] = city;
+				break;
+			}
+		}
+	}
+	this->position++;
+	this->calculatedFitness = false;
+}
+
+void Solution::insertCityAt( int index, int city ){
+	if( index < 0 || index > this->position ){
+		throw runtime_error( "Invalid index to insert city.\n" );
 	}
 	this->cities[ index ] = city;
 	this->calculatedFitness = false;

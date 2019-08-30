@@ -37,7 +37,7 @@ int main( int argc, char* argv[] ){
 //		s->addEnd(5,0);
 //		s->addEnd(0,0);
 //		population[0] = s;
-//		invertSavingCity( population );
+//		insertSavingCity( population );
 
 		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
 	} catch (exception &e) {

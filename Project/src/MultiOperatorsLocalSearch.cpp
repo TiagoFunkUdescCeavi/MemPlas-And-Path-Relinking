@@ -6,42 +6,42 @@ vector< Solution* > removeSaving( vector< Solution* > population ){
 	bool go_ahead;
 	int minCity, posMin;
 	Solution* dad = 0;
-	Solution* sol = 0;
+	Solution* son = 0;
 	vector< Solution* > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
 		go_ahead = true;
-		sol = population[ i ];
-		dad = sol->copy();
+		son = population[ i ];
+		dad = son->copy();
 
 		while( go_ahead ){
 			minCity = INT_MAX;
 			posMin = -1;
 
-			for( int j = 1; j < sol->position-1; j++ ){
-				if( sol->cities[ j ] == -1 ){
+			for( int j = 1; j < son->position-1; j++ ){
+				if( son->cities[ j ] == -1 ){
 					break;
-				} else if( bonus_satisfaction_GLOBAL[ sol->cities[ j ] ] < minCity ){
-					minCity = bonus_satisfaction_GLOBAL[ sol->cities[ j ] ];
+				} else if( bonus_satisfaction_GLOBAL[ son->cities[ j ] ] < minCity ){
+					minCity = bonus_satisfaction_GLOBAL[ son->cities[ j ] ];
 					posMin = j;
 				}
 			}
 
-			sol->calculeSatisfaction();
+			son->calculeSatisfaction();
 
-			if( sol->satisfaction-bonus_satisfaction_GLOBAL[ minCity ]
+			if( son->satisfaction-bonus_satisfaction_GLOBAL[ minCity ]
 						< minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 				go_ahead = false;
 			}else {
-				sol->removeIndex( posMin );
+				son->removeIndex( posMin );
 			}
 		}
 
-		sol->calculeFitness();
+		son->calculeFitness();
 		dad->calculeFitness();
 
-		if( sol->fitness < dad->fitness ){
-			newPopulation[i] = sol;
+		if( son->fitness < dad->fitness ){
+			newPopulation[i] = son;
 		}else{
 			newPopulation[i] = dad;
 		}
@@ -51,26 +51,26 @@ vector< Solution* > removeSaving( vector< Solution* > population ){
 
 vector< Solution* > invertSolution( vector< Solution* > population ){
 	Solution* dad = 0;
-	Solution* sol = 0;
+	Solution* son = 0;
 	vector< Solution* > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
 		dad = population[ i ];
-		sol = new Solution( dad->sizeSolution );
+		son = new Solution( dad->sizeSolution );
 
 		for( int j = dad->position-1; j >= 0; j-- ){
 			if( dad->cars[ j ] != dad->cars[ j-1 ] && j != 0 ){
-				sol->addEnd( dad->cities[ j ], dad->cars[ j-1 ] );
+				son->addEnd( dad->cities[ j ], dad->cars[ j-1 ] );
 			}else{
-				sol->addEnd( dad->cities[ j ], dad->cars[ j ] );
+				son->addEnd( dad->cities[ j ], dad->cars[ j ] );
 			}
 		}
 
-		sol->calculeFitness();
+		son->calculeFitness();
 		dad->calculeFitness();
 
-		if( sol->fitness < dad->fitness ){
-			newPopulation[i] = sol;
+		if( son->fitness < dad->fitness ){
+			newPopulation[i] = son;
 		}else{
 			newPopulation[i] = dad;
 		}
@@ -78,40 +78,36 @@ vector< Solution* > invertSolution( vector< Solution* > population ){
 	return newPopulation;
 }
 
-vector< Solution* > invertSavingCity( vector< Solution* > population ){
-	int oldCity = -1;
+vector< Solution* > insertSavingCity( vector< Solution* > population ){
 	bool* cityWasUsed = 0;
 	Solution* dad = 0;
-	Solution* sol = 0;
+	Solution* son = 0;
 	vector< Solution* > newPopulation( population.size() );
 
-	for( int i = 0; i < population.size(); i++ ){
-		sol = population[ i ];
-		dad = sol->copy();
+	for( int i = 0; i < (int) population.size(); i++ ){
+		son = population[ i ];
+		dad = son->copy();
 
 		cityWasUsed = new bool[ numberCities_GLOBAL ];
 		for( int j = 0; j < numberCities_GLOBAL; j++ ){
 			cityWasUsed[ j ] = false;
 		}
-		for( int j = 0; j < sol->position; j++ ){
-			cityWasUsed[ sol->cities[ j ] ] = true;
+		for( int j = 0; j < son->position; j++ ){
+			cityWasUsed[ son->cities[ j ] ] = true;
 		}
 		for( int j = 0; j < numberCities_GLOBAL; j++ ){
 			if( !cityWasUsed[ j ] ){
 
-				for( int k = 1; k < sol->position-1; k++ ){
-					oldCity = sol->cities[ k ];
-					sol->insertCityAt( k, j );
+				for( int k = 1; k < son->position-1; k++ ){
+					son->addCityAt( k, j );
 
-					sol->calculeFitness();
+					son->calculeFitness();
 					dad->calculeFitness();
 
-					if( sol->fitness < dad->fitness ){
-						dad = sol->copy();
-						sol->insertCityAt( k, oldCity );
-					}else{
-						sol->insertCityAt( k, oldCity );
+					if( son->fitness < dad->fitness ){
+						dad = son->copy();
 					}
+					son->removeIndex( k );
 				}
 			}
 		}
@@ -121,10 +117,43 @@ vector< Solution* > invertSavingCity( vector< Solution* > population ){
 }
 
 vector< Solution* > replaceSavingCity( vector< Solution* > population ){
-	vector< Solution* > sol;
-	sol = population;
+	int oldCity = -1;
+	bool* cityWasUsed = 0;
+	Solution* dad = 0;
+	Solution* son = 0;
+	vector< Solution* > newPopulation( population.size() );
 
-	return sol;
+	for( int i = 0; i < (int) population.size(); i++ ){
+		son = population[ i ];
+		dad = son->copy();
+
+		cityWasUsed = new bool[ numberCities_GLOBAL ];
+		for( int j = 0; j < numberCities_GLOBAL; j++ ){
+			cityWasUsed[ j ] = false;
+		}
+		for( int j = 0; j < son->position; j++ ){
+			cityWasUsed[ son->cities[ j ] ] = true;
+		}
+		for( int j = 0; j < numberCities_GLOBAL; j++ ){
+			if( !cityWasUsed[ j ] ){
+
+				for( int k = 1; k < son->position-1; k++ ){
+					oldCity = son->cities[ k ];
+					son->insertCityAt( k, j );
+
+					son->calculeFitness();
+					dad->calculeFitness();
+
+					if( son->fitness < dad->fitness ){
+						dad = son->copy();
+					}
+					son->insertCityAt( k, oldCity );
+				}
+			}
+		}
+		newPopulation[i] = dad;
+	}
+	return newPopulation;
 }
 
 vector< Solution* > replaceSavingCar( vector< Solution* > population ){
@@ -145,8 +174,8 @@ vector< Solution* > multiOperatorsLocalSearch( vector< Solution* > population){
 	vector< Solution* > sol;
 	sol = removeSaving( population );
 	sol = invertSolution( sol );
-	sol = invertSavingCity( sol );
-//	sol = replaceSavingCity( sol );
+	sol = insertSavingCity( sol );
+	sol = replaceSavingCity( sol );
 //	sol = replaceSavingCar( sol );
 //	sol = operator_2opt( sol );
 	return sol;

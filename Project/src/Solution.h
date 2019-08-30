@@ -26,6 +26,7 @@ public:
 
 	void addEnd( int city, int car );
 	void removeIndex( int index );
+	void addCityAt( int index, int city );
 	void insertCityAt( int index, int city );
 
 	Solution* copy();

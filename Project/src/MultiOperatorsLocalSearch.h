@@ -7,7 +7,7 @@
 
 vector< Solution* > removeSaving( vector< Solution* > population );
 vector< Solution* > invertSolution( vector< Solution* > population );
-vector< Solution* > invertSavingCity( vector< Solution* > population );
+vector< Solution* > insertSavingCity( vector< Solution* > population );
 vector< Solution* > replaceSavingCity( vector< Solution* > population );
 vector< Solution* > replaceSavingCar( vector< Solution* > population );
 vector< Solution* > operator_2opt( vector< Solution* > population );
