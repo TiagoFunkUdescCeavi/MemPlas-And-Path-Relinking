@@ -197,11 +197,57 @@ vector< Solution* > replaceSavingCar( vector< Solution* > population ){
 	return newPopulation;
 }
 
-vector< Solution* > operator_2opt( vector< Solution* > population ){
-	vector< Solution* > sol;
-	sol = population;
+void printVetor( int size, int* vetor ){
+	for( int i = 0; i < size; i++ ){
+		myPrint( vetor[ i ], false );
+		myPrint( ", ", false );
+	}
+	myPrint( "", true );
+}
 
-	return sol;
+vector< Solution* > operator_2opt( vector< Solution* > population ){
+	int count = -1;
+	int* myVector = 0;
+	Solution* backup = 0;
+	Solution* better = 0;
+	Solution* actual = 0;
+	vector< Solution* > newPopulation( population.size() );
+
+	for( int i = 0; i < (int) population.size(); i++ ){
+		actual = population[ i ];
+		better = actual->copy();
+		backup = actual->copy();
+		myVector = new int[ actual->sizeSolution ];
+
+		for( int j = 1; j < actual->position-2; j++ ){
+			count = 0;
+
+			myVector[ count++ ] = actual->cities[ 0 ];
+			for( int k = j+1; k < actual->position-1; k++ ){
+				myVector[ count++ ] = actual->cities[ k ];
+			}
+
+			for( int k = 1; k <= j; k++ ){
+				myVector[ count++ ] = actual->cities[ k ];
+			}
+
+			myVector[ count++ ] = actual->cities[ actual->position-1 ];
+			myVector[ count++ ] = actual->cities[ actual->position ];
+
+			actual->cities = myVector;
+			actual->calculeFitness();
+			better->calculeFitness();
+
+			if( actual->fitness < better->fitness ){
+				better = actual->copy();
+			}
+			actual = backup->copy();
+		}
+
+		newPopulation[ i ] = better;
+	}
+
+	return newPopulation;
 }
 
 vector< Solution* > multiOperatorsLocalSearch( vector< Solution* > population){
@@ -211,6 +257,6 @@ vector< Solution* > multiOperatorsLocalSearch( vector< Solution* > population){
 	sol = insertSavingCity( sol );
 	sol = replaceSavingCity( sol );
 	sol = replaceSavingCar( sol );
-//	sol = operator_2opt( sol );
+	sol = operator_2opt( sol );
 	return sol;
 }

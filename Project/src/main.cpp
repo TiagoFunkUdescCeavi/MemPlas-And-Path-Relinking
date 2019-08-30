@@ -29,15 +29,18 @@ int main( int argc, char* argv[] ){
 		cout << "ok" << endl;
 
 //		vector< Solution* > population(1);
-//		Solution* s = new Solution( 8 );
+//		Solution* s = new Solution( 11 );
 //		s->addEnd(0,0);
+//		s->addEnd(1,0);
 //		s->addEnd(2,0);
 //		s->addEnd(3,0);
 //		s->addEnd(4,0);
 //		s->addEnd(5,0);
+//		s->addEnd(6,0);
+//		s->addEnd(7,0);
 //		s->addEnd(0,0);
 //		population[0] = s;
-//		insertSavingCity( population );
+//		operator_2opt( population );
 
 		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
 	} catch (exception &e) {
