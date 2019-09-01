@@ -1,10 +1,8 @@
-#ifndef SRC_UTILS_H_
-#define SRC_UTILS_H_
+#ifndef UTILS_H_
+#define UTILS_H_
 
 #include <iostream>
 #include <string>
-
-#include "GLOBAL.h"
 
 using namespace std;
 
@@ -14,4 +12,4 @@ void myPrint( int i, bool newLine );
 void myPrint( double d, bool newLine );
 
 
-#endif /* SRC_UTILS_H_ */
+#endif /* UTILS_H_ */

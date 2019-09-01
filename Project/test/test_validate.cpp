@@ -1,7 +1,7 @@
+#include <utils/Validate.h>
 #include "gtest/gtest.h"
 
 #include "../src/GLOBAL.h"
-#include "../src/Validate.h"
 
 TEST( , IS_OK_1 ){
 	numberCities_GLOBAL = 5;

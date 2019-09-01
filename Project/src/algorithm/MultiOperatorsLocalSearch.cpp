@@ -1,6 +1,6 @@
-#include <bits/stdc++.h>
-
 #include "MultiOperatorsLocalSearch.h"
+
+#include <bits/stdc++.h>
 
 vector< Solution* > removeSaving( vector< Solution* > population ){
 	bool go_ahead;

@@ -1,5 +1,5 @@
-#ifndef SRC_CAR_H_
-#define SRC_CAR_H_
+#ifndef CAR_H_
+#define CAR_H_
 
 struct Car{
 	int dimension = 0;
@@ -7,4 +7,4 @@ struct Car{
 	int** return_rate = 0;
 };
 
-#endif /* SRC_CAR_H_ */
+#endif /* CAR_H_ */

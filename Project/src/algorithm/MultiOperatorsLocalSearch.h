@@ -1,9 +1,9 @@
-#ifndef SRC_MULTIOPERATORSLOCALSEARCH_H_
-#define SRC_MULTIOPERATORSLOCALSEARCH_H_
+#ifndef MULTIOPERATORSLOCALSEARCH_H_
+#define MULTIOPERATORSLOCALSEARCH_H_
 
 #include <vector>
 
-#include "Solution.h"
+#include "../model/Solution.h"
 
 vector< Solution* > removeSaving( vector< Solution* > population );
 vector< Solution* > invertSolution( vector< Solution* > population );
@@ -14,4 +14,4 @@ vector< Solution* > operator_2opt( vector< Solution* > population );
 
 vector< Solution* > multiOperatorsLocalSearch( vector< Solution* > population);
 
-#endif /* SRC_MULTIOPERATORSLOCALSEARCH_H_ */
+#endif /* MULTIOPERATORSLOCALSEARCH_H_ */

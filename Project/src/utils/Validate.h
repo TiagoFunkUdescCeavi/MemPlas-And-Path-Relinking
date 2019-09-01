@@ -1,12 +1,12 @@
-#ifndef SRC_VALIDATE_H_
-#define SRC_VALIDATE_H_
+#ifndef VALIDATE_H_
+#define VALIDATE_H_
 
 #include <string>
 #include <stdexcept>
 #include <vector>
 
-#include "Solution.h"
-#include "GLOBAL.h"
+#include "../GLOBAL.h"
+#include "../model/Solution.h"
 #include "utils.h"
 
 bool isOk( Solution* mySolution );
@@ -18,4 +18,4 @@ void checkCitiesAndCars( Solution* sol, int finalPosition );
 void checkRepetition( Solution* sol, int finalPosition );
 
 
-#endif /* SRC_VALIDATE_H_ */
+#endif /* VALIDATE_H_ */

@@ -3,8 +3,7 @@
 #include <stdexcept>
 #include <bits/stdc++.h>
 
-#include "Solution.h"
-#include "utils.h"
+#include "../utils/utils.h"
 
 vector< Solution* > generateInitialPopulation( int sizePopulation ){
 	bool firstCity;

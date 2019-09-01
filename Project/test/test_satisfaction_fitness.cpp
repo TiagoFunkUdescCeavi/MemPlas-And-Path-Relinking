@@ -1,7 +1,7 @@
+#include <model/Solution.h>
+#include <utils/InstanceReader.h>
 #include "gtest/gtest.h"
 
-#include "../src/InstanceReader.h"
-#include "../src/Solution.h"
 
 TEST( , TEST_W1) {
 	const char* file = "/home/tiago/Repositorios/Github/MemPlas/Instances/n/AfricaSul11n.pcar";

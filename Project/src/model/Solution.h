@@ -1,10 +1,10 @@
-#ifndef SRC_SOLUTION_H_
-#define SRC_SOLUTION_H_
+#ifndef SOLUTION_H_
+#define SOLUTION_H_
 
 #include <string>
+#include <stdexcept>
 
-#include "GLOBAL.h"
-#include "utils.h"
+#include "../GLOBAL.h"
 
 using namespace std;
 
@@ -35,4 +35,4 @@ public:
 
 };
 
-#endif /* SRC_SOLUTION_H_ */
+#endif /* SOLUTION_H_ */

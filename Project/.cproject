@@ -177,9 +177,13 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="src/model|model|solution_tests|src/tests|tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="src/utils|utils|src/algorithm|algorithm|src/model|model|solution_tests|src/tests|tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        						
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/algorithm"/>
                         						
                         <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/model"/>
+                        						
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/utils"/>
                         					
                     </sourceEntries>
                     				
@@ -275,9 +279,13 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="src/model|model|solution_tests|src/tests|tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="src/utils|utils|src/algorithm|algorithm|src/model|model|solution_tests|src/tests|tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        						
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/algorithm"/>
                         						
                         <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/model"/>
+                        						
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/utils"/>
                         					
                     </sourceEntries>
                     				

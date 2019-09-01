@@ -1,15 +1,15 @@
-#ifndef SRC_INSTANCEREADER_H_
-#define SRC_INSTANCEREADER_H_
+#ifndef INSTANCEREADER_H_
+#define INSTANCEREADER_H_
 
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
 
-#include "GLOBAL.h"
+#include "../GLOBAL.h"
 #include "utils.h"
 
 using namespace std;
 
 void readInstance( string file );
 
-#endif /* SRC_INSTANCEREADER_H_ */
+#endif /* INSTANCEREADER_H_ */

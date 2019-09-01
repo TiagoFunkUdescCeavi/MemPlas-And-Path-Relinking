@@ -1,10 +1,5 @@
 #include "Algorithm.h"
 
-#include "Validate.h"
-
-#include "GenerateInitialPopulation.h"
-#include "MultiOperatorsLocalSearch.h"
-#include "Selections.h"
 
 void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
 

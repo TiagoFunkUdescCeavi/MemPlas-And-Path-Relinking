@@ -3,10 +3,10 @@
 #include <string>
 #include <cstdlib>
 
-#include "InstanceReader.h"
-#include "Algorithm.h"
-
-#include "Selections.h"
+#include "algorithm/Algorithm.h"
+#include "algorithm/Selections.h"
+#include "algorithm/Selections.h"
+#include "utils/InstanceReader.h"
 
 using namespace std;
 
