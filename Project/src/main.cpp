@@ -6,7 +6,7 @@
 #include "InstanceReader.h"
 #include "Algorithm.h"
 
-#include "MultiOperatorsLocalSearch.h"
+#include "Selections.h"
 
 using namespace std;
 
@@ -28,19 +28,21 @@ int main( int argc, char* argv[] ){
 		readInstance( file );
 		cout << "ok" << endl;
 
-//		vector< Solution* > population(1);
-//		Solution* s = new Solution( 11 );
-//		s->addEnd(0,0);
-//		s->addEnd(1,0);
-//		s->addEnd(2,0);
-//		s->addEnd(3,0);
-//		s->addEnd(4,0);
-//		s->addEnd(5,0);
-//		s->addEnd(6,0);
-//		s->addEnd(7,0);
-//		s->addEnd(0,0);
-//		population[0] = s;
-//		operator_2opt( population );
+//		vector< Solution* > population(3);
+//
+//		Solution* s1 = new Solution( 3 );
+//		s1->fitness = 3;
+//		population[0] = s1;
+//
+//		Solution* s2 = new Solution( 3 );
+//		s2->fitness = 1;
+//		population[1] = s2;
+//
+//		Solution* s3 = new Solution( 3 );
+//		s3->fitness = 2;
+//		population[2] = s3;
+//
+//		selectElite( 1, population);
 
 		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
 	} catch (exception &e) {

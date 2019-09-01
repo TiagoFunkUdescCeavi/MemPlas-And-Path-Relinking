@@ -177,7 +177,9 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="solution_tests|src/tests|tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="src/model|model|solution_tests|src/tests|tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        						
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/model"/>
                         					
                     </sourceEntries>
                     				
@@ -273,7 +275,9 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="solution_tests|src/tests|tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="src/model|model|solution_tests|src/tests|tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        						
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/model"/>
                         					
                     </sourceEntries>
                     				

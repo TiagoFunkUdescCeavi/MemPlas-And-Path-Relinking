@@ -197,14 +197,6 @@ vector< Solution* > replaceSavingCar( vector< Solution* > population ){
 	return newPopulation;
 }
 
-void printVetor( int size, int* vetor ){
-	for( int i = 0; i < size; i++ ){
-		myPrint( vetor[ i ], false );
-		myPrint( ", ", false );
-	}
-	myPrint( "", true );
-}
-
 vector< Solution* > operator_2opt( vector< Solution* > population ){
 	int count = -1;
 	int* myVector = 0;
