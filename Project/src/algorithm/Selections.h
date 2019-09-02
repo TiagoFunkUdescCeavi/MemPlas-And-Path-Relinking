@@ -8,6 +8,6 @@
 #include "../utils/utils.h"
 
 vector< Solution* > selectElite( double elite, vector< Solution* > population );
-vector< Solution* > selectForCrossover( double size, vector< Solution* > population );
+vector< Solution* > selectPopulation( double proportion, vector< Solution* > population );
 
 #endif /* SRC_SELECTELITE_H_ */

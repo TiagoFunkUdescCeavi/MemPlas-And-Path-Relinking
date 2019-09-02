@@ -1,6 +1,5 @@
 #include "Algorithm.h"
 
-
 void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
 
 //	limitIterations = 1;
@@ -27,15 +26,12 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 
 	while( numberIterations < limitIterations ){
 
-		myPrint( "select", true );
-		selection = selectForCrossover( elite, population );
-		checkPopulation( population );
-		myPrint( "ok", true );
-
 		if( numberIterations % 10 != 0 ){
-
+			selection = selectPopulation( cross, population );
+			offspring = crossover( selection );
 		}else{
-
+			selection = selectPopulation( elite, population );
+			offspring = plasmid( selection, sizePlasmideo, elitePopulation );
 		}
 
 		numberIterations++;

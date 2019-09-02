@@ -48,10 +48,10 @@ vector< Solution* > selectElite( double elite, vector< Solution* > population ){
 	return populationElite;
 }
 
-vector< Solution* > selectForCrossover( double size, vector< Solution* > population ){
+vector< Solution* > selectPopulation( double proportion, vector< Solution* > population ){
 	int i = -1;
 	int aux = -1, numRand = -1;
-	int numberOfSolutions = size * population.size();
+	int numberOfSolutions = proportion * population.size();
 	int *myVector = new int[ numberOfSolutions ];
 	vector< Solution* > selection( numberOfSolutions );
 
