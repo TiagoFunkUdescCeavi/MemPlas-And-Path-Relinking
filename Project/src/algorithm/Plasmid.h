@@ -1,5 +1,5 @@
-#ifndef PLASMIDEO_H_
-#define PLASMIDEO_H_
+#ifndef PLASMID_H_
+#define PLASMID_H_
 
 #include <vector>
 
@@ -7,4 +7,4 @@
 
 vector< Solution* > plasmid( vector< Solution* > population, int sizePlas, vector< Solution* > elite );
 
-#endif /* PLASMIDEO_H_ */
+#endif /* PLASMID_H_ */

@@ -1,7 +1,5 @@
 #include "Crossover.h"
 
-#include "../utils/utils.h"
-
 vector< Solution* > crossover( 	vector< Solution* > population ){
 	int numberOfSolutions = population.size();
 	int randomNumber = -1;
@@ -29,7 +27,7 @@ vector< Solution* > crossover( 	vector< Solution* > population ){
 			new2->addEnd( s1->cities[ j ], s1->cars[ j ] );
 		}
 
-		offspring[ i ] = new1;
+		offspring[ i ]   = new1;
 		offspring[ i+1 ] = new2;
 	}
 

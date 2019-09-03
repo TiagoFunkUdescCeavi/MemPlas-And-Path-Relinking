@@ -6,7 +6,7 @@
 #include "MultiOperatorsLocalSearch.h"
 #include "Selections.h"
 #include "Crossover.h"
-#include "Plasmideo.h"
+#include "Plasmid.h"
 
 void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations );
 

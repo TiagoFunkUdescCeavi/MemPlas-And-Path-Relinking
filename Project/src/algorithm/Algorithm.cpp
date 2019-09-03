@@ -2,9 +2,7 @@
 
 void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
 
-//	limitIterations = 1;
-
-	int numberIterations = 0;
+	int numberIterations = 1;
 	vector< Solution* > population;
 	vector< Solution* > elitePopulation;
 	vector< Solution* > selection;
@@ -24,16 +22,21 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 	elitePopulation = selectElite( elite, population );
 	myPrint( "ok" , true );
 
-	while( numberIterations < limitIterations ){
+	while( numberIterations <= limitIterations ){
 
 		if( numberIterations % 10 != 0 ){
+			myPrint( numberIterations, false );
+			myPrint( "-crossover: ", true );
 			selection = selectPopulation( cross, population );
 			offspring = crossover( selection );
+			myPrint( "ok", true );
 		}else{
+			myPrint( numberIterations, false );
+			myPrint( "-plasmid: ", true );
 			selection = selectPopulation( elite, population );
 			offspring = plasmid( selection, sizePlasmideo, elitePopulation );
+			myPrint( "ok", true );
 		}
-
 		numberIterations++;
 	}
 
