@@ -10,6 +10,8 @@
 
 using namespace std;
 
+void readInstanceNotEuclidean( string file );
+void readInstanceEuclidean( string file );
 void readInstance( string file );
 
 #endif /* INSTANCEREADER_H_ */
