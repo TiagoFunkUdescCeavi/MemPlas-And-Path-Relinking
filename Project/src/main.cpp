@@ -5,8 +5,6 @@
 #include "utils/InstanceReader.h"
 #include "algorithm/Algorithm.h"
 
-#include "algorithm/Plasmid.h"
-
 using namespace std;
 
 int main( int argc, char* argv[] ){

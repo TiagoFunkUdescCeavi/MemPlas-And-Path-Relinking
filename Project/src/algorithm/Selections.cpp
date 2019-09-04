@@ -40,6 +40,7 @@ vector< Solution* > quicksort( vector< Solution* > population ){
 
 vector< Solution* > selectElite( double elite, vector< Solution* > population ){
 	int numberOfSolutions = population.size() * elite;
+	numberOfSolutions = numberOfSolutions % 2 == 1 ? numberOfSolutions+1 : numberOfSolutions;
 	vector< Solution* > populationElite( numberOfSolutions );
 	population = quicksort( population );
 	for( int i = 0; i < numberOfSolutions; i++ ){
@@ -52,6 +53,7 @@ vector< Solution* > selectPopulation( double proportion, vector< Solution* > pop
 	int i = -1;
 	int aux = -1, numRand = -1;
 	int numberOfSolutions = proportion * population.size();
+	numberOfSolutions = numberOfSolutions % 2 == 1 ? numberOfSolutions+1 : numberOfSolutions;
 	int *myVector = new int[ numberOfSolutions ];
 	vector< Solution* > selection( numberOfSolutions );
 
