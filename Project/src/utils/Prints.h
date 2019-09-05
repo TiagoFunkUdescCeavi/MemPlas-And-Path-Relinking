@@ -1,5 +1,5 @@
-#ifndef UTILS_H_
-#define UTILS_H_
+#ifndef PRINTS_H_
+#define PRINTS_H_
 
 #include <iostream>
 #include <string>
@@ -11,5 +11,7 @@ void myPrint( const char * text, bool newLine );
 void myPrint( int i, bool newLine );
 void myPrint( double d, bool newLine );
 
+void printVector( int *values, int size );
 
-#endif /* UTILS_H_ */
+
+#endif /* PRINTS_H_ */

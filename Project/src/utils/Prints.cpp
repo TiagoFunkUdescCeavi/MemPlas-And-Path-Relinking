@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "Prints.h"
 
 void myPrint( string s, bool newLine ){
 	cout << s;
@@ -27,3 +27,13 @@ void myPrint( double d, bool newLine ){
 		cout << endl;
 	}
 }
+
+void printVector( int *values, int size ){
+	for( int i = 0; i < size; i++ ){
+		myPrint( values[i], false );
+		myPrint( ", ", false );
+	}
+	myPrint( "", true );
+}
+
+

@@ -95,7 +95,7 @@ void checkRepetition( Solution* sol, int finalPosition ){
 			usedCars[ actualCar ]++;
 		}
 		if( actualCity == 0 && usedCities[ 0 ] == 2 ){
-			string s = "Solution is invalid: city 0 has been used more than once.\n";
+			string s = "Solution is invalid: city 0 has been used more than once\n";
 			throw runtime_error( s );
 		}else if( actualCity != 0 && usedCities[ actualCity ] == 1 ){
 			string s = "Solution is invalid: city sequence is repeated\n";

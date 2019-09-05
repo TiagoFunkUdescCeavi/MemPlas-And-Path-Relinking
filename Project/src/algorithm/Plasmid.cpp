@@ -1,6 +1,6 @@
 #include "Plasmid.h"
 
-#include "../utils/utils.h"
+#include "../utils/Prints.h"
 
 vector< Solution* > plasmid( vector< Solution* > population, int sizePlas, vector< Solution* > elite ){
 	int numberOfSolutions = elite.size();

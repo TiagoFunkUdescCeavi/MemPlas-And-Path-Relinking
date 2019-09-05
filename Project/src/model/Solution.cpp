@@ -16,7 +16,7 @@ void Solution::calculeFitness(){
 		int previous_car = 0;
 		int rent_city = 0;
 		int weigth = -1, rate = -1;
-		Car* myCar = 0;
+		Car *myCar = 0;
 		for( int i = 0; i < this->position-1; i++ ){
 			myCar = cars_GLOBAL[ this->cars[ i ] ];
 			weigth = myCar->edge_weigth[ this->cities[ i ] ][ this->cities[ i+1 ] ];
@@ -123,8 +123,8 @@ void Solution::insertCarAt( int index, int car ){
 	this->calculatedFitness = false;
 }
 
-Solution* Solution::copy(){
-	Solution* s = new Solution( this->sizeSolution );
+Solution * Solution::copy(){
+	Solution *s = new Solution( this->sizeSolution );
 	s->position = this->position;
 	s->fitness = this->fitness;
 	s->satisfaction = this->satisfaction;

@@ -14,8 +14,8 @@ private:
 
 public:
 	int sizeSolution = 0;
-	int* cities = 0;
-	int* cars = 0;
+	int *cities = 0;
+	int *cars = 0;
 	int fitness = 0;
 	int satisfaction = 0;
 	int position = 0;
@@ -30,7 +30,7 @@ public:
 	void insertCityAt( int index, int city );
 	void insertCarAt( int index, int car );
 
-	Solution* copy();
+	Solution * copy();
 	string toString();
 
 };
