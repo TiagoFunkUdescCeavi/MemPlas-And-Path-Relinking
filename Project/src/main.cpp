@@ -27,22 +27,22 @@ int main( int argc, char* argv[] ){
 		readInstance( file );
 		cout << "ok" << endl;
 
-		numberCities_GLOBAL = 5;
-		vector< Solution * > population(1);
-		Solution *s1 = new Solution( 9 );
-		s1->addEnd(0,1);
-		s1->addEnd(1,1);
-		s1->addEnd(1,1);
-		s1->addEnd(1,1);
-		s1->addEnd(1,1);
-		s1->addEnd(1,1);
-		s1->addEnd(1,1);
-		s1->addEnd(1,1);
-		s1->addEnd(0,1);
-		population[0] = s1;
-		restoringOperations( population );
+//		numberCities_GLOBAL = 5;
+//		vector< Solution * > population(1);
+//		Solution *s1 = new Solution( 9 );
+//		s1->addEnd(0,1);
+//		s1->addEnd(1,1);
+//		s1->addEnd(1,1);
+//		s1->addEnd(1,1);
+//		s1->addEnd(1,1);
+//		s1->addEnd(1,1);
+//		s1->addEnd(1,1);
+//		s1->addEnd(1,1);
+//		s1->addEnd(0,1);
+//		population[0] = s1;
+//		restoringOperations( population );
 
-//		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
+		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
 	} catch (exception &e) {
 		cout << e.what() << endl;
 		return 1;

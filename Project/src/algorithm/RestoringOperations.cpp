@@ -4,6 +4,8 @@
 #include "../utils/SortingMethods.h"
 #include "../model/Pair.h"
 
+#include <bits/stdc++.h>
+
 Pair *usedCars = 0;
 Pair *usedCities = 0;
 
@@ -16,28 +18,28 @@ Solution * removeErrors( Solution *sol ){
 	Solution *newSol = sol->copy();
 
 	for( int i = 0; i < numberCities_GLOBAL; i++ ){
-		usedCities[i].value = i;
+		usedCities[i].key = i;
 	}
 	for( int i = 0; i < numberCars_GLOBAL; i++ ){
-		usedCars[i].value = i;
+		usedCars[i].key = i;
 	}
 
 	for( int i = 0; i < sol->position; i++ ){
 		actualCar = sol->cars[ i ];
 		actualCity = sol->cities[ i ];
-		if( lastCar != actualCar && usedCars[ actualCar ].frequency == 1 ){
+		if( lastCar != actualCar && usedCars[ actualCar ].value == 1 ){
 			newSol->insertCarAt( i, -2 );
 			isRepeated = true;
-		} else if( usedCars[ actualCar ].frequency == 1 && isRepeated ){
+		} else if( usedCars[ actualCar ].value == 1 && isRepeated ){
 			newSol->insertCarAt( i, -2 );
 		}else if( lastCar != actualCar ){
-			usedCars[ actualCar ].frequency += 1;
+			usedCars[ actualCar ].value += 1;
 			isRepeated = false;
 		}
-		if( actualCity != 0 && usedCities[ actualCity ].frequency == 1 ){
+		if( actualCity != 0 && usedCities[ actualCity ].value == 1 ){
 			newSol->insertCityAt( i, -2 );
 		}else{
-			usedCities[ actualCity ].frequency += 1;
+			usedCities[ actualCity ].value += 1;
 		}
 		lastCar = actualCar;
 	}
@@ -51,7 +53,7 @@ Solution * insertCities( Solution * sol ){
 	Solution *newSol = sol->copy();
 	usedCities = quicksort( usedCities, numberCities_GLOBAL );
 	for( int i = 0; i < numberCities_GLOBAL; i++ ){
-		if( usedCities[i].frequency != 0 ){
+		if( usedCities[i].value != 0 ){
 			lastPosition = i;
 			break;
 		}
@@ -70,7 +72,8 @@ Solution * insertCities( Solution * sol ){
 				newSol->removeIndex( i );
 				i--;
 			}else{
-				newSol->insertCityAt( i, usedCities[aux].value );
+				newSol->insertCityAt( i, usedCities[aux].key );
+				usedCities[aux].value += 1;
 				aux++;
 			}
 		}
@@ -81,7 +84,6 @@ Solution * insertCities( Solution * sol ){
 Solution * insertCars( Solution * sol ){
 	int lastCar = -1;
 	Solution *newSol = sol->copy();
-
 	for( int i = 0; i < newSol->position; i++ ){
 		if( newSol->cars[i] == -2 ){
 			newSol->insertCarAt( i, lastCar );
@@ -92,16 +94,55 @@ Solution * insertCars( Solution * sol ){
 	return newSol;
 }
 
+Solution * checkQuota( Solution *sol ){
+	int selectCity = 0, biggerQuota = INT_MIN, indexBiggerCity = -1, previousCity = 0;
+	Solution *newSol = sol->copy();
+	newSol->calculeSatisfaction();
+	if ( newSol->satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+		for( int i = 1; i < numberCities_GLOBAL; i++ ){
+			if( usedCities[i].value == 0 && bonus_satisfaction_GLOBAL[ usedCities[i].key ] > biggerQuota ){
+				selectCity = usedCities[i].key;
+				biggerQuota = bonus_satisfaction_GLOBAL[ usedCities[i].key ];
+				indexBiggerCity = i;
+			}
+		}
+
+		for( int i = 1; i < newSol->position-1; i++ ){
+			previousCity = newSol->cities[i];
+			newSol->insertCityAt( i, selectCity );
+			newSol->calculeSatisfaction();
+			if ( newSol->satisfaction >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+				usedCities[indexBiggerCity].value += 1;
+				break;
+			}
+			newSol->insertCityAt( i, previousCity );
+		}
+	}
+
+	while ( newSol->satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+		for( int i = 1; i < numberCities_GLOBAL; i++ ){
+			if( usedCities[i].value == 0 ){
+				selectCity = usedCities[i].key;
+				indexBiggerCity = i;
+				break;
+			}
+		}
+		newSol->addCityAt( newSol->position-1, selectCity );
+		usedCities[indexBiggerCity].value += 1;
+		newSol->calculeSatisfaction();
+	}
+	return newSol;
+}
+
 vector< Solution * > restoringOperations( vector< Solution * > population ){
 	Solution *sol = 0;
 	vector< Solution* > newPopulation( population.size() );
 	for( int i = 0; i < (int) population.size(); i++ ){
 		sol = removeErrors( population[ i ] );
-		myPrint( sol->toString(), true );
 		sol = insertCities( sol );
-		myPrint( sol->toString(), true );
 		sol = insertCars( sol );
-		myPrint( sol->toString(), true );
+		sol = checkQuota( sol );
+		newPopulation[i] = sol;
 	}
 	return newPopulation;
 }

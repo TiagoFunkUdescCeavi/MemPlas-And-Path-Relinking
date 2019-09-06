@@ -15,7 +15,8 @@ vector< Solution* > plasmid( vector< Solution* > population, int sizePlas, vecto
 		sNormal = population[i];
 		better = 0;
 
-		randomNumber = ( rand() % (sElite->position-sizePlas-1) ) + 1;
+		randomNumber = ( (sElite->position <= sNormal->position) ? sElite->position-1 : sNormal->position-1 );
+		randomNumber = ( rand() % (randomNumber-sizePlas-1) );
 
 //		plasCities = new int[ sizePlas ];
 //		plasCars = new int[ sizePlas ];
@@ -26,18 +27,24 @@ vector< Solution* > plasmid( vector< Solution* > population, int sizePlas, vecto
 
 		newSol = new Solution( sElite->sizeSolution );
 
+//		myPrint( newSol->toString(), true );
+//		myPrint( sElite->toString(), true );
+//		myPrint( sNormal->toString(), true );
+
 		for( int j = 0; j < sNormal->position; j++ ){
 			if( j == randomNumber ){
 				for(int k = 0; k < sizePlas; k++ ){
-					newSol->addEnd( sElite->cities[ k ], sElite->cars[ k ] );
+					newSol->addEnd( sElite->cities[ j ], sElite->cars[ j ] );
 					j++;
+//					myPrint( newSol->toString(), true );
 				}
 				j--;
 			}else{
 				newSol->addEnd( sNormal->cities[j], sNormal->cars[j] );
+//				myPrint( newSol->toString(), true );
 			}
 		}
-		offspring[i] = better;
+		offspring[i] = newSol;
 	}
 
 	return offspring;

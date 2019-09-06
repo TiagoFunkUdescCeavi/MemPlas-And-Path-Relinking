@@ -46,10 +46,10 @@ Pair * quicksort(Pair *values, int begin, int end){
 	j = end-1;
 	pivo = values[ (begin + end) / 2 ];
 	while(i <= j){
-		while(values[i].frequency < pivo.frequency && i < end){
+		while(values[i].value < pivo.value && i < end){
 			i++;
 		}
-		while(values[j].frequency > pivo.frequency && j > begin){
+		while(values[j].value > pivo.value && j > begin){
 			j--;
 		}
 		if(i <= j){

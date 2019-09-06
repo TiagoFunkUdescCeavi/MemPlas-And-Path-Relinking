@@ -2,7 +2,6 @@
 
 void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
 
-	int numberIterations = 1;
 	vector< Solution* > population;
 	vector< Solution* > elitePopulation;
 	vector< Solution* > selection;
@@ -22,22 +21,32 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 	elitePopulation = selectElite( elite, population );
 	myPrint( "ok" , true );
 
-	while( numberIterations <= limitIterations ){
-
-		if( numberIterations % 10 != 0 ){
-			myPrint( numberIterations, false );
+	for ( int i = 0; i < limitIterations; i++ ){
+		if( i % 10 != 0 ){
+			myPrint( i, false );
 			myPrint( "-crossover: ", true );
 			selection = selectPopulation( cross, population );
 			offspring = crossover( selection );
 			myPrint( "ok", true );
 		}else{
-			myPrint( numberIterations, false );
+			myPrint( i, false );
 			myPrint( "-plasmid: ", true );
 			selection = selectPopulation( elite, population );
 			offspring = plasmid( selection, sizePlasmideo, elitePopulation );
 			myPrint( "ok", true );
 		}
-		numberIterations++;
+
+		myPrint( i, false );
+		myPrint( "-restoring operations: ", true );
+		offspring = restoringOperations( offspring );
+		checkPopulation( offspring );
+		myPrint( "ok", true );
+
+		myPrint( i, false );
+		myPrint( "-multi operator local search: ", true );
+		population = multiOperatorsLocalSearch( population );
+		checkPopulation( population );
+		myPrint( "ok" , true );
 	}
 
 }

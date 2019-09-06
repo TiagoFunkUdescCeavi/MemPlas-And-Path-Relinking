@@ -3,6 +3,7 @@
 void checkPopulation( vector< Solution* > population ){
 	for( int i = 0; i < (int) population.size(); i++ ){
 		try{
+//			myPrint( i, true );
 			isOk( population[ i ] );
 		} catch (exception &e) {
 			myPrint( i, true );
