@@ -1,6 +1,6 @@
 #include "Prints.h"
 
-bool debug = false;
+bool debug = true;
 
 void myPrint( string s, bool newLine ){
 	if( debug ){

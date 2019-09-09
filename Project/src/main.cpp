@@ -20,7 +20,10 @@ int main( int argc, char* argv[] ){
 	int limitIterations = stoi( argv[ 6 ] );
 	myPrint( "ok:", true );
 
-	srand( time( 0 ) );
+//	int seed = time( 0 );
+	int seed = 1568059715;
+	srand( seed );
+	cout << "My Seed: " << seed << endl;
 
 	try{
 		myPrint( "instance read:", true );
@@ -43,6 +46,7 @@ int main( int argc, char* argv[] ){
 //		restoringOperations( population );
 
 		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
+
 	} catch (exception &e) {
 		cout << e.what() << endl;
 		return 1;

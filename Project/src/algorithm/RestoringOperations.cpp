@@ -138,11 +138,13 @@ vector< Solution * > restoringOperations( vector< Solution * > population ){
 	Solution *sol = 0;
 	vector< Solution* > newPopulation( population.size() );
 	for( int i = 0; i < (int) population.size(); i++ ){
-		sol = removeErrors( population[ i ] );
+		sol = population[ i ]->copy();
+		sol = removeErrors( sol );
 		sol = insertCities( sol );
 		sol = insertCars( sol );
 		sol = checkQuota( sol );
 		newPopulation[i] = sol;
+		delete population[i];
 	}
 	return newPopulation;
 }
