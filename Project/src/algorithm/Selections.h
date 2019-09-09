@@ -9,5 +9,6 @@
 
 vector< Solution* > selectElite( double elite, vector< Solution* > population );
 vector< Solution* > selectPopulation( double proportion, vector< Solution* > population );
+Solution * selectBetter( vector< Solution * > population );
 
 #endif /* SRC_SELECTELITE_H_ */

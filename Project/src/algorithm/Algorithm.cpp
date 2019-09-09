@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Algorithm.h"
 
 void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
@@ -10,6 +12,8 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 	myPrint( "generation of population: ", true );
 	population = generateInitialPopulation( sizePopulation );
 	checkPopulation( population );
+	std::cout << satisfaction_total_GLOBAL << std::endl;
+	std::cout << selectBetter( population )->fitness << std::endl;
 	myPrint( "ok" , true );
 
 	myPrint( "multi operator local search: ", true );
@@ -47,7 +51,19 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 		population = multiOperatorsLocalSearch( population );
 		checkPopulation( population );
 		myPrint( "ok" , true );
+
+		myPrint( i, false );
+		myPrint( "-binary tournament: ", true );
+		population = binaryTournament( population, offspring );
+		checkPopulation( population );
+		myPrint( "ok" , true );
+
+		myPrint( i, false );
+		myPrint( "-select elite: ", true );
+		elitePopulation = selectElite( elite, population );
+		myPrint( "ok", true );
 	}
 
+	std::cout << selectBetter( population )->fitness << std::endl;
 }
 

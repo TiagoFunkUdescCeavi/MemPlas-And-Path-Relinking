@@ -11,21 +11,21 @@ using namespace std;
 
 int main( int argc, char* argv[] ){
 
-	cout << "parameters:" << endl;
+	myPrint( "parameters:", true );
 	string file = argv[ 1 ];
 	int sizePopulation = stoi( argv[ 2 ] );
 	int sizePlasmideo = stoi( argv[ 3 ] );
 	double cross = stod( argv[ 4 ] );
 	double elite = stod( argv[ 5 ] );
 	int limitIterations = stoi( argv[ 6 ] );
-	cout << "ok" << endl;
+	myPrint( "ok:", true );
 
-	srand( 0 );
+	srand( time( 0 ) );
 
 	try{
-		cout << "instance read:" << endl;
+		myPrint( "instance read:", true );
 		readInstance( file );
-		cout << "ok" << endl;
+		myPrint( "ok", true );
 
 //		numberCities_GLOBAL = 5;
 //		vector< Solution * > population(1);
@@ -47,6 +47,6 @@ int main( int argc, char* argv[] ){
 		cout << e.what() << endl;
 		return 1;
 	}
-	cout << "end of execution" << endl;
+	myPrint( "end of execution", true );
 	return 0;
 }
