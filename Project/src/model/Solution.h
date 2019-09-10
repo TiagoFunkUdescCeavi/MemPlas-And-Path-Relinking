@@ -12,6 +12,8 @@ class Solution{
 private:
 	bool calculatedFitness = false;
 
+	Solution();
+
 public:
 	int sizeSolution = 0;
 	int *cities = 0;
@@ -21,6 +23,7 @@ public:
 	int position = 0;
 
 	Solution( int sizeSolution );
+	~Solution();
 	void calculeFitness();
 	void calculeSatisfaction();
 

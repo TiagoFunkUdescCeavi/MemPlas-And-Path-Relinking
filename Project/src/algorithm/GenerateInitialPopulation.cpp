@@ -37,7 +37,7 @@ vector< Solution* > generateInitialPopulation( int sizePopulation ){
 					nextCity = citiesNotVisited[ pos ];
 					citiesNotVisited.erase( citiesNotVisited.begin() + pos );
 				}
-				mySolution->addEnd(nextCity, myCar );
+				mySolution->addEnd( nextCity, myCar );
 			}while( destinyCity != nextCity );
 
 			mySolution->calculeSatisfaction();

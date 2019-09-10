@@ -1,18 +1,24 @@
-#!/bin/sh
-
-log=""
+#!/bin/bash
 
 cd $HOME
 
-cp repositorios/github/MemPlas-And-Path-Relinking/Project/Debug/Project repositorios/github/MemPlas-And-Path-Relinking/Scripts/
+#cp -f Repositorios/Github/MemPlas-And-Path-Relinking/Project/Debug/Project Repositorios/Github/MemPlas-And-Path-Relinking/Scripts/ && echo "Executavel copiado!!"
 
-file="China17n.pcar"
+instance="Canada17n.pcar"
+log=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Logs/"$file".log"
+file=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/"$instance
+exe=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Project/Debug/"
 
 cd 
-cd repositorios/github/MemPlas-And-Path-Relinking/Instances/n/
+cd Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/
 
-log=$HOME"/repositorios/github/MemPlas-And-Path-Relinking/Logs/"$file".log"
-echo "$file"
-echo "$file" > $log
-./../../Scripts/Project $file 150 3 0.4 0.3 100 >> $log
+for count in $(seq 0 10)
+do
+	log=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Logs/"$instance"."$count".log"
+	echo "$file:$count"
+	echo $log
+	echo "$file:$count" > $log
+	cd /home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Project/Debug/
+	./Project $count $file 150 3 0.4 0.3 100 >> $log
+done
 

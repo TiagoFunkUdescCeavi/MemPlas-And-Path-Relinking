@@ -1,5 +1,10 @@
 #include "Solution.h"
 
+#include "../utils/Prints.h"
+
+Solution::Solution(){
+}
+
 Solution::Solution( int sizeSolution ){
 	this->sizeSolution = sizeSolution;
 	cities = new int[ sizeSolution ];
@@ -8,6 +13,11 @@ Solution::Solution( int sizeSolution ){
 		cities[ i ] = -1;
 		cars[ i ] = -1;
 	}
+}
+
+Solution::~Solution(){
+	delete cities;
+	delete cars;
 }
 
 void Solution::calculeFitness(){
@@ -124,16 +134,18 @@ void Solution::insertCarAt( int index, int car ){
 }
 
 Solution * Solution::copy(){
-	Solution *s = new Solution( this->sizeSolution );
+	Solution *s = new Solution();
+
+	s->sizeSolution = this->sizeSolution;
+	s->cities = new int[ s->sizeSolution ];
+	s->cars = new int[ s->sizeSolution ];
 	s->position = this->position;
 	s->fitness = this->fitness;
 	s->satisfaction = this->satisfaction;
 	s->sizeSolution = this->sizeSolution;
 
-	for( int i = 0; i < this->sizeSolution; i++ ){
+	for( int i = 0; i < sizeSolution; i++ ){
 		s->cities[ i ] = this->cities[ i ];
-	}
-	for( int i = 0; i < this->sizeSolution; i++ ){
 		s->cars[ i ] = this->cars[ i ];
 	}
 	return s;

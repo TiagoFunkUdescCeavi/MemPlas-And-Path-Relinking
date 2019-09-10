@@ -1,0 +1,206 @@
+/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/China17n.pcar:1
+./Project
+1
+/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/China17n.pcar
+150
+3
+0.4
+0.3
+100
+parameters:
+ok:
+My Seed: 1
+instance read:
+ok
+generation of population: 
+Better init: 3237
+ok
+multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+select elite: 
+ok
+0-plasmid: 
+ok
+0-restoring operations: 
+ok
+0-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+0-binary tournament: 
+ok
+0-select elite: 
+ok
+1-crossover: 
+ok
+1-restoring operations: 
+ok
+1-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+1-binary tournament: 
+ok
+1-select elite: 
+ok
+2-crossover: 
+ok
+2-restoring operations: 
+ok
+2-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+2-binary tournament: 
+ok
+2-select elite: 
+ok
+3-crossover: 
+ok
+3-restoring operations: 
+ok
+3-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+3-binary tournament: 
+ok
+3-select elite: 
+ok
+4-crossover: 
+ok
+4-restoring operations: 
+ok
+4-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+4-binary tournament: 
+ok
+4-select elite: 
+ok
+5-crossover: 
+ok
+5-restoring operations: 
+ok
+5-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+5-binary tournament: 
+ok
+5-select elite: 
+ok
+6-crossover: 
+ok
+6-restoring operations: 
+ok
+6-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+6-binary tournament: 
+ok
+6-select elite: 
+ok
+7-crossover: 
+ok
+7-restoring operations: 
+ok
+7-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+7-binary tournament: 
+ok
+7-select elite: 
+ok
+8-crossover: 
+ok
+8-restoring operations: 
+ok
+8-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+8-binary tournament: 
+ok
+8-select elite: 
+ok
+9-crossover: 
+ok
+9-restoring operations: 
+ok
+9-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+9-binary tournament: 
+ok
+9-select elite: 
+ok
+10-plasmid: 
+ok
+10-restoring operations: 
+ok
+10-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity

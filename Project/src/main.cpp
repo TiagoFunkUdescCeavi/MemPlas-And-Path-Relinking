@@ -11,17 +11,19 @@ using namespace std;
 
 int main( int argc, char* argv[] ){
 
+	for( int i = 0; i < argc; i++ ){
+		cout << argv[i] << endl;
+	}
 	myPrint( "parameters:", true );
-	string file = argv[ 1 ];
-	int sizePopulation = stoi( argv[ 2 ] );
-	int sizePlasmideo = stoi( argv[ 3 ] );
-	double cross = stod( argv[ 4 ] );
-	double elite = stod( argv[ 5 ] );
-	int limitIterations = stoi( argv[ 6 ] );
+	int seed = stoi( argv[ 1 ] );
+	string file = argv[ 2 ];
+	int sizePopulation = stoi( argv[ 3 ] );
+	int sizePlasmideo = stoi( argv[ 4 ] );
+	double cross = stod( argv[ 5 ] );
+	double elite = stod( argv[ 6 ] );
+	int limitIterations = stoi( argv[ 7 ] );
 	myPrint( "ok:", true );
 
-//	int seed = time( 0 );
-	int seed = 1568059715;
 	srand( seed );
 	cout << "My Seed: " << seed << endl;
 

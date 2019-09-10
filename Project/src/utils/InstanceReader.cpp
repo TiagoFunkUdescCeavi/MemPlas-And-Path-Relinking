@@ -1,12 +1,15 @@
 #include "InstanceReader.h"
 
 #include "math.h"
+#include <iostream>
+
+using namespace std;
 
 struct Ponto{
 	double x, y;
 };
 
-int ** createMatrix( int a, int b ){
+int **createMatrix( int a, int b ){
 	int **m = new int*[a];
 	for( int i = 0; i < a; i++ ){
 		m[i] = new int[b];
@@ -14,28 +17,28 @@ int ** createMatrix( int a, int b ){
 	return m;
 }
 
-void readInstanceNotEuclidean( string file ){
+void readInstanceNotEuclidean( string fileName ){
 	int cities, cars;
 	int satisfaction_sum;
-	int* vector;
-	int** matrix;
+	int *vector;
+	int **matrix;
 	string aux;
-	ifstream arq( file.c_str(), ios::in );
+	ifstream file( fileName.c_str(), ios::in );
 
-	if( !arq ){
-		string s = "Error on open file: " + file;
+	if( !file ){
+		string s = "Error on open file: " + fileName;
 		throw runtime_error( s );
 	}
 
-	while( arq >> aux ){
+	while( file >> aux ){
 		if( aux == "DIMENSION" ){
-			arq >> aux;
-			arq >> aux;
+			file >> aux;
+			file >> aux;
 			cities = stoi( aux );
 		}
 		if( aux == "CARS_NUMBER" ){
-			arq >> aux;
-			arq >> aux;
+			file >> aux;
+			file >> aux;
 			cars = stoi( aux );
 		}
 		if( aux == "EDGE_WEIGHT_SECTION" ){
@@ -48,15 +51,12 @@ void readInstanceNotEuclidean( string file ){
 	cars_GLOBAL.resize( cars );
 
 	for( int car = 0; car < cars; car++ ){
-		matrix = new int*[ cities ];
-		for( int i = 0; i < cities; i++ ){
-			matrix[ i ] = new int[ cities ];
-		}
+		matrix = createMatrix( cities, cities );
 
-		arq >> aux;
+		file >> aux;
 		for( int i = 0; i < cities; i++ ){
 			for( int j = 0; j < cities; j++ ){
-				arq >> matrix[ i ][ j ];
+				file >> matrix[ i ][ j ];
 			}
 		}
 
@@ -65,37 +65,34 @@ void readInstanceNotEuclidean( string file ){
 		cars_GLOBAL[ car ]->edge_weigth = matrix;
 	}
 
-	arq >> aux;
+	file >> aux;
 	for( int car = 0; car < cars; car++ ){
-		matrix = new int*[ cities ];
-		for( int i = 0; i < cities; i++ ){
-			matrix[ i ] = new int[ cities ];
-		}
+		matrix = createMatrix( cities, cities );
 
-		arq >> aux;
+		file >> aux;
 		for( int i = 0; i < cities; i++ ){
 			for( int j = 0; j < cities; j++ ){
-				arq >> matrix[ i ][ j ];
+				file >> matrix[ i ][ j ];
 			}
 		}
 
 		cars_GLOBAL[ car ]->return_rate = matrix;
 	}
 
-	arq >> aux;
+	file >> aux;
 	vector = new int[ cities ];
 	satisfaction_sum = 0;
 	for( int i = 0; i < cities; i++ ){
-		arq >> vector[ i ];
+		file >> vector[ i ];
 		satisfaction_sum += vector[ i ];
 	}
 
 	bonus_satisfaction_GLOBAL = vector;
 	satisfaction_total_GLOBAL = satisfaction_sum;
 
-	arq >> aux;
+	file >> aux;
 	if( aux != "EOF" ){
-		string s = "Read of file has incorrect: " + file;
+		string s = "Read of file has incorrect: " + fileName;
 		throw runtime_error( s );
 	}
 }

@@ -25,6 +25,7 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 
 	myPrint( "select elite: ", true );
 	elitePopulation = selectElite( elite, population );
+	checkPopulation( elitePopulation );
 	myPrint( "ok" , true );
 
 	for ( int i = 0; i < limitIterations; i++ ){
@@ -58,6 +59,8 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 		myPrint( to_string(i) + "-select elite: ", true );
 		elitePopulation = selectElite( elite, population );
 		myPrint( "ok", true );
+
+//		return ;
 	}
 
 	std::cout << "Better end: " << selectBetter( population )->fitness << std::endl;

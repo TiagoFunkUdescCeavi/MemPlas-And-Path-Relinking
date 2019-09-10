@@ -1,7 +1,7 @@
-/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/China17n.pcar:2
+/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/Canada17n.pcar:5
 ./Project
-2
-/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/China17n.pcar
+5
+/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/Canada17n.pcar
 150
 3
 0.4
@@ -9,11 +9,11 @@
 100
 parameters:
 ok:
-My Seed: 2
+My Seed: 5
 instance read:
 ok
 generation of population: 
-Better init: 3237
+Better init: 4958
 ok
 multi operator local search: 
 removeSaving
@@ -1726,5 +1726,5 @@ ok
 ok
 99-select elite: 
 ok
-Better end: 587
+Better end: 932
 end of execution
