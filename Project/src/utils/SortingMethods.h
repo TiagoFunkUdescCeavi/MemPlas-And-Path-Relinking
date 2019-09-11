@@ -6,7 +6,7 @@
 #include "../model/Solution.h"
 #include "../model/Pair.h"
 
-vector< Solution * > quicksort( vector< Solution * > population );
-Pair * quicksort( Pair *values, int size );
+vector< Solution > quicksort( vector< Solution > population );
+vector< Pair > quicksort( vector< Pair > values );
 
 #endif /* SORTINGMETHODS_H_ */

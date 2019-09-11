@@ -1,17 +1,17 @@
 #include "SortingMethods.h"
 
-vector< Solution * > quicksort( vector< Solution * > values, int begin, int end){
-	Solution *aux = 0;
-	Solution *pivo = 0;
+vector< Solution > quicksort( vector< Solution > values, int begin, int end){
+	Solution aux;
+	Solution pivo;
 	int i, j;
 	i = begin;
 	j = end-1;
 	pivo = values[ (begin + end) / 2 ];
 	while(i <= j){
-		while(values[i]->fitness < pivo->fitness && i < end){
+		while(values[i].fitness < pivo.fitness && i < end){
 			i++;
 		}
-		while(values[j]->fitness > pivo->fitness && j > begin){
+		while(values[j].fitness > pivo.fitness && j > begin){
 			j--;
 		}
 		if(i <= j){
@@ -31,14 +31,14 @@ vector< Solution * > quicksort( vector< Solution * > values, int begin, int end)
 	return values;
 }
 
-vector< Solution * > quicksort( vector< Solution * > population ){
+vector< Solution > quicksort( vector< Solution > population ){
 	for( int i = 0; i < (int) population.size(); i++ ){
-		population[i]->calculeFitness();
+		population[i].calculeFitness();
 	}
 	return quicksort( population, 0, (int) population.size() );
 }
 
-Pair * quicksort(Pair *values, int begin, int end){
+vector< Pair > quicksort( vector< Pair > values, int begin, int end){
 	Pair aux;
 	Pair pivo;
 	int i, j;
@@ -69,6 +69,6 @@ Pair * quicksort(Pair *values, int begin, int end){
 	return values;
 }
 
-Pair * quicksort( Pair *values, int size ){
-	return quicksort( values, 0, size );
+vector< Pair > quicksort( vector< Pair > values ){
+	return quicksort( values, 0, (int) values.size() );
 }

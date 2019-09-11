@@ -1,20 +1,20 @@
 #include "Selections.h"
 #include "../utils/SortingMethods.h"
 
-vector< Solution* > selectElite( double elite, vector< Solution* > population ){
+vector< Solution > selectElite( double elite, vector< Solution > population ){
 	int numberOfSolutions = population.size() * elite;
 	numberOfSolutions =
 		(numberOfSolutions % 2 == 1 || numberOfSolutions == 0 )
 		? numberOfSolutions+1 : numberOfSolutions;
-	vector< Solution* > populationElite( numberOfSolutions );
+	vector< Solution > populationElite( numberOfSolutions );
 	population = quicksort( population );
 	for( int i = 0; i < numberOfSolutions; i++ ){
-//		populationElite[ i ] = population[ i ]->copy();
+		populationElite[ i ] = population[ i ];
 	}
 	return populationElite;
 }
 
-vector< Solution* > selectPopulation( double proportion, vector< Solution* > population ){
+vector< Solution > selectPopulation( double proportion, vector< Solution > population ){
 	int i = -1;
 	int aux = -1, numRand = -1;
 	int numberOfSolutions = proportion * population.size();
@@ -22,7 +22,7 @@ vector< Solution* > selectPopulation( double proportion, vector< Solution* > pop
 		(numberOfSolutions % 2 == 1 || numberOfSolutions == 0 )
 		? numberOfSolutions+1 : numberOfSolutions;
 	int *myVector = new int[ numberOfSolutions ];
-	vector< Solution* > selection( numberOfSolutions );
+	vector< Solution > selection( numberOfSolutions );
 
 	for( i = 0; i < numberOfSolutions; i++ ){
 		myVector[ i ] = i;
@@ -34,7 +34,7 @@ vector< Solution* > selectPopulation( double proportion, vector< Solution* > pop
 		myVector[ i ] = aux;
 	}
 	for( i = 0; i < numberOfSolutions; i++ ){
-//		selection[ i ] = population[ myVector[ i ] ]->copy();
+		selection[ i ] = population[ myVector[ i ] ];
 	}
 	return selection;
 }

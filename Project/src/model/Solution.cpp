@@ -18,7 +18,6 @@ Solution::Solution( int sizeSolution ){
 Solution::~Solution(){
 //	delete [] cities;
 //	delete [] cars;
-//	myPrint("bye", true);
 }
 
 void Solution::calculeFitness(){

@@ -5,6 +5,6 @@
 
 #include "../model/Solution.h"
 
-vector< Solution * > binaryTournament( vector< Solution * > population, vector< Solution * > offspring );
+vector< Solution > binaryTournament( vector< Solution > population, vector< Solution > offspring );
 
 #endif /* BINARYTOURNAMENT_H_ */

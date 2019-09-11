@@ -9,7 +9,7 @@ vector< Solution > generateInitialPopulation( int sizePopulation ){
 	bool firstCity;
 	int pos;
 	int myCar, destinyCity, nextCity;
-	Solution *mySolution = 0;
+	Solution mySolution;
 	vector< int > carsNotUsed;
 	vector< int > citiesNotVisited;
 	vector< Solution > population( sizePopulation );
@@ -18,7 +18,7 @@ vector< Solution > generateInitialPopulation( int sizePopulation ){
 		firstCity = true;
 		carsNotUsed = initAndShuffle( numberCars_GLOBAL, false );
 		citiesNotVisited = initAndShuffle( numberCities_GLOBAL, true );
-		mySolution = new Solution( numberCities_GLOBAL+1 );
+		mySolution = Solution( numberCities_GLOBAL+1 );
 
 		do{
 			myCar = carsNotUsed[ 0 ];
@@ -37,15 +37,15 @@ vector< Solution > generateInitialPopulation( int sizePopulation ){
 					nextCity = citiesNotVisited[ pos ];
 					citiesNotVisited.erase( citiesNotVisited.begin() + pos );
 				}
-				mySolution->addEnd( nextCity, myCar );
+				mySolution.addEnd( nextCity, myCar );
 			}while( destinyCity != nextCity );
 
-			mySolution->calculeSatisfaction();
-		}while( mySolution->satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
+			mySolution.calculeSatisfaction();
+		}while( mySolution.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
 
-		mySolution->addEnd( 0, myCar );
+		mySolution.addEnd( 0, myCar );
 
-		population[ i ] = mySolution->copy();
+		population[ i ] = mySolution.copy();
 	}
 
 	for( int i = 0; i < sizePopulation; i++ ){

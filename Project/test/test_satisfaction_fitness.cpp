@@ -4,7 +4,7 @@
 
 
 TEST( , TEST_W1) {
-	const char* file = "~/repositorios/github/MemPlas/Instances/n/AfricaSul11n.pcar";
+	const char* file = "/home/tiago/Repositorios/Github/MemPlas/Instances/n/AfricaSul11n.pcar";
 
 	try{
 		readInstance( file );
