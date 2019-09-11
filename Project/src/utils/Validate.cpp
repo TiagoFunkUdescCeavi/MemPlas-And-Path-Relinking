@@ -1,6 +1,6 @@
 #include "Validate.h"
 
-void checkPopulation( vector< Solution* > population ){
+void checkPopulation( vector< Solution > population ){
 	for( int i = 0; i < (int) population.size(); i++ ){
 		try{
 //			myPrint( i, true );
@@ -8,36 +8,36 @@ void checkPopulation( vector< Solution* > population ){
 		} catch (exception &e) {
 			myPrint( i, true );
 			myPrint( e.what(), true );
-			myPrint( population[i]->toString(), true );
+			myPrint( population[i].toString(), true );
 		}
 	}
 }
 
-int findFinalPosition( Solution* sol ){
+int findFinalPosition( Solution sol ){
 	int finalPosition = -1;
 
-	for( int i = 0; i < sol->sizeSolution; i++ ){
-		if( sol->cities[ i ] == -1 && sol->cars[ i ] != -1 ){
+	for( int i = 0; i < sol.sizeSolution; i++ ){
+		if( sol.cities[ i ] == -1 && sol.cars[ i ] != -1 ){
 			string s = "The cities vector ends before the cars vector.\n";
 			throw runtime_error( s );
 		}
-		if( sol->cars[ i ] == -1 && sol->cities[ i ] != -1 ){
+		if( sol.cars[ i ] == -1 && sol.cities[ i ] != -1 ){
 			string s = "The cars vector ends before the cities vector.\n";
 			throw runtime_error( s );
 		}
-		if( sol->cities[ i ] == -1 && sol->cars[ i ] == -1 ){
+		if( sol.cities[ i ] == -1 && sol.cars[ i ] == -1 ){
 			finalPosition = i;
 			break;
 		}
 	}
 	if( finalPosition == -1 ){
-		finalPosition = sol->sizeSolution;
+		finalPosition = sol.sizeSolution;
 	}
 
 	return finalPosition;
 }
 
-void checkStartAndEnd( Solution* sol, int finalPosition ){
+void checkStartAndEnd( Solution sol, int finalPosition ){
 	if( finalPosition == 0 ){
 		string s = "Solution is null.\n";
 		throw runtime_error( s );
@@ -50,30 +50,30 @@ void checkStartAndEnd( Solution* sol, int finalPosition ){
 		string s = "Solution has only two cities.\n";
 		throw runtime_error( s );
 	}
-	if( sol->cities[ 0 ] != 0 ){
+	if( sol.cities[ 0 ] != 0 ){
 		string s = "The first city in a solution must always be equal to 0.\n";
 		throw runtime_error( s );
 	}
-	if( sol->cities[ finalPosition-1 ] != 0 ){
+	if( sol.cities[ finalPosition-1 ] != 0 ){
 		string s = "The final city in a solution must always be equal to 0.\n";
 		throw runtime_error( s );
 	}
 }
 
-void checkCitiesAndCars( Solution* sol, int finalPosition ){
+void checkCitiesAndCars( Solution sol, int finalPosition ){
 	for( int i = 0; i < finalPosition; i++ ){
-		if( sol->cities[ i ] < -1 || sol->cities[ i ] >= numberCities_GLOBAL ){
-			string s = "Invalid value for city: " + to_string( sol->cities[i] ) + ".\n";
+		if( sol.cities[ i ] < -1 || sol.cities[ i ] >= numberCities_GLOBAL ){
+			string s = "Invalid value for city: " + to_string( sol.cities[i] ) + ".\n";
 			throw runtime_error( s );
 		}
-		if( sol->cars[ i ] < -1 || sol->cars[ i ] >= numberCars_GLOBAL ){
-			string s = "Invalid value for car: " + to_string( sol->cars[i] ) + ".\n";
+		if( sol.cars[ i ] < -1 || sol.cars[ i ] >= numberCars_GLOBAL ){
+			string s = "Invalid value for car: " + to_string( sol.cars[i] ) + ".\n";
 			throw runtime_error( s );
 		}
 	}
 }
 
-void checkRepetition( Solution* sol, int finalPosition ){
+void checkRepetition( Solution sol, int finalPosition ){
 	int actualCity = -1;
 	int lastCar = -1, actualCar = -1;
 	int usedCars[ numberCars_GLOBAL ];
@@ -87,8 +87,8 @@ void checkRepetition( Solution* sol, int finalPosition ){
 	}
 
 	for( int i = 0; i < finalPosition; i++ ){
-		actualCar = sol->cars[ i ];
-		actualCity = sol->cities[ i ];
+		actualCar = sol.cars[ i ];
+		actualCity = sol.cities[ i ];
 		if( lastCar != actualCar && usedCars[ actualCar ] == 1 ){
 			string s = "Solution is invalid: cars sequence is repeated\n";
 			throw runtime_error( s );
@@ -108,7 +108,7 @@ void checkRepetition( Solution* sol, int finalPosition ){
 	}
 }
 
-bool isOk( Solution* sol ){
+bool isOk( Solution sol ){
 	int finalPosition = -1;
 	finalPosition = findFinalPosition( sol );
 	checkStartAndEnd( sol, finalPosition );

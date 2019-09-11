@@ -16,8 +16,9 @@ Solution::Solution( int sizeSolution ){
 }
 
 Solution::~Solution(){
-	delete cities;
-	delete cars;
+//	delete [] cities;
+//	delete [] cars;
+//	myPrint("bye", true);
 }
 
 void Solution::calculeFitness(){
@@ -26,19 +27,19 @@ void Solution::calculeFitness(){
 		int previous_car = 0;
 		int rent_city = 0;
 		int weigth = -1, rate = -1;
-		Car *myCar = 0;
+		Car myCar;
 		for( int i = 0; i < this->position-1; i++ ){
 			myCar = cars_GLOBAL[ this->cars[ i ] ];
-			weigth = myCar->edge_weigth[ this->cities[ i ] ][ this->cities[ i+1 ] ];
+			weigth = myCar.edge_weigth[ this->cities[ i ] ][ this->cities[ i+1 ] ];
 			this->fitness += weigth;
 			if( previous_car != this->cars[ i+1 ] ){
-				rate = myCar->return_rate[ rent_city ][ this->cities[ i+1 ] ];
+				rate = myCar.return_rate[ rent_city ][ this->cities[ i+1 ] ];
 				this->fitness += rate;
 				previous_car = this->cars[ i+1 ];
 				rent_city = this->cities[ i+1 ];
 			}
 		}
-		rate = myCar->return_rate[ rent_city ][ 0 ];
+		rate = myCar.return_rate[ rent_city ][ 0 ];
 		this->fitness += rate;
 		this->calculatedFitness = true;
 	}
@@ -133,20 +134,20 @@ void Solution::insertCarAt( int index, int car ){
 	this->calculatedFitness = false;
 }
 
-Solution * Solution::copy(){
-	Solution *s = new Solution();
+Solution Solution::copy(){
+	Solution s;
 
-	s->sizeSolution = this->sizeSolution;
-	s->cities = new int[ s->sizeSolution ];
-	s->cars = new int[ s->sizeSolution ];
-	s->position = this->position;
-	s->fitness = this->fitness;
-	s->satisfaction = this->satisfaction;
-	s->sizeSolution = this->sizeSolution;
+	s.sizeSolution = this->sizeSolution;
+	s.cities = new int[ s.sizeSolution ];
+	s.cars = new int[ s.sizeSolution ];
+	s.position = this->position;
+	s.fitness = this->fitness;
+	s.satisfaction = this->satisfaction;
+	s.sizeSolution = this->sizeSolution;
 
 	for( int i = 0; i < sizeSolution; i++ ){
-		s->cities[ i ] = this->cities[ i ];
-		s->cars[ i ] = this->cars[ i ];
+		s.cities[ i ] = this->cities[ i ];
+		s.cars[ i ] = this->cars[ i ];
 	}
 	return s;
 }

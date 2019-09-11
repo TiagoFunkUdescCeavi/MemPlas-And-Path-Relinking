@@ -10,7 +10,7 @@ using namespace std;
 extern int numberCars_GLOBAL;
 extern int numberCities_GLOBAL;
 
-extern vector< Car* > cars_GLOBAL;
+extern vector< Car > cars_GLOBAL;
 extern int* bonus_satisfaction_GLOBAL;
 extern int satisfaction_total_GLOBAL;
 

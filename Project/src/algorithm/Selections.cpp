@@ -9,7 +9,7 @@ vector< Solution* > selectElite( double elite, vector< Solution* > population ){
 	vector< Solution* > populationElite( numberOfSolutions );
 	population = quicksort( population );
 	for( int i = 0; i < numberOfSolutions; i++ ){
-		populationElite[ i ] = population[ i ]->copy();
+//		populationElite[ i ] = population[ i ]->copy();
 	}
 	return populationElite;
 }
@@ -34,7 +34,7 @@ vector< Solution* > selectPopulation( double proportion, vector< Solution* > pop
 		myVector[ i ] = aux;
 	}
 	for( i = 0; i < numberOfSolutions; i++ ){
-		selection[ i ] = population[ myVector[ i ] ]->copy();
+//		selection[ i ] = population[ myVector[ i ] ]->copy();
 	}
 	return selection;
 }

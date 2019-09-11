@@ -5,14 +5,14 @@
 
 #include "../utils/Prints.h"
 
-vector< Solution* > generateInitialPopulation( int sizePopulation ){
+vector< Solution > generateInitialPopulation( int sizePopulation ){
 	bool firstCity;
 	int pos;
 	int myCar, destinyCity, nextCity;
-	Solution* mySolution = 0;
+	Solution *mySolution = 0;
 	vector< int > carsNotUsed;
 	vector< int > citiesNotVisited;
-	vector< Solution* > population( sizePopulation );
+	vector< Solution > population( sizePopulation );
 
 	for( int i = 0; i < sizePopulation; i++ ){
 		firstCity = true;
@@ -45,14 +45,12 @@ vector< Solution* > generateInitialPopulation( int sizePopulation ){
 
 		mySolution->addEnd( 0, myCar );
 
-		population[ i ] = mySolution;
+		population[ i ] = mySolution->copy();
 	}
 
-	for( int i = 0; i < (int) population.size(); i++ ){
-		if( population[ i ] != 0 ){
-			population[ i ]->calculeSatisfaction();
-			population[ i ]->calculeFitness();
-		}
+	for( int i = 0; i < sizePopulation; i++ ){
+		population[ i ].calculeSatisfaction();
+		population[ i ].calculeFitness();
 	}
 	return population;
 }
@@ -80,7 +78,7 @@ vector< int > initAndShuffle( int vectorSize, bool hasCities ){
 int selectCityWithHeuristic( int car, int cityInit, vector< int > citiesNotVisited ){
 	int value, min = INT_MAX, pos = 0;
 	for( int i = 0; i < (int) citiesNotVisited.size(); i++ ){
-		value = cars_GLOBAL[ car ]->edge_weigth[ cityInit ][ citiesNotVisited[ i ] ];
+		value = cars_GLOBAL[ car ].edge_weigth[ cityInit ][ citiesNotVisited[ i ] ];
 		if( min > value && value != 0 ){
 			min = value;
 			pos = i;

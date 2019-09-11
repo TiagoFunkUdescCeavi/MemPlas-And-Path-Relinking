@@ -9,13 +9,13 @@
 #include "../model/Solution.h"
 #include "Prints.h"
 
-bool isOk( Solution* mySolution );
-void checkPopulation( vector< Solution* > population );
+bool isOk( Solution mySolution );
+void checkPopulation( vector< Solution > population );
 
-int findFinalPosition( Solution* sol );
-void checkStartAndEnd( Solution* sol, int finalPosition );
-void checkCitiesAndCars( Solution* sol, int finalPosition );
-void checkRepetition( Solution* sol, int finalPosition );
+int findFinalPosition( Solution sol );
+void checkStartAndEnd( Solution sol, int finalPosition );
+void checkCitiesAndCars( Solution sol, int finalPosition );
+void checkRepetition( Solution sol, int finalPosition );
 
 
 #endif /* VALIDATE_H_ */

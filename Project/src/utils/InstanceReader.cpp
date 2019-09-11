@@ -5,7 +5,7 @@
 
 using namespace std;
 
-struct Ponto{
+struct Point{
 	double x, y;
 };
 
@@ -60,9 +60,9 @@ void readInstanceNotEuclidean( string fileName ){
 			}
 		}
 
-		cars_GLOBAL[ car ] = new Car();
-		cars_GLOBAL[ car ]->dimension = cities;
-		cars_GLOBAL[ car ]->edge_weigth = matrix;
+//		cars_GLOBAL[ car ] = new Car();
+		cars_GLOBAL[ car ].dimension = cities;
+		cars_GLOBAL[ car ].edge_weigth = matrix;
 	}
 
 	file >> aux;
@@ -76,7 +76,8 @@ void readInstanceNotEuclidean( string fileName ){
 			}
 		}
 
-		cars_GLOBAL[ car ]->return_rate = matrix;
+
+		cars_GLOBAL[ car ].return_rate = matrix;
 	}
 
 	file >> aux;
@@ -106,7 +107,7 @@ void readInstanceEuclidean( string fileName ){
 	int **dist = 0;
 	int **cost = 0;
 	int **rate = 0;
-	Ponto *points = 0;
+	Point *points = 0;
 	string aux;
 	ifstream fileReader( fileName.c_str(), ios::in );
 
@@ -136,14 +137,14 @@ void readInstanceEuclidean( string fileName ){
 	numberCities_GLOBAL = cities;
 	cars_GLOBAL.resize( cars );
 	for( int i = 0; i < cars; i++ ){
-		cars_GLOBAL[i] = new Car();
-		cars_GLOBAL[i]->dimension = cities;
+//		cars_GLOBAL[i] = new Car();
+		cars_GLOBAL[i].dimension = cities;
 	}
 
 	// Inciando os vetores
 	vector = new int[ cities ];
 	satisfaction = new int[ cities ];
-	points = new Ponto[ cities ];
+	points = new Point[ cities ];
 
 	// Iniciando a matriz de distâncias
 	dist = createMatrix( cities, cities );
@@ -202,7 +203,7 @@ void readInstanceEuclidean( string fileName ){
 				}
 			}
 		}
-		cars_GLOBAL[i]->edge_weigth = cost;
+		cars_GLOBAL[i].edge_weigth = cost;
 	}
 
 	// RETURN_RATE_SECTION
@@ -227,7 +228,7 @@ void readInstanceEuclidean( string fileName ){
 				}
 			}
 		}
-		cars_GLOBAL[i]->return_rate = rate;
+		cars_GLOBAL[i].return_rate = rate;
 	}
 
 	fileReader >> aux;

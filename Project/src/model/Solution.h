@@ -12,8 +12,6 @@ class Solution{
 private:
 	bool calculatedFitness = false;
 
-	Solution();
-
 public:
 	int sizeSolution = 0;
 	int *cities = 0;
@@ -22,8 +20,10 @@ public:
 	int satisfaction = 0;
 	int position = 0;
 
+	Solution();
 	Solution( int sizeSolution );
 	~Solution();
+
 	void calculeFitness();
 	void calculeSatisfaction();
 
@@ -33,7 +33,7 @@ public:
 	void insertCityAt( int index, int city );
 	void insertCarAt( int index, int car );
 
-	Solution * copy();
+	Solution copy();
 	string toString();
 
 };

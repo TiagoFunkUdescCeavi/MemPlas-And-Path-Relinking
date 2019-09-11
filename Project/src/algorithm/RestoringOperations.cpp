@@ -15,7 +15,8 @@ Solution * removeErrors( Solution *sol ){
 	int lastCar = -1, actualCar = -1;
 	usedCars = new Pair[ numberCars_GLOBAL ];
 	usedCities = new Pair[ numberCities_GLOBAL ];
-	Solution *newSol = sol->copy();
+	Solution *newSol = 0;
+//	newSol = sol->copy();
 
 	for( int i = 0; i < numberCities_GLOBAL; i++ ){
 		usedCities[i].key = i;
@@ -50,7 +51,8 @@ Solution * removeErrors( Solution *sol ){
 Solution * insertCities( Solution * sol ){
 	int lastPosition = -1, aux = 0, randomNumber = 0;
 	Pair pair;
-	Solution *newSol = sol->copy();
+	Solution *newSol = 0;
+//	newSol = sol->copy();
 	usedCities = quicksort( usedCities, numberCities_GLOBAL );
 	for( int i = 0; i < numberCities_GLOBAL; i++ ){
 		if( usedCities[i].value != 0 ){
@@ -83,7 +85,8 @@ Solution * insertCities( Solution * sol ){
 
 Solution * insertCars( Solution * sol ){
 	int lastCar = -1;
-	Solution *newSol = sol->copy();
+	Solution *newSol = 0;
+//	newSol = sol->copy();
 	for( int i = 0; i < newSol->position; i++ ){
 		if( newSol->cars[i] == -2 ){
 			newSol->insertCarAt( i, lastCar );
@@ -96,7 +99,8 @@ Solution * insertCars( Solution * sol ){
 
 Solution * checkQuota( Solution *sol ){
 	int selectCity = 0, biggerQuota = INT_MIN, indexBiggerCity = -1, previousCity = 0;
-	Solution *newSol = sol->copy();
+	Solution *newSol = 0;
+//	newSol = sol->copy();
 	newSol->calculeSatisfaction();
 	if ( newSol->satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		for( int i = 1; i < numberCities_GLOBAL; i++ ){
@@ -138,13 +142,13 @@ vector< Solution * > restoringOperations( vector< Solution * > population ){
 	Solution *sol = 0;
 	vector< Solution* > newPopulation( population.size() );
 	for( int i = 0; i < (int) population.size(); i++ ){
-		sol = population[ i ]->copy();
-		sol = removeErrors( sol );
-		sol = insertCities( sol );
-		sol = insertCars( sol );
-		sol = checkQuota( sol );
-		newPopulation[i] = sol;
-		delete population[i];
+//		sol = population[ i ]->copy();
+//		sol = removeErrors( sol );
+//		sol = insertCities( sol );
+//		sol = insertCars( sol );
+//		sol = checkQuota( sol );
+//		newPopulation[i] = sol;
+//		delete population[i];
 	}
 	return newPopulation;
 }
