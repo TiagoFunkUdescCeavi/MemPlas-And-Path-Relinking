@@ -46,8 +46,10 @@ void Solution::calculeFitness(){
 
 void Solution::calculeSatisfaction(){
 	this->satisfaction = 0;
-	for( int i = 0; i < this->position-1; i++ ){
-		this->satisfaction += bonus_satisfaction_GLOBAL[ cities[ i ] ];
+	for( int i = 0; i < this->position; i++ ){
+		if( i != this->position-1 || (i == this->position-1 && this->cities[ i ] != 0) ){
+			this->satisfaction += bonus_satisfaction_GLOBAL[ cities[ i ] ];
+		}
 	}
 }
 

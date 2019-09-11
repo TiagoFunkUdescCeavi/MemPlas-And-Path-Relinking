@@ -196,7 +196,7 @@ vector< Solution > replaceSavingCar( vector< Solution > population ){
 
 vector< Solution > operator_2opt( vector< Solution > population ){
 	int count = -1;
-	int* myVector = 0;
+	int myVector[ numberCities_GLOBAL+1 ];
 	Solution backup;
 	Solution better;
 	Solution actual;
@@ -209,7 +209,6 @@ vector< Solution > operator_2opt( vector< Solution > population ){
 
 		for( int j = 1; j < actual.position-2; j++ ){
 			count = 0;
-			myVector = new int[ numberCities_GLOBAL+1 ];
 
 			myVector[ count++ ] = actual.cities[ 0 ];
 			for( int k = j+1; k < actual.position-1; k++ ){
@@ -222,7 +221,10 @@ vector< Solution > operator_2opt( vector< Solution > population ){
 
 			myVector[ count++ ] = actual.cities[ actual.position-1 ];
 			myVector[ count++ ] = actual.cities[ actual.position ];
-			actual.cities = myVector;
+			for( int i = 0; i < numberCities_GLOBAL+1; i++ ){
+				actual.cities[i] = myVector[i];
+			}
+//			actual.cities = myVector;
 			actual.calculeFitness();
 			better.calculeFitness();
 

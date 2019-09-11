@@ -9,13 +9,13 @@ log=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Logs/"$file".log"
 file=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/"$instance
 exe=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Project/Debug/"
 
-cd 
-cd Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/
+#cd 
+#cd Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/
 
 for count in $(seq 0 10)
 do
 	log=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Logs/"$instance"."$count".log"
-	echo "$file:$count"
+	echo "$instance:$count"
 	echo $log
 	echo "$file:$count" > $log
 	cd /home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Project/Debug/

@@ -9,6 +9,7 @@ void checkPopulation( vector< Solution > population ){
 			myPrint( i, true );
 			myPrint( e.what(), true );
 			myPrint( population[i].toString(), true );
+			exit( 1 );
 		}
 	}
 }
