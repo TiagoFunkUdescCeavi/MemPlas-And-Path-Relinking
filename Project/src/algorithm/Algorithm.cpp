@@ -54,11 +54,11 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 		population = binaryTournament( population, offspring );
 		checkPopulation( population );
 		myPrint( "ok" , true );
-//
+
 		myPrint( to_string(i) + "-select elite: ", true );
 		elitePopulation = selectElite( elite, population );
 		myPrint( "ok", true );
-//
+
 	}
 
 }

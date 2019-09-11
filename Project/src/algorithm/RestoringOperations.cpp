@@ -13,6 +13,8 @@ Solution removeErrors( Solution sol ){
 	bool isRepeated = false;
 	int actualCity = -1;
 	int lastCar = -1, actualCar = -1;
+	usedCars.clear();
+	usedCities.clear();
 	usedCars.resize( numberCars_GLOBAL );
 	usedCities.resize( numberCities_GLOBAL );
 	Solution newSol = sol;
