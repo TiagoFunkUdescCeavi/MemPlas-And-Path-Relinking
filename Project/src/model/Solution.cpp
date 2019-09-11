@@ -145,6 +145,7 @@ Solution Solution::copy(){
 	s.fitness = this->fitness;
 	s.satisfaction = this->satisfaction;
 	s.sizeSolution = this->sizeSolution;
+	s.calculatedFitness = false;
 
 	for( int i = 0; i < sizeSolution; i++ ){
 		s.cities[ i ] = this->cities[ i ];

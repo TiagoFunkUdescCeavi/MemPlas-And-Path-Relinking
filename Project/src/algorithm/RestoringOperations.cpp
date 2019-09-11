@@ -100,6 +100,8 @@ Solution checkQuota( Solution sol ){
 	int selectCity = 0, biggerQuota = INT_MIN, indexBiggerCity = -1, previousCity = 0;
 	Solution newSol = sol;
 	newSol.calculeSatisfaction();
+	myPrint( ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", true );
+	myPrint( newSol.toString(), true );
 	if ( newSol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		for( int i = 1; i < numberCities_GLOBAL; i++ ){
 			if( usedCities[i].value == 0 && bonus_satisfaction_GLOBAL[ usedCities[i].key ] > biggerQuota ){
@@ -115,10 +117,12 @@ Solution checkQuota( Solution sol ){
 			newSol.calculeSatisfaction();
 			if ( newSol.satisfaction >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 				usedCities[indexBiggerCity].value += 1;
+				usedCities[previousCity].value -= 1;
 				break;
 			}
 			newSol.insertCityAt( i, previousCity );
 		}
+		myPrint( newSol.toString(), true );
 	}
 
 	while ( newSol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
@@ -132,7 +136,9 @@ Solution checkQuota( Solution sol ){
 		newSol.addCityAt( newSol.position-1, selectCity );
 		usedCities[indexBiggerCity].value += 1;
 		newSol.calculeSatisfaction();
+		myPrint( newSol.toString(), true );
 	}
+	myPrint( newSol.toString(), true );
 	return newSol;
 }
 
