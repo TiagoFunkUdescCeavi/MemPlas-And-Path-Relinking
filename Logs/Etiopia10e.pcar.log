@@ -1,0 +1,39 @@
+Etiopia10e.pcar
+parameters:
+ok:
+My Seed: 0
+instance read:
+ok
+generation of population: 
+ok
+multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+select elite: 
+ok
+0-plasmid: 
+ok
+0-restoring operations: 
+ok
+0-multi operator local search: 
+removeSaving
+invertSolution
+insertSavingCity
+replaceSavingCity
+replaceSavingCar
+operator_2opt
+multiOperatorsLocalSearch done
+ok
+0-binary tournament: 
+ok
+0-select elite: 
+ok
+1-crossover: 
+ok
+1-restoring operations: 

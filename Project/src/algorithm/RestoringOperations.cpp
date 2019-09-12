@@ -9,6 +9,16 @@
 vector< Pair > usedCars;
 vector< Pair > usedCities;
 
+void printPairs( vector< Pair > values ){
+	for( int i = 0; i < (int) values.size(); i++ ){
+		myPrint( values[i].key, false );
+		myPrint( "-", false );
+		myPrint( values[i].value, false );
+		myPrint( ", ", false );
+	}
+	myPrint( "", true );
+}
+
 Solution removeErrors( Solution sol ){
 	bool isRepeated = false;
 	int actualCity = -1;
@@ -25,6 +35,7 @@ Solution removeErrors( Solution sol ){
 	for( int i = 0; i < numberCars_GLOBAL; i++ ){
 		usedCars[i].key = i;
 	}
+//	printPairs( usedCities );
 
 	for( int i = 0; i < sol.position; i++ ){
 		actualCar = sol.cars[ i ];
@@ -45,7 +56,8 @@ Solution removeErrors( Solution sol ){
 		}
 		lastCar = actualCar;
 	}
-
+//	myPrint( newSol.toString(), true );
+//	printPairs( usedCities );
 	return newSol;
 }
 
@@ -54,6 +66,7 @@ Solution insertCities( Solution sol ){
 	Pair pair;
 	Solution newSol = sol;
 	usedCities = quicksort( usedCities );
+//	printPairs( usedCities );
 	for( int i = 0; i < numberCities_GLOBAL; i++ ){
 		if( usedCities[i].value != 0 ){
 			lastPosition = i;
@@ -80,12 +93,15 @@ Solution insertCities( Solution sol ){
 			}
 		}
 	}
+//	myPrint( newSol.toString(), true );
+//	printPairs( usedCities );
 	return newSol;
 }
 
 Solution insertCars( Solution sol ){
 	int lastCar = -1;
 	Solution newSol = sol;
+//	printPairs( usedCities );
 	for( int i = 0; i < newSol.position; i++ ){
 		if( newSol.cars[i] == -2 ){
 			newSol.insertCarAt( i, lastCar );
@@ -93,6 +109,8 @@ Solution insertCars( Solution sol ){
 			lastCar = newSol.cars[i];
 		}
 	}
+//	myPrint( newSol.toString(), true );
+//	printPairs( usedCities );
 	return newSol;
 }
 
@@ -100,8 +118,6 @@ Solution checkQuota( Solution sol ){
 	int selectCity = 0, biggerQuota = INT_MIN, indexBiggerCity = -1, previousCity = 0;
 	Solution newSol = sol;
 	newSol.calculeSatisfaction();
-	myPrint( ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", true );
-	myPrint( newSol.toString(), true );
 	if ( newSol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		for( int i = 1; i < numberCities_GLOBAL; i++ ){
 			if( usedCities[i].value == 0 && bonus_satisfaction_GLOBAL[ usedCities[i].key ] > biggerQuota ){
@@ -122,11 +138,13 @@ Solution checkQuota( Solution sol ){
 			}
 			newSol.insertCityAt( i, previousCity );
 		}
-		myPrint( newSol.toString(), true );
 	}
+//	myPrint( ">>>>>>", true );
+//	myPrint( newSol.toString(), true );
+//	printPairs( usedCities );
 
 	while ( newSol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
-		for( int i = 1; i < numberCities_GLOBAL; i++ ){
+		for( int i = 0; i < numberCities_GLOBAL; i++ ){
 			if( usedCities[i].value == 0 ){
 				selectCity = usedCities[i].key;
 				indexBiggerCity = i;
@@ -136,9 +154,11 @@ Solution checkQuota( Solution sol ){
 		newSol.addCityAt( newSol.position-1, selectCity );
 		usedCities[indexBiggerCity].value += 1;
 		newSol.calculeSatisfaction();
-		myPrint( newSol.toString(), true );
+
+//		myPrint( ">>>>>>", true );
+//		myPrint( newSol.toString(), true );
+//		printPairs( usedCities );
 	}
-	myPrint( newSol.toString(), true );
 	return newSol;
 }
 
