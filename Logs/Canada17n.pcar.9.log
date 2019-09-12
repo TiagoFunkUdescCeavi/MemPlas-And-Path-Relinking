@@ -1,11 +1,7 @@
-<<<<<<< Updated upstream:Logs/Arabia14e.pcar.log
-Arabia14e.pcar
-=======
-/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/Canada17n.pcar:3
->>>>>>> Stashed changes:Logs/Canada17n.pcar.3.log
+/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/Canada17n.pcar:9
 parameters:
 ok:
-My Seed: 0
+My Seed: 9
 instance read:
 ok
 generation of population: 
