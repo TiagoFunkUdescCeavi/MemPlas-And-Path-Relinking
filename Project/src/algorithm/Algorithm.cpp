@@ -12,54 +12,57 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 	vector< Solution > selection;
 	vector< Solution > offspring;
 
-	myPrint( "generation of population: ", true );
+	myPrint( "generation of population:", 1 );
 	population = generateInitialPopulation( sizePopulation );
 	checkPopulation( population );
-	myPrint( "ok" , true );
+	myPrint( "ok" , 1 );
 
-	myPrint( "multi operator local search: ", true );
+	myPrint( "multi operator local search:", 1 );
 	population = multiOperatorsLocalSearch( population );
 	checkPopulation( population );
-	myPrint( "ok" , true );
+	myPrint( "ok" , 1 );
 
-	myPrint( "select elite: ", true );
+	return ;
+
+	myPrint( "select elite:", 1 );
 	elitePopulation = selectElite( elite, population );
 	checkPopulation( elitePopulation );
-	myPrint( "ok" , true );
+	myPrint( "ok" , 1 );
 
 	for ( int i = 0; i < limitIterations; i++ ){
 		if( i % 10 != 0 ){
-			myPrint( to_string(i) + "-crossover: ", true );
+			myPrint( to_string(i) + "-crossover:", 1 );
 			selection = selectPopulation( cross, population );
 			offspring = crossover( selection );
-			myPrint( "ok", true );
+			myPrint( "ok", 1 );
 		}else{
-			myPrint( to_string(i) + "-plasmid: ", true );
+			myPrint( to_string(i) + "-plasmid: ", 1 );
 			selection = selectPopulation( elite, population );
 			offspring = plasmid( selection, sizePlasmideo, elitePopulation );
-			myPrint( "ok", true );
+			myPrint( "ok", 1 );
 		}
 
-		myPrint( to_string(i) + "-restoring operations: ", true );
+		myPrint( to_string(i) + "-restoring operations: ", 1 );
 		offspring = restoringOperations( offspring );
 		checkPopulation( offspring );
-		myPrint( "ok", true );
+		myPrint( "ok", 1 );
 
-		myPrint( to_string(i) + "-multi operator local search: ", true );
+		myPrint( to_string(i) + "-multi operator local search: ", 1 );
 		offspring = multiOperatorsLocalSearch( offspring );
 		checkPopulation( population );
-		myPrint( "ok" , true );
+		myPrint( "ok" , 1 );
 
-		myPrint( to_string(i) + "-binary tournament: ", true );
+		myPrint( to_string(i) + "-binary tournament: ", 1 );
 		population = binaryTournament( population, offspring );
 		checkPopulation( population );
-		myPrint( "ok" , true );
+		myPrint( "ok" , 1 );
 
-		myPrint( to_string(i) + "-select elite: ", true );
+		myPrint( to_string(i) + "-select elite: ", 1 );
 		elitePopulation = selectElite( elite, population );
-		myPrint( "ok", true );
-
+		checkPopulation( population );
+		myPrint( "ok", 1 );
 	}
 
+	myPrint( selectBetter( population ).fitness, 0 );
 }
 

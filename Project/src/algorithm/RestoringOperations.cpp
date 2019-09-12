@@ -9,14 +9,14 @@
 vector< Pair > usedCars;
 vector< Pair > usedCities;
 
-void printPairs( vector< Pair > values ){
+void printPairs( vector< Pair > values, int level ){
 	for( int i = 0; i < (int) values.size(); i++ ){
-		myPrint( values[i].key, false );
-		myPrint( "-", false );
-		myPrint( values[i].value, false );
-		myPrint( ", ", false );
+		myPrint( values[i].key, level );
+		myPrint( "-", level );
+		myPrint( values[i].value, level );
+		myPrint( ", ", level );
 	}
-	myPrint( "", true );
+	myPrint( "", level );
 }
 
 Solution removeErrors( Solution sol ){
@@ -35,7 +35,6 @@ Solution removeErrors( Solution sol ){
 	for( int i = 0; i < numberCars_GLOBAL; i++ ){
 		usedCars[i].key = i;
 	}
-//	printPairs( usedCities );
 
 	for( int i = 0; i < sol.position; i++ ){
 		actualCar = sol.cars[ i ];
@@ -56,8 +55,6 @@ Solution removeErrors( Solution sol ){
 		}
 		lastCar = actualCar;
 	}
-//	myPrint( newSol.toString(), true );
-//	printPairs( usedCities );
 	return newSol;
 }
 
@@ -93,15 +90,12 @@ Solution insertCities( Solution sol ){
 			}
 		}
 	}
-//	myPrint( newSol.toString(), true );
-//	printPairs( usedCities );
 	return newSol;
 }
 
 Solution insertCars( Solution sol ){
 	int lastCar = -1;
 	Solution newSol = sol;
-//	printPairs( usedCities );
 	for( int i = 0; i < newSol.position; i++ ){
 		if( newSol.cars[i] == -2 ){
 			newSol.insertCarAt( i, lastCar );
@@ -109,8 +103,6 @@ Solution insertCars( Solution sol ){
 			lastCar = newSol.cars[i];
 		}
 	}
-//	myPrint( newSol.toString(), true );
-//	printPairs( usedCities );
 	return newSol;
 }
 
@@ -139,10 +131,6 @@ Solution checkQuota( Solution sol ){
 			newSol.insertCityAt( i, previousCity );
 		}
 	}
-//	myPrint( ">>>>>>", true );
-//	myPrint( newSol.toString(), true );
-//	printPairs( usedCities );
-
 	while ( newSol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		for( int i = 0; i < numberCities_GLOBAL; i++ ){
 			if( usedCities[i].value == 0 ){
@@ -155,9 +143,6 @@ Solution checkQuota( Solution sol ){
 		usedCities[indexBiggerCity].value += 1;
 		newSol.calculeSatisfaction();
 
-//		myPrint( ">>>>>>", true );
-//		myPrint( newSol.toString(), true );
-//		printPairs( usedCities );
 	}
 	return newSol;
 }
@@ -167,10 +152,15 @@ vector< Solution > restoringOperations( vector< Solution > population ){
 	vector< Solution > newPopulation( population.size() );
 	for( int i = 0; i < (int) population.size(); i++ ){
 		sol = population[ i ];
+		myPrint( "removeErrors", 1 );
 		sol = removeErrors( sol );
+		myPrint( "insertCities", 1 );
 		sol = insertCities( sol );
+		myPrint( "insertCars", 1 );
 		sol = insertCars( sol );
+		myPrint( "checkQuota", 1 );
 		sol = checkQuota( sol );
+		myPrint( "restoringOperations done", 1 );
 		newPopulation[i] = sol;
 	}
 	return newPopulation;

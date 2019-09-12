@@ -1,49 +1,33 @@
 #include "Prints.h"
 
-bool debug = true;
+// 0 para dados da instâncias
+// 1 para log dentro da função lets_go
+// 2 para log dentro de cada método
+int debugLevel = 0;
 
-void myPrint( string s, bool newLine ){
-	if( debug ){
-		cout << s;
-		if( newLine ){
-			cout << endl;
-		}
+void myPrint( string s, int level ){
+	if( debugLevel >= level){
+		cout << s << endl;
 	}
 }
 
-void myPrint( const char * text, bool newLine ){
-	if( debug ){
-		cout << text;
-		if( newLine ){
-			cout << endl;
-		}
+void myPrint( const char *text, int level ){
+	if( debugLevel >= level){
+		cout << text << endl;
 	}
 }
 
-void myPrint( int i, bool newLine ){
-	if( debug ){
-		cout << i;
-		if( newLine ){
-			cout << endl;
-		}
+void myPrint( int i, int level ){
+	if( debugLevel >= level){
+		cout << i << endl;
 	}
 }
 
-void myPrint( double d, bool newLine ){
-	if( debug ){
-		cout << d;
-		if( newLine ){
-			cout << endl;
-		}
+void myPrint( double d, int level ){
+	if( debugLevel >= level){
+		cout << d << endl;
 	}
 }
 
-void printVector( int *values, int size ){
-	for( int i = 0; i < size; i++ ){
-		myPrint( values[i], false );
-		myPrint( ", ", false );
-	}
-	myPrint( "", true );
-}
 
 

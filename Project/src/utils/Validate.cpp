@@ -1,14 +1,29 @@
 #include "Validate.h"
 
+void verifyQuota( Solution sol ){
+	myPrint( to_string( sol.satisfaction )
+		+ "->" + to_string( minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL )
+		+ "->" + to_string( satisfaction_total_GLOBAL )
+	, 0 );
+	if( sol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+		string s = "Quota value is less than the minimum allowed.\nSatisfaction of Solution: "
+				+ to_string( sol.satisfaction )
+				+ "\tMinimal satisfaction: "
+				+ to_string( minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
+		throw runtime_error( s );
+	}
+}
+
 void checkPopulation( vector< Solution > population ){
 	for( int i = 0; i < (int) population.size(); i++ ){
 		try{
-//			myPrint( i, true );
 			isOk( population[ i ] );
+			population[i].calculeSatisfaction();
+			verifyQuota( population[i] );
 		} catch (exception &e) {
-			myPrint( i, true );
-			myPrint( e.what(), true );
-			myPrint( population[i].toString(), true );
+			myPrint( i, 0 );
+			myPrint( e.what(), 0 );
+			myPrint( population[i].toString(), 0 );
 			exit( 1 );
 		}
 	}

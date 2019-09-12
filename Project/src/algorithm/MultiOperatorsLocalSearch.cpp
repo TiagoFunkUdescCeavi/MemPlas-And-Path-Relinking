@@ -29,6 +29,7 @@ vector< Solution > removeSaving( vector< Solution > population ){
 				}
 			}
 
+			dad.calculeFitness();
 			son.calculeSatisfaction();
 
 			if( son.satisfaction-bonus_satisfaction_GLOBAL[ minCity ]
@@ -240,18 +241,18 @@ vector< Solution > operator_2opt( vector< Solution > population ){
 
 vector< Solution > multiOperatorsLocalSearch( vector< Solution> population){
 	vector< Solution > sol;
-	myPrint( "removeSaving", true );
+	myPrint( "removeSaving", 1 );
 	sol = removeSaving( population );
-	myPrint( "invertSolution", true );
+	myPrint( "invertSolution", 1 );
 	sol = invertSolution( sol );
-	myPrint( "insertSavingCity", true );
+	myPrint( "insertSavingCity", 1 );
 	sol = insertSavingCity( sol );
-	myPrint( "replaceSavingCity", true );
+	myPrint( "replaceSavingCity", 1 );
 	sol = replaceSavingCity( sol );
-	myPrint( "replaceSavingCar", true );
+	myPrint( "replaceSavingCar", 1 );
 	sol = replaceSavingCar( sol );
-	myPrint( "operator_2opt", true );
+	myPrint( "operator_2opt", 1 );
 	sol = operator_2opt( sol );
-	myPrint( "multiOperatorsLocalSearch done", true );
+	myPrint( "multiOperatorsLocalSearch done", 1 );
 	return sol;
 }

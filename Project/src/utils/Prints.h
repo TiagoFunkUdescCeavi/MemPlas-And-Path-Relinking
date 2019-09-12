@@ -6,12 +6,9 @@
 
 using namespace std;
 
-void myPrint( string s, bool newLine );
-void myPrint( const char * text, bool newLine );
-void myPrint( int i, bool newLine );
-void myPrint( double d, bool newLine );
-
-void printVector( int *values, int size );
-
+void myPrint( string s, int level );
+void myPrint( const char *text, int level );
+void myPrint( int i, int level );
+void myPrint( double d, int level );
 
 #endif /* PRINTS_H_ */

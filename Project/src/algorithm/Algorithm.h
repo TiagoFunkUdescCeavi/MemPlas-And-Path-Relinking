@@ -2,6 +2,7 @@
 #define ALGORITHM_H_
 
 #include "../utils/Validate.h"
+#include "../utils/Prints.h"
 #include "GenerateInitialPopulation.h"
 #include "MultiOperatorsLocalSearch.h"
 #include "Selections.h"
