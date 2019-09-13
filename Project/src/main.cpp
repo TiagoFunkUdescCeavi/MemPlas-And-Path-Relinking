@@ -10,9 +10,7 @@
 using namespace std;
 
 int main( int argc, char* argv[] ){
-//	for( int i = 0; i < argc; i++ ){
-//		cout << argv[i] << endl;
-//	}
+
 	myPrint( "parameters:", 1 );
 	int seed = stoi( argv[ 1 ] );
 	string file = argv[ 2 ];
@@ -41,7 +39,6 @@ int main( int argc, char* argv[] ){
 //		s1.addEnd(8,1);
 //		s1.addEnd(0,1);
 //		population[0] = s1;
-
 //		checkPopulation( multiOperatorsLocalSearch( population ) );
 
 		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );

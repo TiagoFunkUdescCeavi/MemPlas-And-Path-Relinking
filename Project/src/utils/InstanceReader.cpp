@@ -60,7 +60,6 @@ void readInstanceNotEuclidean( string fileName ){
 			}
 		}
 
-//		cars_GLOBAL[ car ] = new Car();
 		cars_GLOBAL[ car ].dimension = cities;
 		cars_GLOBAL[ car ].edge_weigth = matrix;
 	}
@@ -75,7 +74,6 @@ void readInstanceNotEuclidean( string fileName ){
 				file >> matrix[ i ][ j ];
 			}
 		}
-
 
 		cars_GLOBAL[ car ].return_rate = matrix;
 	}
@@ -99,7 +97,6 @@ void readInstanceNotEuclidean( string fileName ){
 }
 
 void readInstanceEuclidean( string fileName ){
-	int auxInt = -1;
 	int cities = -1, cars = -1;
 	int sum_satisfaction = 0;
 	int *vector = 0;
@@ -137,7 +134,6 @@ void readInstanceEuclidean( string fileName ){
 	numberCities_GLOBAL = cities;
 	cars_GLOBAL.resize( cars );
 	for( int i = 0; i < cars; i++ ){
-//		cars_GLOBAL[i] = new Car();
 		cars_GLOBAL[i].dimension = cities;
 	}
 
@@ -181,54 +177,80 @@ void readInstanceEuclidean( string fileName ){
 		}
 	}
 
+//	myPrint( ">>>>", 0 );
+//	for( int a = 0; a < cities; a++ ){
+//		for( int b = 0; b < cities; b++ ){
+//			myPrint( to_string( dist[a][b] ) + " ", 0, false );
+//		}
+//		myPrint( "", 0 );
+//	}
+
 	// EDGE_WEIGHT_SECTION
 	fileReader >> aux;
 
-	for( int i = 0; i < cars; i++ ){
+	for( int h = 0; h < cars; h++ ){
+		// numbers of car
 		fileReader >> aux;
 		cost = createMatrix( cities, cities );
 
-		for( int j = 0; j < cities; j++ ){
+		for( int i = 0; i < cities; i++ ){
 			fileReader >> aux;
 			vector[i] = stoi( aux );
 		}
 
-		for( int j = 0; j < cities; j++ ){
-			for( int k = j; k < cities; k++ ){
+		for( int i = 0; i < cities; i++ ){
+			for( int j = i; j < cities; j++ ){
 				if( i == j ){
 					cost[i][j] = 0;
 				} else {
-					cost[j][k] = ((vector[j]*2+vector[k]*3)/3);
-					cost[k][j] = cost[j][k];
+					cost[i][j] = ((vector[i]*2+vector[j]*3)/3)+(dist[i][j]);
+//					cost[i][j] = ((vector[i]*2+vector[j]*3)/3);
+					cost[j][i] = cost[i][j];
 				}
 			}
 		}
-		cars_GLOBAL[i].edge_weigth = cost;
+		cars_GLOBAL[h].edge_weigth = cost;
+
+//		myPrint( ">>>>", 0 );
+//		for( int a = 0; a < cities; a++ ){
+//			for( int b = 0; b < cities; b++ ){
+//				myPrint( to_string( cost[a][b] ) + "\t", 0, false );
+//			}
+//			myPrint( "", 0 );
+//		}
 	}
 
 	// RETURN_RATE_SECTION
 	fileReader >> aux;
 
-	for( int i = 0; i < cars; i++ ){
+	for( int h = 0; h < cars; h++ ){
 		// numbers of car
 		fileReader >> aux;
 		rate = createMatrix( cities, cities );
 
-		for( int j = 0; j < cities; j++ ){
+		for( int i = 0; i < cities; i++ ){
 			fileReader >> aux;
 			vector[i] = stoi( aux );
 		}
 
-		for( int j = 0; j < cities; j++ ){
-			for( int k = 0; k < cities; k++ ){
+		for( int i = 0; i < cities; i++ ){
+			for( int j = 0; j < cities; j++ ){
 				if( i == j ){
 					rate[i][j] = 0;
 				} else {
-					rate[j][k] = ((vector[j]*3+vector[k]*4)/3);
+					rate[i][j] = ((vector[i]*3+vector[j]*4)/2);
 				}
 			}
 		}
-		cars_GLOBAL[i].return_rate = rate;
+		cars_GLOBAL[h].return_rate = rate;
+
+//		myPrint( ">>>>", 0 );
+//		for( int a = 0; a < cities; a++ ){
+//			for( int b = 0; b < cities; b++ ){
+//				myPrint( to_string( rate[a][b] ) + "\t", 0, false );
+//			}
+//			myPrint( "", 0 );
+//		}
 	}
 
 	fileReader >> aux;
@@ -237,6 +259,12 @@ void readInstanceEuclidean( string fileName ){
 		throw runtime_error( s );
 	}
 
+	delete[] points;
+	delete[] vector;
+	for( int i = 0; i < cities; i++ ){
+		delete[] dist[i];
+	}
+	delete[] dist;
 }
 
 void readInstance( string file ){
@@ -244,9 +272,11 @@ void readInstance( string file ){
 	for( int i = file.size()-1; i >= 0; i-- ){
 		if( file[i] == '.' && file[i-1] == 'n' ){
 			type = 'n';
+			break;
 		}
 		if( file[i] == '.' && file[i-1] == 'e' ){
 			type = 'e';
+			break;
 		}
 	}
 

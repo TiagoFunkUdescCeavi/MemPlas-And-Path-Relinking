@@ -5,27 +5,39 @@
 // 2 para log dentro de cada método
 int debugLevel = 0;
 
-void myPrint( string s, int level ){
+void myPrint( string s, int level, bool newLine ){
 	if( debugLevel >= level){
-		cout << s << endl;
+		cout << s;
+		if( newLine ){
+			cout << endl;
+		}
 	}
 }
 
-void myPrint( const char *text, int level ){
+void myPrint( const char *text, int level, bool newLine ){
 	if( debugLevel >= level){
-		cout << text << endl;
+		cout << text;
+		if( newLine ){
+			cout << endl;
+		}
 	}
 }
 
-void myPrint( int i, int level ){
+void myPrint( int i, int level, bool newLine ){
 	if( debugLevel >= level){
-		cout << i << endl;
+		cout << i;
+		if( newLine ){
+			cout << endl;
+		}
 	}
 }
 
-void myPrint( double d, int level ){
+void myPrint( double d, int level, bool newLine ){
 	if( debugLevel >= level){
-		cout << d << endl;
+		cout << d;
+		if( newLine ){
+			cout << endl;
+		}
 	}
 }
 

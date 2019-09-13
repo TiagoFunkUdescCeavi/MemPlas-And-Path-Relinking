@@ -152,15 +152,15 @@ vector< Solution > restoringOperations( vector< Solution > population ){
 	vector< Solution > newPopulation( population.size() );
 	for( int i = 0; i < (int) population.size(); i++ ){
 		sol = population[ i ];
-		myPrint( "removeErrors", 1 );
+		myPrint( "removeErrors", 2 );
 		sol = removeErrors( sol );
-		myPrint( "insertCities", 1 );
+		myPrint( "insertCities", 2 );
 		sol = insertCities( sol );
-		myPrint( "insertCars", 1 );
+		myPrint( "insertCars", 2 );
 		sol = insertCars( sol );
-		myPrint( "checkQuota", 1 );
+		myPrint( "checkQuota", 2 );
 		sol = checkQuota( sol );
-		myPrint( "restoringOperations done", 1 );
+		myPrint( "restoringOperations done", 2 );
 		newPopulation[i] = sol;
 	}
 	return newPopulation;

@@ -61,7 +61,10 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 		myPrint( "ok", 1 );
 	}
 
-//	myPrint( selectBetter( population ).satisfaction, 0 );
-	myPrint( selectBetter( population ).fitness, 0 );
+	Solution sol = selectBetter( population );
+//	myPrint( satisfaction_total_GLOBAL, 0 );
+//	myPrint( sol.satisfaction, 0 );
+//	myPrint( sol.toString(), 0 );
+	myPrint( sol.fitness, 0 );
 }
 
