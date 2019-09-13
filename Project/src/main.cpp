@@ -5,9 +5,7 @@
 #include "utils/InstanceReader.h"
 #include "algorithm/Algorithm.h"
 
-#include "algorithm/RestoringOperations.h"
-
-#include "algorithm/RestoringOperations.h"
+#include "algorithm/MultiOperatorsLocalSearch.h"
 
 using namespace std;
 
@@ -36,13 +34,15 @@ int main( int argc, char* argv[] ){
 //		vector< Solution > population(1);
 //		Solution s1( 10+1 );
 //		s1.addEnd(0,0);
-//		s1.addEnd(3,0);
-//		s1.addEnd(1,0);
-//		s1.addEnd(3,2);
-//		s1.addEnd(7,2);
-//		s1.addEnd(0,2);
+//		s1.addEnd(9,0);
+//		s1.addEnd(3,1);
+//		s1.addEnd(4,1);
+//		s1.addEnd(10,1);
+//		s1.addEnd(8,1);
+//		s1.addEnd(0,1);
 //		population[0] = s1;
-//		checkPopulation( population );
+
+//		checkPopulation( multiOperatorsLocalSearch( population ) );
 
 		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
 

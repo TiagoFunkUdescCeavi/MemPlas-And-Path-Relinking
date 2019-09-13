@@ -6,33 +6,37 @@
 
 vector< Solution > removeSaving( vector< Solution > population ){
 	bool go_ahead;
-	int minCity, posMin;
+	int posMin, minCitySatisfaction;
 	Solution son;
 	Solution dad;
 	vector< Solution > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
+//		myPrint( ">>>>>>", 1 );
 		go_ahead = true;
 		son = population[i].copy();
 		dad = son.copy();
 
 		while( go_ahead ){
-			minCity = INT_MAX;
 			posMin = -1;
+			minCitySatisfaction = INT_MAX;
 
 			for( int j = 1; j < son.position-1; j++ ){
 				if( son.cities[ j ] == -1 ){
 					break;
-				} else if( bonus_satisfaction_GLOBAL[ son.cities[ j ] ] < minCity ){
-					minCity = bonus_satisfaction_GLOBAL[ son.cities[ j ] ];
+				} else if( bonus_satisfaction_GLOBAL[ son.cities[ j ] ] < minCitySatisfaction ){
+					minCitySatisfaction = bonus_satisfaction_GLOBAL[ son.cities[ j ] ];
 					posMin = j;
 				}
 			}
 
 			dad.calculeFitness();
 			son.calculeSatisfaction();
+//			myPrint( "*******", 1 );
+//			myPrint( son.satisfaction, 1 );
+//			myPrint( son.satisfaction-minCitySatisfaction, 1 );
 
-			if( son.satisfaction-bonus_satisfaction_GLOBAL[ minCity ]
+			if( son.satisfaction - minCitySatisfaction
 						< minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 				go_ahead = false;
 			}else {
@@ -184,8 +188,7 @@ vector< Solution > replaceSavingCar( vector< Solution > population ){
 					better.calculeFitness();
 
 					if( actual.fitness < better.fitness ){
-//						better = actual->copy();
-
+						better = actual.copy();
 					}
 				}
 			}
@@ -225,7 +228,6 @@ vector< Solution > operator_2opt( vector< Solution > population ){
 			for( int i = 0; i < numberCities_GLOBAL+1; i++ ){
 				actual.cities[i] = myVector[i];
 			}
-//			actual.cities = myVector;
 			actual.calculeFitness();
 			better.calculeFitness();
 
@@ -239,7 +241,7 @@ vector< Solution > operator_2opt( vector< Solution > population ){
 	return newPopulation;
 }
 
-vector< Solution > multiOperatorsLocalSearch( vector< Solution> population){
+vector< Solution > multiOperatorsLocalSearch( vector< Solution > population){
 	vector< Solution > sol;
 	myPrint( "removeSaving", 1 );
 	sol = removeSaving( population );

@@ -1,10 +1,10 @@
 #include "Validate.h"
 
 void verifyQuota( Solution sol ){
-	myPrint( to_string( sol.satisfaction )
-		+ "->" + to_string( minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL )
-		+ "->" + to_string( satisfaction_total_GLOBAL )
-	, 0 );
+//	myPrint( to_string( sol.satisfaction )
+//		+ "->" + to_string( minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL )
+//		+ "->" + to_string( satisfaction_total_GLOBAL )
+//	, 0 );
 	if( sol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		string s = "Quota value is less than the minimum allowed.\nSatisfaction of Solution: "
 				+ to_string( sol.satisfaction )

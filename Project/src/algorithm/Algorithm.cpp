@@ -22,8 +22,6 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 	checkPopulation( population );
 	myPrint( "ok" , 1 );
 
-	return ;
-
 	myPrint( "select elite:", 1 );
 	elitePopulation = selectElite( elite, population );
 	checkPopulation( elitePopulation );
@@ -63,6 +61,7 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 		myPrint( "ok", 1 );
 	}
 
+//	myPrint( selectBetter( population ).satisfaction, 0 );
 	myPrint( selectBetter( population ).fitness, 0 );
 }
 
