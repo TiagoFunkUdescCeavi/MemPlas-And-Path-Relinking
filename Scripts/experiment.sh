@@ -24,7 +24,7 @@ do
 	if [ -f "$file" ]
 	then
 		echo "$file"
-		echo "$file;" >> $log
+		echo "$file" >> $log
 		./../../Project/Debug/Project 0 "$PWD/$file" 150 3 0.4 0.3 100 >> $log && echo "Ok"
 	fi
 done
