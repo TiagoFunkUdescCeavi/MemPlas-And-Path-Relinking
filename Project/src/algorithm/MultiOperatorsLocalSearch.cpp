@@ -3,6 +3,7 @@
 #include <bits/stdc++.h>
 
 #include "../utils/Prints.h"
+#include "../utils/Validate.h"
 
 vector< Solution > removeSaving( vector< Solution > population ){
 	bool go_ahead;
@@ -12,7 +13,6 @@ vector< Solution > removeSaving( vector< Solution > population ){
 	vector< Solution > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
-//		myPrint( ">>>>>>", 1 );
 		go_ahead = true;
 		son = population[i].copy();
 		dad = son.copy();
@@ -32,9 +32,6 @@ vector< Solution > removeSaving( vector< Solution > population ){
 
 			dad.calculeFitness();
 			son.calculeSatisfaction();
-//			myPrint( "*******", 1 );
-//			myPrint( son.satisfaction, 1 );
-//			myPrint( son.satisfaction-minCitySatisfaction, 1 );
 
 			if( son.satisfaction - minCitySatisfaction
 						< minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
@@ -46,6 +43,8 @@ vector< Solution > removeSaving( vector< Solution > population ){
 
 		son.calculeFitness();
 		dad.calculeFitness();
+
+		isOk( son );
 
 		if( son.fitness < dad.fitness ){
 			newPopulation[i] = son;

@@ -1,12 +1,13 @@
 #!/bin/bash
 
 cd $HOME
-cd "Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/"
+cd "Repositorios/Github/MemPlas-And-Path-Relinking/Instances/"
 
 log=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Logs/results.log"
 
 echo -n "" > $log
 
+cd "./e/"
 for file in *
 do
 	if [ -f "$file" ]
@@ -17,8 +18,7 @@ do
 	fi
 done
 
-cd "../e/"
-
+cd "../n/"
 for file in *
 do
 	if [ -f "$file" ]

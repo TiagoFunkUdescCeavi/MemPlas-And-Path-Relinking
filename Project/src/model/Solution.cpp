@@ -23,21 +23,33 @@ Solution::~Solution(){
 void Solution::calculeFitness(){
 	if( !calculatedFitness ){
 		this->fitness = 0;
-		int previous_car = 0;
-		int rent_city = 0;
-		int weigth = -1, rate = -1;
+		int previous_car = 0, actual_car = 0;
+		int rent_city = 0, actual_city = 0;
+		int weigth = 0, rate = 0;
 		Car myCar;
+
+		rent_city = this->cities[0];
+		previous_car = this->cars[0];
 		for( int i = 0; i < this->position-1; i++ ){
-			myCar = cars_GLOBAL[ this->cars[ i ] ];
-			weigth = myCar.edge_weigth[ this->cities[ i ] ][ this->cities[ i+1 ] ];
+			actual_city = this->cities[i];
+			actual_car = this->cars[ i ];
+			myCar = cars_GLOBAL[ actual_car ];
+
+			weigth = myCar.edge_weigth[ actual_city ][ this->cities[ i+1 ] ];
 			this->fitness += weigth;
-			if( previous_car != this->cars[ i+1 ] ){
-				rate = myCar.return_rate[ rent_city ][ this->cities[ i+1 ] ];
+//			if( previous_car != this->cars[ i+1 ] ){
+			if( previous_car != actual_car ){
+				myCar = cars_GLOBAL[ previous_car ];
+				rate = myCar.return_rate[ rent_city ][ actual_city ];
 				this->fitness += rate;
-				previous_car = this->cars[ i+1 ];
-				rent_city = this->cities[ i+1 ];
+				previous_car = actual_car;
+				rent_city = actual_city;
 			}
 		}
+
+//		weigth = myCar.edge_weigth[ actual_city ][ 0 ];
+//		this->fitness += weigth;
+		myCar = cars_GLOBAL[ previous_car ];
 		rate = myCar.return_rate[ rent_city ][ 0 ];
 		this->fitness += rate;
 		this->calculatedFitness = true;
@@ -71,6 +83,7 @@ void Solution::removeIndex( int index ){
 		this->cities[ index ] = -1;
 		this->cars[ index  ] = -1;
 		this->position--;
+		this->calculatedFitness = false;
 	}else if( this->position == this->sizeSolution && index < this->position ){
 		for( int i = 0; i < this->sizeSolution; i++ ){
 			if( i >= index ){
@@ -81,6 +94,7 @@ void Solution::removeIndex( int index ){
 		this->cities[ this->sizeSolution-1 ] = -1;
 		this->cars[ this->sizeSolution-1 ] = -1;
 		this->position--;
+		this->calculatedFitness = false;
 	}else if( index < this->position ){
 		for( int i = 0; i < this->sizeSolution; i++ ){
 			if( i >= index ){
@@ -92,8 +106,8 @@ void Solution::removeIndex( int index ){
 			}
 		}
 		this->position--;
+		this->calculatedFitness = false;
 	}
-	this->calculatedFitness = false;
 }
 
 void Solution::addCityAt( int index, int city ){
@@ -161,5 +175,5 @@ string Solution::toString(){
 		s += to_string( cities[i] ) + "\t";
 		s2 += to_string( cars[i] ) + "\t";
 	}
-	return s + "\n" + s2 + "\n";
+	return s + "\n" + s2;
 }
