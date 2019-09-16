@@ -78,6 +78,34 @@ TEST( , TEST_FITNESS_SATISFACTOIN_3 ) {
 	}
 }
 
+TEST( , TEST_FITNESS_SATISFACTOIN_4 ) {
+	const char* file = "/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/Ira13n.pcar";
+
+	try{
+		readInstance( file );
+
+		Solution* sol = new Solution( 13+1 );
+		sol->addEnd(0,0);
+		sol->addEnd(8,0);
+		sol->addEnd(12,0);
+		sol->addEnd(3,1);
+		sol->addEnd(2,1);
+		sol->addEnd(10,1);
+		sol->addEnd(4,1);
+		sol->addEnd(9,2);
+		sol->addEnd(0,2);
+
+		sol->calculeSatisfaction();
+		EXPECT_EQ( sol->satisfaction, 456 );
+
+		sol->calculeFitness();
+		EXPECT_EQ( sol->fitness, 694 );
+	} catch (exception &e) {
+		cout << e.what() << endl;
+		FAIL();
+	}
+}
+
 TEST( , TEST_SATISFACTION_PURE_1 ) {
 	try{
 		bonus_satisfaction_GLOBAL = new int[5]{ 1, 2, 4, 8, 16 };
