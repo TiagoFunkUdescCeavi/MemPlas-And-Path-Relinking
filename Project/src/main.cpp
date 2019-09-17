@@ -7,9 +7,13 @@
 
 #include "algorithm/MultiOperatorsLocalSearch.h"
 
+#include "monta_problema.h"
+
 using namespace std;
 
 int main( int argc, char* argv[] ){
+//	mainABC();
+//	return 0;
 
 	myPrint( "parameters:", 1 );
 	int seed = stoi( argv[ 1 ] );

@@ -44,8 +44,6 @@ vector< Solution > removeSaving( vector< Solution > population ){
 		son.calculeFitness();
 		dad.calculeFitness();
 
-		isOk( son );
-
 		if( son.fitness < dad.fitness ){
 			newPopulation[i] = son;
 		}else{

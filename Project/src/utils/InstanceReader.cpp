@@ -177,7 +177,7 @@ void readInstanceEuclidean( string fileName ){
 		}
 	}
 
-//	myPrint( ">>>>", 0 );
+//	myPrint( "Distâncias", 0 );
 //	for( int a = 0; a < cities; a++ ){
 //		for( int b = 0; b < cities; b++ ){
 //			myPrint( to_string( dist[a][b] ) + " ", 0, false );
@@ -211,7 +211,7 @@ void readInstanceEuclidean( string fileName ){
 		}
 		cars_GLOBAL[h].edge_weigth = cost;
 
-//		myPrint( ">>>>", 0 );
+//		myPrint( "Custos", 0 );
 //		for( int a = 0; a < cities; a++ ){
 //			for( int b = 0; b < cities; b++ ){
 //				myPrint( to_string( cost[a][b] ) + "\t", 0, false );
@@ -238,13 +238,16 @@ void readInstanceEuclidean( string fileName ){
 				if( i == j ){
 					rate[i][j] = 0;
 				} else {
-					rate[i][j] = ((vector[i]*3+vector[j]*4)/2);
+					for (int k=0; k < cities; k++){
+						rate[i][j] = ((vector[i]*3+vector[j])*4)/2;
+					}
+//					rate[i][j] = ((vector[i]*3+vector[j]*4)/2);
 				}
 			}
 		}
 		cars_GLOBAL[h].return_rate = rate;
 
-//		myPrint( ">>>>", 0 );
+//		myPrint( "Multas", 0 );
 //		for( int a = 0; a < cities; a++ ){
 //			for( int b = 0; b < cities; b++ ){
 //				myPrint( to_string( rate[a][b] ) + "\t", 0, false );
