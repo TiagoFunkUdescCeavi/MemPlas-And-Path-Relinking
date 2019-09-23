@@ -5,8 +5,6 @@
 #include "utils/InstanceReader.h"
 #include "algorithm/Algorithm.h"
 
-#include "algorithm/MultiOperatorsLocalSearch.h"
-
 #include "monta_problema.h"
 
 using namespace std;
@@ -23,6 +21,7 @@ int main( int argc, char* argv[] ){
 	double cross = stod( argv[ 5 ] );
 	double elite = stod( argv[ 6 ] );
 	int limitIterations = stoi( argv[ 7 ] );
+	string strategy = argv[ 8 ];
 	myPrint( "ok:", 1 );
 
 	srand( seed );
@@ -45,7 +44,8 @@ int main( int argc, char* argv[] ){
 //		population[0] = s1;
 //		checkPopulation( multiOperatorsLocalSearch( population ) );
 
-		lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
+		Algorithm a;
+		a.lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
 
 	} catch (exception &e) {
 		cout << e.what() << endl;

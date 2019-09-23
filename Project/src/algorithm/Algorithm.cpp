@@ -5,12 +5,7 @@
 
 using namespace std;
 
-void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
-
-	vector< Solution > population;
-	vector< Solution > elitePopulation;
-	vector< Solution > selection;
-	vector< Solution > offspring;
+void Algorithm::lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
 
 	myPrint( "generation of population:", 1 );
 	population = generateInitialPopulation( sizePopulation );
@@ -67,4 +62,5 @@ void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, 
 //	myPrint( sol.toString(), 0 );
 	myPrint( sol.fitness, 0 );
 }
+
 

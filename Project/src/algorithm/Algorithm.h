@@ -11,6 +11,23 @@
 #include "RestoringOperations.h"
 #include "BinaryTournament.h"
 
-void lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations );
+class Algorithm {
+private:
+	int sizePopulation;
+	int sizePlasmideo;
+	double cross;
+	double elite;
+	int limitIterations;
+	string strategy;
+
+	vector< Solution > population;
+	vector< Solution > elitePopulation;
+	vector< Solution > selection;
+	vector< Solution > offspring;
+
+
+public:
+	void lets_go( int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations );
+};
 
 #endif /* ALGORITHM_H_ */
