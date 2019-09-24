@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "utils/InstanceReader.h"
+#include "utils/Argumentsreader.h"
 #include "algorithm/Algorithm.h"
 
 #include "monta_problema.h"
@@ -10,21 +11,21 @@
 using namespace std;
 
 int main( int argc, char* argv[] ){
-//	mainABC();
-//	return 0;
 
 	myPrint( "parameters:", 1 );
-	int seed = stoi( argv[ 1 ] );
-	string file = argv[ 2 ];
-	int sizePopulation = stoi( argv[ 3 ] );
-	int sizePlasmideo = stoi( argv[ 4 ] );
-	double cross = stod( argv[ 5 ] );
-	double elite = stod( argv[ 6 ] );
-	int limitIterations = stoi( argv[ 7 ] );
-	string strategy = argv[ 8 ];
+	ArgumentReader arg( argc, argv );
+	string file = arg.getValue( "--file" );
+	int sizePopulation = stoi( arg.getValue( "--sizePopulation" ) );
+	int sizePlasmideo = stoi( arg.getValue( "--sizePlasmideo" ) );
+	double cross = stod( arg.getValue( "--cross" ) );
+	double elite = stod( arg.getValue( "--elite" ) );
+	int limitIterations = stoi( arg.getValue( "--limitIterations" ) );
+	string strategy = arg.getValue( "--strategy" );
+	string selectionStrategy = arg.getValue( "--selectionStrategy" );
+	string intermediaryStrategy = arg.getValue( "--intermediaryStrategy" );
 	myPrint( "ok:", 1 );
 
-	srand( seed );
+	srand( 0 );
 //	myPrint( "My Seed: " + to_string( seed ), 0 );
 
 	try{
@@ -44,8 +45,9 @@ int main( int argc, char* argv[] ){
 //		population[0] = s1;
 //		checkPopulation( multiOperatorsLocalSearch( population ) );
 
-		Algorithm a;
-		a.lets_go( sizePopulation, sizePlasmideo, cross, elite, limitIterations );
+		Algorithm a( strategy, sizePopulation, elite, limitIterations,
+					 sizePlasmideo, cross, selectionStrategy, intermediaryStrategy);
+		a.lets_go();
 
 	} catch (exception &e) {
 		cout << e.what() << endl;

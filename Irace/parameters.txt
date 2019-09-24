@@ -5,5 +5,5 @@ elite					"--elite "					r			(0.1,0.9)
 limitIterations			"-limitIterations "			i			(100, 5000)
 sizePlasmideo			"--sizePlasmideo "			r			(0.3,0.7)			| strategy == "m" 	| strategy == "mpr"
 cross					"--cross "					r			(0.1, 0.9)			| strategy == "m" 	| strategy == "mpr"
-selectionStrategy		"--selectionStrategy "		c			(a,b,c)				| strategy == "mpr" | strategy == "pr"
-intermediaryStrategy	"--intermediaryStrategy "	c			(a,b,c,d)				| strategy == "mpr" | strategy == "pr"
+selectionStrategy		"--selectionStrategy "		c			(a)					| strategy == "mpr" | strategy == "pr"
+intermediaryStrategy	"--intermediaryStrategy "	c			(a,b,c,d)			| strategy == "mpr" | strategy == "pr"

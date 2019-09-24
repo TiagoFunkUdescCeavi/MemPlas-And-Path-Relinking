@@ -19,15 +19,25 @@ private:
 	double elite;
 	int limitIterations;
 	string strategy;
+	string selectionStrategy;
+	string intermediaryStrategy;
 
 	vector< Solution > population;
 	vector< Solution > elitePopulation;
 	vector< Solution > selection;
 	vector< Solution > offspring;
 
+	void applyMemplasAndCrossover( int interation );
+	void applyMemplasAndCrossoverAndPathRelinking();
+	void applyPathRelinking();
+
 
 public:
-	void lets_go( int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations );
+	Algorithm(
+		string strategy, int sizePopulation, double elite, int limitIterations,
+		int sizePlasmideo, double cross, string selectionStrategy, string intermediaryStrategy );
+
+	void lets_go();
 };
 
 #endif /* ALGORITHM_H_ */

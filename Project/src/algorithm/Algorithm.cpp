@@ -5,8 +5,21 @@
 
 using namespace std;
 
-void Algorithm::lets_go(int sizePopulation, int sizePlasmideo, double cross, double elite, int limitIterations ){
+Algorithm::Algorithm(
+		string strategy, int sizePopulation, double elite, int limitIterations,
+		int sizePlasmideo, double cross, string selectionStrategy, string intermediaryStrategy ){
+	this->strategy = strategy;
+	this->sizePopulation = sizePopulation;
+	this->elite = elite;
+	this->limitIterations = limitIterations;
+	this->sizePlasmideo = sizePlasmideo;
+	this->cross = cross;
+	this->selectionStrategy = selectionStrategy;
+	this->intermediaryStrategy = intermediaryStrategy;
 
+}
+
+void Algorithm::lets_go(){
 	myPrint( "generation of population:", 1 );
 	population = generateInitialPopulation( sizePopulation );
 	checkPopulation( population );
@@ -23,16 +36,12 @@ void Algorithm::lets_go(int sizePopulation, int sizePlasmideo, double cross, dou
 	myPrint( "ok" , 1 );
 
 	for ( int i = 0; i < limitIterations; i++ ){
-		if( i % 10 != 0 ){
-			myPrint( to_string(i) + "-crossover:", 1 );
-			selection = selectPopulation( cross, population );
-			offspring = crossover( selection );
-			myPrint( "ok", 1 );
-		}else{
-			myPrint( to_string(i) + "-plasmid: ", 1 );
-			selection = selectPopulation( elite, population );
-			offspring = plasmid( selection, sizePlasmideo, elitePopulation );
-			myPrint( "ok", 1 );
+		if( strategy == "m" ){
+			applyMemplasAndCrossover( i );
+		}else if( strategy == "mpr" ){
+			applyMemplasAndCrossoverAndPathRelinking();
+		}else if( strategy == "pr" ){
+			applyPathRelinking();
 		}
 
 		myPrint( to_string(i) + "-restoring operations: ", 1 );
@@ -57,10 +66,27 @@ void Algorithm::lets_go(int sizePopulation, int sizePlasmideo, double cross, dou
 	}
 
 	Solution sol = selectBetter( population );
-//	myPrint( satisfaction_total_GLOBAL, 0 );
-//	myPrint( sol.satisfaction, 0 );
-//	myPrint( sol.toString(), 0 );
 	myPrint( sol.fitness, 0 );
 }
 
+void Algorithm::applyMemplasAndCrossover( int interation ){
+	if( interation % 10 != 0 ){
+		myPrint( to_string( interation ) + "-crossover:", 1 );
+		selection = selectPopulation( cross, population );
+		offspring = crossover( selection );
+		myPrint( "ok", 1 );
+	}else{
+		myPrint( to_string( interation ) + "-plasmid: ", 1 );
+		selection = selectPopulation( elite, population );
+		offspring = plasmid( selection, sizePlasmideo, elitePopulation );
+		myPrint( "ok", 1 );
+	}
+}
 
+void Algorithm::applyMemplasAndCrossoverAndPathRelinking(){
+
+}
+
+void Algorithm::applyPathRelinking(){
+
+}
