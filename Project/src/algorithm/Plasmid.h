@@ -5,6 +5,6 @@
 
 #include "../model/Solution.h"
 
-vector< Solution > plasmid( vector< Solution > population, int sizePlas, vector< Solution > elite );
+vector< Solution > plasmid( vector< Solution > population, double sizePlas, vector< Solution > elite );
 
 #endif /* PLASMID_H_ */

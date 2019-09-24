@@ -7,7 +7,7 @@ using namespace std;
 
 Algorithm::Algorithm(
 		string strategy, int sizePopulation, double elite, int limitIterations,
-		int sizePlasmideo, double cross, string selectionStrategy, string intermediaryStrategy ){
+		double sizePlasmideo, double cross, string selectionStrategy, string intermediaryStrategy ){
 	this->strategy = strategy;
 	this->sizePopulation = sizePopulation;
 	this->elite = elite;
@@ -39,15 +39,10 @@ void Algorithm::lets_go(){
 		if( strategy == "m" ){
 			applyMemplasAndCrossover( i );
 		}else if( strategy == "mpr" ){
-			applyMemplasAndCrossoverAndPathRelinking();
+			applyMemplasAndCrossoverAndPathRelinking( i );
 		}else if( strategy == "pr" ){
 			applyPathRelinking();
 		}
-
-		myPrint( to_string(i) + "-restoring operations: ", 1 );
-		offspring = restoringOperations( offspring );
-		checkPopulation( offspring );
-		myPrint( "ok", 1 );
 
 		myPrint( to_string(i) + "-multi operator local search: ", 1 );
 		offspring = multiOperatorsLocalSearch( offspring );
@@ -81,9 +76,13 @@ void Algorithm::applyMemplasAndCrossover( int interation ){
 		offspring = plasmid( selection, sizePlasmideo, elitePopulation );
 		myPrint( "ok", 1 );
 	}
+	myPrint( to_string( interation ) + "-restoring operations: ", 1 );
+	offspring = restoringOperations( offspring );
+	checkPopulation( offspring );
+	myPrint( "ok", 1 );
 }
 
-void Algorithm::applyMemplasAndCrossoverAndPathRelinking(){
+void Algorithm::applyMemplasAndCrossoverAndPathRelinking( int iteretion ){
 
 }
 

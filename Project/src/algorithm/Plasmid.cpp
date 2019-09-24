@@ -2,8 +2,9 @@
 
 #include "../utils/Prints.h"
 
-vector< Solution > plasmid( vector< Solution > population, int sizePlas, vector< Solution > elite ){
+vector< Solution > plasmid( vector< Solution > population, double sizePlas, vector< Solution > elite ){
 	int numberOfSolutions = elite.size();
+	int sizeSolution = -1;
 	int randomNumber = -1;
 //	int *plasCities = 0, *plasCars = 0;
 	Solution sElite;
@@ -17,8 +18,9 @@ vector< Solution > plasmid( vector< Solution > population, int sizePlas, vector<
 		sNormal = population[i];
 		better = 0;
 
-		randomNumber = ( (sElite.position <= sNormal.position) ? sElite.position-1 : sNormal.position-1 );
-		randomNumber = ( rand() % (randomNumber-sizePlas-1) );
+		sizeSolution = ( (sElite.position <= sNormal.position) ? sElite.position-1 : sNormal.position-1 );
+		randomNumber = sizeSolution * sizePlas;
+		randomNumber = ( rand() % (sizeSolution-randomNumber) );
 
 //		plasCities = new int[ sizePlas ];
 //		plasCars = new int[ sizePlas ];

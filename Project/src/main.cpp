@@ -6,7 +6,7 @@
 #include "utils/Argumentsreader.h"
 #include "algorithm/Algorithm.h"
 
-#include "monta_problema.h"
+#include "algorithm/PathRelinking.h"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ int main( int argc, char* argv[] ){
 	ArgumentReader arg( argc, argv );
 	string file = arg.getValue( "--file" );
 	int sizePopulation = stoi( arg.getValue( "--sizePopulation" ) );
-	int sizePlasmideo = stoi( arg.getValue( "--sizePlasmideo" ) );
+	double sizePlasmideo = stod( arg.getValue( "--sizePlasmideo" ) );
 	double cross = stod( arg.getValue( "--cross" ) );
 	double elite = stod( arg.getValue( "--elite" ) );
 	int limitIterations = stoi( arg.getValue( "--limitIterations" ) );
@@ -33,21 +33,28 @@ int main( int argc, char* argv[] ){
 		readInstance( file );
 		myPrint( "ok", 1 );
 
-//		vector< Solution > population(1);
-//		Solution s1( 10+1 );
-//		s1.addEnd(0,0);
-//		s1.addEnd(9,0);
-//		s1.addEnd(3,1);
-//		s1.addEnd(4,1);
-//		s1.addEnd(10,1);
-//		s1.addEnd(8,1);
-//		s1.addEnd(0,1);
-//		population[0] = s1;
-//		checkPopulation( multiOperatorsLocalSearch( population ) );
+		Solution s1( 10+1 );
+		s1.addEnd(1,1);
+		s1.addEnd(4,2);
+		s1.addEnd(8,3);
+		s1.addEnd(5,3);
+		s1.addEnd(6,3);
+		s1.addEnd(1,3);
 
-		Algorithm a( strategy, sizePopulation, elite, limitIterations,
-					 sizePlasmideo, cross, selectionStrategy, intermediaryStrategy);
-		a.lets_go();
+		Solution s2( 10+1 );
+		s2.addEnd(1,2);
+		s2.addEnd(3,2);
+		s2.addEnd(7,2);
+		s2.addEnd(6,3);
+		s2.addEnd(4,3);
+		s2.addEnd(3,3);
+		s2.addEnd(1,3);
+
+		startToEnd( s1, s2 );
+
+//		Algorithm a( strategy, sizePopulation, elite, limitIterations,
+//					 sizePlasmideo, cross, selectionStrategy, intermediaryStrategy);
+//		a.lets_go();
 
 	} catch (exception &e) {
 		cout << e.what() << endl;

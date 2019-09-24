@@ -14,7 +14,7 @@
 class Algorithm {
 private:
 	int sizePopulation;
-	int sizePlasmideo;
+	double sizePlasmideo;
 	double cross;
 	double elite;
 	int limitIterations;
@@ -28,14 +28,14 @@ private:
 	vector< Solution > offspring;
 
 	void applyMemplasAndCrossover( int interation );
-	void applyMemplasAndCrossoverAndPathRelinking();
+	void applyMemplasAndCrossoverAndPathRelinking( int iteration );
 	void applyPathRelinking();
 
 
 public:
 	Algorithm(
 		string strategy, int sizePopulation, double elite, int limitIterations,
-		int sizePlasmideo, double cross, string selectionStrategy, string intermediaryStrategy );
+		double sizePlasmideo, double cross, string selectionStrategy, string intermediaryStrategy );
 
 	void lets_go();
 };
