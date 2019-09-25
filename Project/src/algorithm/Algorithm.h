@@ -28,8 +28,8 @@ private:
 	vector< Solution > offspring;
 
 	void applyMemplasAndCrossover( int interation );
-	void applyMemplasAndCrossoverAndPathRelinking( int iteration );
-	void applyPathRelinking();
+	void applyMemplasAndCrossoverAndPathRelinking( int interation );
+	void applyPathRelinking( int interation );
 
 
 public:

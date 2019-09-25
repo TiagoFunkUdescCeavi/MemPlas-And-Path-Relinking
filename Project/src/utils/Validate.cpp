@@ -1,31 +1,12 @@
 #include "Validate.h"
 
 void verifyQuota( Solution sol ){
-//	myPrint( to_string( sol.satisfaction )
-//		+ "->" + to_string( minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL )
-//		+ "->" + to_string( satisfaction_total_GLOBAL )
-//	, 0 );
 	if( sol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		string s = "Quota value is less than the minimum allowed.\nSatisfaction of Solution: "
 				+ to_string( sol.satisfaction )
 				+ "\tMinimal satisfaction: "
 				+ to_string( minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
 		throw runtime_error( s );
-	}
-}
-
-void checkPopulation( vector< Solution > population ){
-	for( int i = 0; i < (int) population.size(); i++ ){
-		try{
-			isOk( population[ i ] );
-			population[i].calculeSatisfaction();
-			verifyQuota( population[i] );
-		} catch (exception &e) {
-			myPrint( i, 0 );
-			myPrint( e.what(), 0 );
-			myPrint( population[i].toString(), 0 );
-			exit( 1 );
-		}
 	}
 }
 
@@ -124,13 +105,25 @@ void checkRepetition( Solution sol, int finalPosition ){
 	}
 }
 
-bool isOk( Solution sol ){
+void isOk( Solution sol ){
 	int finalPosition = -1;
 	finalPosition = findFinalPosition( sol );
 	checkStartAndEnd( sol, finalPosition );
 	checkCitiesAndCars( sol, finalPosition );
 	checkRepetition( sol, finalPosition );
-	return true;
 }
 
-
+void checkPopulation( vector< Solution > population ){
+	for( int i = 0; i < (int) population.size(); i++ ){
+		try{
+			isOk( population[ i ] );
+			population[i].calculeSatisfaction();
+			verifyQuota( population[i] );
+		} catch (exception &e) {
+			myPrint( i, 0 );
+			myPrint( e.what(), 0 );
+			myPrint( population[i].toString(), 0 );
+			exit( 1 );
+		}
+	}
+}

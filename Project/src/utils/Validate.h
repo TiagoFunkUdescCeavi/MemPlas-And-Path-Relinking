@@ -9,7 +9,7 @@
 #include "../model/Solution.h"
 #include "Prints.h"
 
-bool isOk( Solution mySolution );
+void isOk( Solution mySolution );
 void checkPopulation( vector< Solution > population );
 
 

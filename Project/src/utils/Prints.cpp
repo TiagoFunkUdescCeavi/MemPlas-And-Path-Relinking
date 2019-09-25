@@ -3,7 +3,7 @@
 // 0 para dados da instâncias
 // 1 para log dentro da função lets_go
 // 2 para log dentro de cada método
-int debugLevel = 0;
+int debugLevel = 1;
 
 void myPrint( string s, int level, bool newLine ){
 	if( debugLevel >= level){

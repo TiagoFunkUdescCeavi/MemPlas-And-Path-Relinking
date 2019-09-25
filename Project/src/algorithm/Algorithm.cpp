@@ -41,7 +41,7 @@ void Algorithm::lets_go(){
 		}else if( strategy == "mpr" ){
 			applyMemplasAndCrossoverAndPathRelinking( i );
 		}else if( strategy == "pr" ){
-			applyPathRelinking();
+			applyPathRelinking( i );
 		}
 
 		myPrint( to_string(i) + "-multi operator local search: ", 1 );
@@ -86,6 +86,9 @@ void Algorithm::applyMemplasAndCrossoverAndPathRelinking( int iteretion ){
 
 }
 
-void Algorithm::applyPathRelinking(){
-
+void Algorithm::applyPathRelinking( int interation ){
+	myPrint( to_string( interation ) + "-path relinking: ", 1 );
+	offspring = restoringOperations( elitePopulation );
+	checkPopulation( offspring );
+	myPrint( "ok", 1 );
 }

@@ -30,6 +30,7 @@ public:
 	void addEnd( int city, int car );
 	void removeIndex( int index );
 	void addCityAt( int index, int city );
+	void addCityAndCarAt( int index, int city, int car );
 	void insertCityAt( int index, int city );
 	void insertCarAt( int index, int car );
 

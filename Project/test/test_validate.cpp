@@ -11,7 +11,11 @@ TEST( , IS_OK_1 ){
 	sol.cities = new int[5]{0,1,2,3,0};
 	sol.cars = new int[5]{1,1,1,2,2};
 
-	ASSERT_TRUE( isOk( sol ) );
+	try{
+		isOk( sol );
+	}catch( exception &e ){
+		FAIL();
+	}
 }
 
 TEST( , IS_OK_2 ){
@@ -22,7 +26,11 @@ TEST( , IS_OK_2 ){
 	sol.cities = new int[5]{0,1,2,3,0};
 	sol.cars = new int[5]{1,1,1,1,1};
 
-	ASSERT_TRUE( isOk( sol ) );
+	try{
+		isOk( sol );
+	}catch( exception &e ){
+		FAIL();
+	}
 }
 
 TEST( , IS_OK_3 ){
@@ -33,7 +41,11 @@ TEST( , IS_OK_3 ){
 	sol.cities = new int[5]{0,2,3,0,-1};
 	sol.cars = new int[5]{1,1,1,1,-1};
 
-	ASSERT_TRUE( isOk( sol ) );
+	try{
+		isOk( sol );
+	}catch( exception &e ){
+		FAIL();
+	}
 }
 
 TEST( , IS_OK_4 ){
@@ -44,7 +56,11 @@ TEST( , IS_OK_4 ){
 	sol.cities = new int[5]{0,2,0,-1,-1};
 	sol.cars = new int[5]{1,1,1,-1,-1};
 
-	ASSERT_TRUE( isOk( sol ) );
+	try{
+		isOk( sol );
+	}catch( exception &e ){
+		FAIL();
+	}
 }
 
 TEST( , IS_OK_FAIL_01 ){

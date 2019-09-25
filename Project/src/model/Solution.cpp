@@ -37,7 +37,6 @@ void Solution::calculeFitness(){
 
 			weigth = myCar.edge_weigth[ actual_city ][ this->cities[ i+1 ] ];
 			this->fitness += weigth;
-//			if( previous_car != this->cars[ i+1 ] ){
 			if( previous_car != actual_car ){
 				myCar = cars_GLOBAL[ previous_car ];
 				rate = myCar.return_rate[ rent_city ][ actual_city ];
@@ -47,8 +46,6 @@ void Solution::calculeFitness(){
 			}
 		}
 
-//		weigth = myCar.edge_weigth[ actual_city ][ 0 ];
-//		this->fitness += weigth;
 		myCar = cars_GLOBAL[ previous_car ];
 		rate = myCar.return_rate[ rent_city ][ 0 ];
 		this->fitness += rate;
@@ -125,6 +122,30 @@ void Solution::addCityAt( int index, int city ){
 				this->cities[ i+1 ] = this->cities[ i ];
 				this->cars[ i+1 ] = this->cars[ i ];
 				this->cities[ i ] = city;
+				break;
+			}
+		}
+	}
+	this->position++;
+	this->calculatedFitness = false;
+}
+
+void Solution::addCityAndCarAt( int index, int city, int car ){
+	if( index < 0 || index >= this->position ){
+		throw runtime_error( "Invalid index to add car.\n" );
+	}
+	if( index == this->position ){
+		this->cars[ index ] = car;
+	}else{
+		for( int i = this->position; i >= 0; i-- ){
+			if( i > index ){
+				this->cities[ i+1 ] = this->cities[ i ];
+				this->cars[ i+1 ] = this->cars[ i ];
+			}else if( i == index ){
+				this->cities[ i+1 ] = this->cities[ i ];
+				this->cars[ i+1 ] = this->cars[ i ];
+				this->cities[ i ] = city;
+				this->cars[ i ] = car;
 				break;
 			}
 		}

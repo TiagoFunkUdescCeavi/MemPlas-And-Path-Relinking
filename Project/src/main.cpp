@@ -33,28 +33,29 @@ int main( int argc, char* argv[] ){
 		readInstance( file );
 		myPrint( "ok", 1 );
 
-		Solution s1( 10+1 );
-		s1.addEnd(1,1);
-		s1.addEnd(4,2);
-		s1.addEnd(8,3);
-		s1.addEnd(5,3);
-		s1.addEnd(6,3);
-		s1.addEnd(1,3);
+//		Solution s1( 10+1 );
+//		s1.addEnd(0,1);
+//		s1.addEnd(4,1);
+//		s1.addEnd(8,3);
+//		s1.addEnd(5,3);
+//		s1.addEnd(6,3);
+//		s1.addEnd(0,3);
+//
+//		Solution s2( 10+1 );
+//		s2.addEnd(0,2);
+//		s2.addEnd(2,2);
+//		s2.addEnd(7,2);
+//		s2.addEnd(6,3);
+//		s2.addEnd(4,3);
+//		s2.addEnd(3,3);
+//		s2.addEnd(0,3);
+//
+//		Solution r = startToEnd( s1, s2 );
+//		myPrint( ">>>>>>>>>>>>\n" + r.toString(), 0 );
 
-		Solution s2( 10+1 );
-		s2.addEnd(1,2);
-		s2.addEnd(3,2);
-		s2.addEnd(7,2);
-		s2.addEnd(6,3);
-		s2.addEnd(4,3);
-		s2.addEnd(3,3);
-		s2.addEnd(1,3);
-
-		startToEnd( s1, s2 );
-
-//		Algorithm a( strategy, sizePopulation, elite, limitIterations,
-//					 sizePlasmideo, cross, selectionStrategy, intermediaryStrategy);
-//		a.lets_go();
+		Algorithm a( strategy, sizePopulation, elite, limitIterations,
+					 sizePlasmideo, cross, selectionStrategy, intermediaryStrategy);
+		a.lets_go();
 
 	} catch (exception &e) {
 		cout << e.what() << endl;
