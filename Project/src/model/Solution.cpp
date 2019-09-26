@@ -180,7 +180,7 @@ Solution Solution::copy(){
 	s.fitness = this->fitness;
 	s.satisfaction = this->satisfaction;
 	s.sizeSolution = this->sizeSolution;
-	s.calculatedFitness = false;
+	s.calculatedFitness = this->calculatedFitness;
 
 	for( int i = 0; i < sizeSolution; i++ ){
 		s.cities[ i ] = this->cities[ i ];

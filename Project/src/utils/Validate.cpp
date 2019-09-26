@@ -105,7 +105,7 @@ void checkRepetition( Solution sol, int finalPosition ){
 	}
 }
 
-void isOk( Solution sol ){
+void isOk( Solution sol ) throw (runtime_error) {
 	int finalPosition = -1;
 	finalPosition = findFinalPosition( sol );
 	checkStartAndEnd( sol, finalPosition );
@@ -125,5 +125,14 @@ void checkPopulation( vector< Solution > population ){
 			myPrint( population[i].toString(), 0 );
 			exit( 1 );
 		}
+	}
+}
+
+bool isValid( Solution mySolution ){
+	try{
+		isOk( mySolution );
+		return true;
+	}catch( runtime_error &e ){
+		return false;
 	}
 }

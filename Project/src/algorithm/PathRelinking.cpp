@@ -14,10 +14,13 @@ Solution startToEnd( Solution initial, Solution goal ){
 	}else{
 		better = goal.copy();
 	}
+	myPrint( "Init Inicial\n" + initial.toString(), 0 );
+	myPrint( "Init Better\n" + better.toString(), 0 );
 
 	for( int i = 0; i < initial.position; i++ ){
-//		myPrint( to_string( i ), 0, true );
-//		myPrint( goal.toString(), 0 );
+//		myPrint( "Initial\n" + initial.toString(), 0 );
+//		myPrint( "Goal\n" + goal.toString(), 0 );
+//		myPrint( "Better\n" + better.toString(), 0 );
 
 		if( i < goal.position-1 ){
 			goal.insertCityAt( i, initial.cities[i] );
@@ -26,37 +29,43 @@ Solution startToEnd( Solution initial, Solution goal ){
 			goal.addCityAndCarAt( i, initial.cities[i], initial.cars[i] );
 		}
 
-		try{
-			isOk( goal );
-
+		if( isValid( goal ) ){
 			goal.calculeFitness();
 
 			if( goal.fitness >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL &&
 					goal.fitness < better.fitness ){
 				better = goal.copy();
+				myPrint( "Trocou", 0 );
 			}
-//			myPrint( goal.toString() + "\n", 0 );
-		}catch(runtime_error &e){
-//			myPrint( "Erro", 0 );
-//			myPrint( e.what(), 0 );
-//			myPrint( goal.toString() + "\n", 0 );
-			// do nothing
 		}
-//		myPrint( ">>>>\n" + better.toString() + "\n", 0 );
 	}
+	myPrint( "Return Inicial\n" + initial.toString(), 0 );
+	myPrint( "Return Better\n" + better.toString(), 0 );
+	string s = ">";
+	string s2 = "*";
 	return better;
 }
 
 vector< Solution > startToEndBackward( vector< Solution > elite ){
-	vector< Solution > newSolution( elite.size() );
-
-	elite = quicksort( elite );
-	newSolution[0] = elite[0];
+	Solution newSolution;
 
 	for( unsigned int i = 1; i < elite.size(); i++ ){
-		newSolution[i] = startToEnd( elite[0], elite[i] );
+		elite = quicksort( elite );
+		newSolution = startToEnd( elite[0], elite[i] ).copy();
+		myPrint( "Return Inicial\n" + newSolution.toString(), 0 );
+		newSolution.calculeFitness();
+		for( unsigned int j = 0; j < elite.size(); j++ ){
+			elite[i].calculeFitness();
+			int a, b;
+			a = elite[j].fitness;
+			b = newSolution.fitness;
+			if( a > b ){
+				elite[i] = newSolution;
+				break;
+			}
+		}
 	}
-	return newSolution;
+	return elite;
 }
 
 vector< Solution > pathRelinking( vector< Solution > elite, string selectionStrategy, string intermediaryStrategy ){

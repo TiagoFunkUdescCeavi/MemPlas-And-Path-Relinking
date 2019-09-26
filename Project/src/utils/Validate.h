@@ -9,7 +9,8 @@
 #include "../model/Solution.h"
 #include "Prints.h"
 
-void isOk( Solution mySolution );
+bool isValid( Solution mySolution );
+void isOk( Solution mySolution ) throw (runtime_error);
 void checkPopulation( vector< Solution > population );
 
 

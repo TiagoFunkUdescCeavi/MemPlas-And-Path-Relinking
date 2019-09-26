@@ -35,7 +35,7 @@ void Algorithm::lets_go(){
 	checkPopulation( elitePopulation );
 	myPrint( "ok" , 1 );
 
-	for ( int i = 0; i < limitIterations; i++ ){
+	for ( int i = 0; i < 1; i++ ){
 		if( strategy == "m" ){
 			applyMemplasAndCrossover( i );
 		}else if( strategy == "mpr" ){
@@ -87,8 +87,16 @@ void Algorithm::applyMemplasAndCrossoverAndPathRelinking( int iteretion ){
 }
 
 void Algorithm::applyPathRelinking( int interation ){
+	for( unsigned int i = 0; i < elitePopulation.size(); i++ ){
+		elitePopulation[i].calculeFitness();
+		myPrint( elitePopulation[i].fitness, 1 );
+	}
 	myPrint( to_string( interation ) + "-path relinking: ", 1 );
-	offspring = restoringOperations( elitePopulation );
+	offspring = pathRelinking( elitePopulation, selectionStrategy, intermediaryStrategy );
 	checkPopulation( offspring );
 	myPrint( "ok", 1 );
+	for( unsigned int i = 0; i < offspring.size(); i++ ){
+		offspring[i].calculeFitness();
+		myPrint( offspring[i].fitness, 1 );
+	}
 }

@@ -10,6 +10,7 @@
 #include "Plasmid.h"
 #include "RestoringOperations.h"
 #include "BinaryTournament.h"
+#include "PathRelinking.h"
 
 class Algorithm {
 private:
