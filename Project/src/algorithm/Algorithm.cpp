@@ -36,7 +36,7 @@ void Algorithm::lets_go(){
 	myPrint( "ok" , 1 );
 
 
-	for ( int i = 0; i < 1; i++ ){
+	for ( int i = 0; i < limitIterations; i++ ){
 		if( strategy == "m" ){
 			applyMemplasAndCrossover( i );
 		}else if( strategy == "mpr" ){
@@ -59,10 +59,10 @@ void Algorithm::lets_go(){
 		elitePopulation = selectElite( elite, population );
 		checkPopulation( population );
 		myPrint( "ok", 1 );
-	}
 
-	Solution sol = selectBetter( population );
-	myPrint( sol.getFitness(), 0 );
+		Solution sol = selectBetter( population );
+		myPrint( sol.getFitness(), 0 );
+	}
 }
 
 void Algorithm::applyMemplasAndCrossover( int interation ){
@@ -74,7 +74,6 @@ void Algorithm::applyMemplasAndCrossover( int interation ){
 	}else{
 		myPrint( to_string( interation ) + "-plasmid: ", 1 );
 		selection = selectPopulation( elite, population );
-		myPrint( "foi", 1 );
 		offspring = plasmid( selection, sizePlasmideo, elitePopulation );
 		myPrint( "ok", 1 );
 	}

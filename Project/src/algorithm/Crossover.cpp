@@ -1,5 +1,7 @@
 #include "Crossover.h"
 
+#include "../utils/Prints.h"
+
 vector< Solution > crossover( 	vector< Solution > population ){
 	int numberOfSolutions = population.size();
 	int randomNumber = -1;
@@ -12,8 +14,8 @@ vector< Solution > crossover( 	vector< Solution > population ){
 	for( int i = 0; i < numberOfSolutions; i += 2 ){
 		s1 = population[i];
 		s2 = population[i+1];
-		new1 = Solution( s1.getSize() );
-		new2 = Solution( s2.getSize() );
+		new1 = Solution( numberCities_GLOBAL+1 );
+		new2 = Solution( numberCities_GLOBAL+1 );
 		randomNumber = ( (s1.getSize() <= s2.getSize()) ? s1.getSize()-1 : s2.getSize()-1 );
 		randomNumber = rand() % randomNumber;
 		if( randomNumber == 0 ) randomNumber++;
