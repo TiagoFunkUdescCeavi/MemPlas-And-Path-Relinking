@@ -9,7 +9,7 @@ Solution startToEnd( Solution initial, Solution goal ){
 
 	initial.calculeFitness();
 	goal.calculeFitness();
-	if( initial.fitness < goal.fitness ){
+	if( initial.getFitness() < goal.getFitness() ){
 		better = initial.copy();
 	}else{
 		better = goal.copy();
@@ -17,12 +17,12 @@ Solution startToEnd( Solution initial, Solution goal ){
 	myPrint( "Init Inicial\n" + initial.toString(), 0 );
 	myPrint( "Init Better\n" + better.toString(), 0 );
 
-	for( int i = 0; i < initial.position; i++ ){
+	for( int i = 0; i < initial.getSize(); i++ ){
 //		myPrint( "Initial\n" + initial.toString(), 0 );
 //		myPrint( "Goal\n" + goal.toString(), 0 );
 //		myPrint( "Better\n" + better.toString(), 0 );
 
-		if( i < goal.position-1 ){
+		if( i < goal.getSize()-1 ){
 			goal.insertCityAt( i, initial.cities[i] );
 			goal.insertCarAt( i, initial.cars[i] );
 		}else{
@@ -32,8 +32,8 @@ Solution startToEnd( Solution initial, Solution goal ){
 		if( isValid( goal ) ){
 			goal.calculeFitness();
 
-			if( goal.fitness >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL &&
-					goal.fitness < better.fitness ){
+			if( goal.getFitness() >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL &&
+					goal.getFitness() < better.getFitness() ){
 				better = goal.copy();
 				myPrint( "Trocou", 0 );
 			}
@@ -47,7 +47,7 @@ Solution startToEnd( Solution initial, Solution goal ){
 }
 
 vector< Solution > startToEndBackward( vector< Solution > elite ){
-	Solution newSolution;
+	Solution newSolution( numberCities_GLOBAL+1 );
 
 	for( unsigned int i = 1; i < elite.size(); i++ ){
 		elite = quicksort( elite );
@@ -57,8 +57,8 @@ vector< Solution > startToEndBackward( vector< Solution > elite ){
 		for( unsigned int j = 0; j < elite.size(); j++ ){
 			elite[i].calculeFitness();
 			int a, b;
-			a = elite[j].fitness;
-			b = newSolution.fitness;
+			a = elite[j].getFitness();
+			b = newSolution.getFitness();
 			if( a > b ){
 				elite[i] = newSolution;
 				break;

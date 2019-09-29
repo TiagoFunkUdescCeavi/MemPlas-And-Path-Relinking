@@ -1,17 +1,17 @@
 #include "SortingMethods.h"
 
 vector< Solution > quicksort( vector< Solution > values, int begin, int end){
-	Solution aux;
-	Solution pivo;
+	Solution aux( numberCities_GLOBAL+1 );
+	Solution pivo( numberCities_GLOBAL+1 );
 	int i, j;
 	i = begin;
 	j = end-1;
 	pivo = values[ (begin + end) / 2 ];
 	while(i <= j){
-		while(values[i].fitness < pivo.fitness && i < end){
+		while(values[i].getFitness() < pivo.getFitness() && i < end){
 			i++;
 		}
-		while(values[j].fitness > pivo.fitness && j > begin){
+		while(values[j].getFitness() > pivo.getFitness() && j > begin){
 			j--;
 		}
 		if(i <= j){

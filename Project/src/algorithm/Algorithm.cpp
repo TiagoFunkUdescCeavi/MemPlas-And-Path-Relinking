@@ -35,6 +35,7 @@ void Algorithm::lets_go(){
 	checkPopulation( elitePopulation );
 	myPrint( "ok" , 1 );
 
+
 	for ( int i = 0; i < 1; i++ ){
 		if( strategy == "m" ){
 			applyMemplasAndCrossover( i );
@@ -61,7 +62,7 @@ void Algorithm::lets_go(){
 	}
 
 	Solution sol = selectBetter( population );
-	myPrint( sol.fitness, 0 );
+	myPrint( sol.getFitness(), 0 );
 }
 
 void Algorithm::applyMemplasAndCrossover( int interation ){
@@ -73,6 +74,7 @@ void Algorithm::applyMemplasAndCrossover( int interation ){
 	}else{
 		myPrint( to_string( interation ) + "-plasmid: ", 1 );
 		selection = selectPopulation( elite, population );
+		myPrint( "foi", 1 );
 		offspring = plasmid( selection, sizePlasmideo, elitePopulation );
 		myPrint( "ok", 1 );
 	}
@@ -89,7 +91,7 @@ void Algorithm::applyMemplasAndCrossoverAndPathRelinking( int iteretion ){
 void Algorithm::applyPathRelinking( int interation ){
 	for( unsigned int i = 0; i < elitePopulation.size(); i++ ){
 		elitePopulation[i].calculeFitness();
-		myPrint( elitePopulation[i].fitness, 1 );
+		myPrint( elitePopulation[i].getFitness(), 1 );
 	}
 	myPrint( to_string( interation ) + "-path relinking: ", 1 );
 	offspring = pathRelinking( elitePopulation, selectionStrategy, intermediaryStrategy );
@@ -97,6 +99,6 @@ void Algorithm::applyPathRelinking( int interation ){
 	myPrint( "ok", 1 );
 	for( unsigned int i = 0; i < offspring.size(); i++ ){
 		offspring[i].calculeFitness();
-		myPrint( offspring[i].fitness, 1 );
+		myPrint( offspring[i].getFitness(), 1 );
 	}
 }

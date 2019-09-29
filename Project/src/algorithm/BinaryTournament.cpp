@@ -2,9 +2,9 @@
 
 vector< Solution > binaryTournament( vector< Solution > population, vector< Solution > offspring ){
 	int numRand = -1;
-	Solution a;
-	Solution b;
-	Solution aux;
+	Solution a( numberCities_GLOBAL+1 );
+	Solution b( numberCities_GLOBAL+1 );
+	Solution aux( numberCities_GLOBAL+1 );
 	vector< Solution > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
@@ -28,7 +28,7 @@ vector< Solution > binaryTournament( vector< Solution > population, vector< Solu
 			a.calculeFitness();
 			b.calculeFitness();
 
-			if( a.fitness <= b.fitness ){
+			if( a.getFitness() <= b.getFitness() ){
 				newPopulation[i] = a;
 			}else{
 				newPopulation[i] = b;

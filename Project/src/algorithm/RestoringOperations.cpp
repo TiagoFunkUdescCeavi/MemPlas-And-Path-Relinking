@@ -36,7 +36,7 @@ Solution removeErrors( Solution sol ){
 		usedCars[i].key = i;
 	}
 
-	for( int i = 0; i < sol.position; i++ ){
+	for( int i = 0; i < sol.getSize(); i++ ){
 		actualCar = sol.cars[ i ];
 		actualCity = sol.cities[ i ];
 		if( lastCar != actualCar && usedCars[ actualCar ].value == 1 ){
@@ -78,7 +78,7 @@ Solution insertCities( Solution sol ){
 	}
 
 	aux = 0;
-	for( int i = 1; i < sol.position; i++ ){
+	for( int i = 1; i < sol.getSize(); i++ ){
 		if( newSol.cities[i] == -2 ){
 			if( aux == lastPosition ){
 				newSol.removeIndex( i );
@@ -96,7 +96,7 @@ Solution insertCities( Solution sol ){
 Solution insertCars( Solution sol ){
 	int lastCar = -1;
 	Solution newSol = sol;
-	for( int i = 0; i < newSol.position; i++ ){
+	for( int i = 0; i < newSol.getSize(); i++ ){
 		if( newSol.cars[i] == -2 ){
 			newSol.insertCarAt( i, lastCar );
 		}else{
@@ -110,7 +110,7 @@ Solution checkQuota( Solution sol ){
 	int selectCity = 0, biggerQuota = INT_MIN, indexBiggerCity = -1, previousCity = 0;
 	Solution newSol = sol;
 	newSol.calculeSatisfaction();
-	if ( newSol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+	if ( newSol.getSatisfaction() < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		for( int i = 1; i < numberCities_GLOBAL; i++ ){
 			if( usedCities[i].value == 0 && bonus_satisfaction_GLOBAL[ usedCities[i].key ] > biggerQuota ){
 				selectCity = usedCities[i].key;
@@ -119,11 +119,11 @@ Solution checkQuota( Solution sol ){
 			}
 		}
 
-		for( int i = 1; i < newSol.position-1; i++ ){
+		for( int i = 1; i < newSol.getSize()-1; i++ ){
 			previousCity = newSol.cities[i];
 			newSol.insertCityAt( i, selectCity );
 			newSol.calculeSatisfaction();
-			if ( newSol.satisfaction >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+			if ( newSol.getSatisfaction() >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 				usedCities[indexBiggerCity].value += 1;
 				usedCities[previousCity].value -= 1;
 				break;
@@ -131,7 +131,7 @@ Solution checkQuota( Solution sol ){
 			newSol.insertCityAt( i, previousCity );
 		}
 	}
-	while ( newSol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+	while ( newSol.getSatisfaction() < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		for( int i = 0; i < numberCities_GLOBAL; i++ ){
 			if( usedCities[i].value == 0 ){
 				selectCity = usedCities[i].key;
@@ -139,7 +139,7 @@ Solution checkQuota( Solution sol ){
 				break;
 			}
 		}
-		newSol.addCityAt( newSol.position-1, selectCity );
+		newSol.addCityAt( newSol.getSize()-1, selectCity );
 		usedCities[indexBiggerCity].value += 1;
 		newSol.calculeSatisfaction();
 
@@ -148,7 +148,7 @@ Solution checkQuota( Solution sol ){
 }
 
 vector< Solution > restoringOperations( vector< Solution > population ){
-	Solution sol;
+	Solution sol( numberCities_GLOBAL+1 );
 	vector< Solution > newPopulation( population.size() );
 	for( int i = 0; i < (int) population.size(); i++ ){
 		sol = population[ i ];

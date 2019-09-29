@@ -3,16 +3,22 @@
 
 #include "../src/GLOBAL.h"
 
+#include <vector>
+
 TEST( , IS_OK_1 ){
 	numberCities_GLOBAL = 5;
 	numberCars_GLOBAL = 3;
 
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,1,2,3,0};
-	sol.cars = new int[5]{1,1,1,2,2};
+	sol.addEnd( 0,1 );
+	sol.addEnd( 1,1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 3,2 );
+	sol.addEnd( 0,2 );
 
 	try{
 		isOk( sol );
+
 	}catch( exception &e ){
 		FAIL();
 	}
@@ -23,8 +29,11 @@ TEST( , IS_OK_2 ){
 	numberCars_GLOBAL = 3;
 
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,1,2,3,0};
-	sol.cars = new int[5]{1,1,1,1,1};
+	sol.addEnd( 0,1 );
+	sol.addEnd( 1,1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 3,1 );
+	sol.addEnd( 0,1 );
 
 	try{
 		isOk( sol );
@@ -38,8 +47,10 @@ TEST( , IS_OK_3 ){
 	numberCars_GLOBAL = 3;
 
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,2,3,0,-1};
-	sol.cars = new int[5]{1,1,1,1,-1};
+	sol.addEnd( 0,1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 3,1 );
+	sol.addEnd( 0,1 );
 
 	try{
 		isOk( sol );
@@ -53,8 +64,9 @@ TEST( , IS_OK_4 ){
 	numberCars_GLOBAL = 3;
 
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,2,0,-1,-1};
-	sol.cars = new int[5]{1,1,1,-1,-1};
+	sol.addEnd( 0,1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 0,1 );
 
 	try{
 		isOk( sol );
@@ -69,8 +81,11 @@ TEST( , IS_OK_FAIL_01 ){
 
 	// Not starting in the correct city, that city 0
 	Solution sol( 5 );
-	sol.cities = new int[5]{2,3,4,1,0};
-	sol.cars = new int[5]{1,1,1,1,1};
+	sol.addEnd( 2,1 );
+	sol.addEnd( 3,1 );
+	sol.addEnd( 4,1 );
+	sol.addEnd( 1,1 );
+	sol.addEnd( 0,1 );
 
 	try{
 		isOk( sol );
@@ -86,8 +101,11 @@ TEST( , IS_OK_FAIL_02 ){
 
 	// It's repeating the city one after another
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,2,2,4,0};
-	sol.cars = new int[5]{1,1,1,2,2};
+	sol.addEnd( 0,1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 3,2 );
+	sol.addEnd( 0,2 );
 
 	try{
 		isOk( sol );
@@ -103,8 +121,11 @@ TEST( , IS_OK_FAIL_03 ){
 
 	// It is repeating the city in an interspersed way
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,2,3,2,0};
-	sol.cars = new int[5]{1,1,1,2,2};
+	sol.addEnd( 0,1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 3,1 );
+	sol.addEnd( 2,2 );
+	sol.addEnd( 0,2 );
 
 	try{
 		isOk( sol );
@@ -120,8 +141,11 @@ TEST( , IS_OK_FAIL_04 ){
 
 	// Is repeating the car intercalately
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,2,3,1,0};
-	sol.cars = new int[5]{1,1,2,2,1};
+	sol.addEnd( 0,1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 3,2 );
+	sol.addEnd( 1,2 );
+	sol.addEnd( 0,1 );
 
 	try{
 		isOk( sol );
@@ -137,14 +161,17 @@ TEST( , IS_OK_FAIL_05 ){
 
 	// All values are null
 	Solution sol( 5 );
-	sol.cities = new int[5]{-1,-1,-1,-1,-1};
-	sol.cars = new int[5]{-1,-1,-1,-1,-1};
+	sol.addEnd( -1,-1 );
+	sol.addEnd( -1,-1 );
+	sol.addEnd( -1,-1 );
+	sol.addEnd( -1,-1 );
+	sol.addEnd( -1,-1 );
 
 	try{
 		isOk( sol );
 		FAIL();
 	}catch( runtime_error& exc ){
-		ASSERT_STREQ( "Solution is null.\n", exc.what() );
+		ASSERT_STREQ( "The first city in a solution must always be equal to 0.\n", exc.what() );
 	}
 }
 
@@ -154,14 +181,17 @@ TEST( , IS_OK_FAIL_06 ){
 
 	// All values are null, although values still exist after the number -1.
 	Solution sol( 5 );
-	sol.cities = new int[5]{-1,2,3,4,5};
-	sol.cars = new int[5]{-1,1,1,1,1};
+	sol.addEnd( -1,-1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 3,1 );
+	sol.addEnd( 4,1 );
+	sol.addEnd( 5,1 );
 
 	try{
 		isOk( sol );
 		FAIL();
 	}catch( runtime_error& exc ){
-		ASSERT_STREQ( "Solution is null.\n", exc.what() );
+		ASSERT_STREQ( "The first city in a solution must always be equal to 0.\n", exc.what() );
 	}
 }
 
@@ -171,8 +201,7 @@ TEST( , IS_OK_FAIL_07 ){
 
 	// Has only one city before value -1.
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,-1,3,4,5};
-	sol.cars = new int[5]{0,-1,1,1,1};
+	sol.addEnd( 0,0 );
 
 	try{
 		isOk( sol );
@@ -188,8 +217,8 @@ TEST( , IS_OK_FAIL_08 ){
 
 	// Solution has only two cities, but ends up in the correct city
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,0,-1,-1,-1};
-	sol.cars = new int[5]{1,1,-1,-1,-1};
+	sol.addEnd( 0,0 );
+	sol.addEnd( 1,1 );
 
 	try{
 		isOk( sol );
@@ -205,8 +234,8 @@ TEST( , IS_OK_FAIL_09 ){
 
 	// Solution has only two cities
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,2,-1,-1,-1};
-	sol.cars = new int[5]{1,1,-1,-1,-1};
+	sol.addEnd( 0,2 );
+	sol.addEnd( 1,1 );
 
 	try{
 		isOk( sol );
@@ -222,8 +251,11 @@ TEST( , IS_OK_FAIL_10 ){
 
 	// Starts in the correct city, but does not end in it.
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,1,3,4,2};
-	sol.cars = new int[5]{0,1,1,1,1};
+	sol.addEnd( 0,0 );
+	sol.addEnd( 1,1 );
+	sol.addEnd( 3,1 );
+	sol.addEnd( 4,1 );
+	sol.addEnd( 2,1 );
 
 	try{
 		isOk( sol );
@@ -239,8 +271,13 @@ TEST( , IS_OK_FAIL_11 ){
 
 	// You are using a city that does not exist
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,1,3,5,0};
-	sol.cars = new int[5]{0,1,1,1,1};
+	sol.addEnd( 0,0 );
+	sol.addEnd( 1,1 );
+	sol.addEnd( 3,1 );
+	sol.addEnd( 5,1 );
+	sol.addEnd( 0,1 );
+	sol.cities = vector< int >( {0,1,3,5,0} );
+	sol.cars = vector< int >( {0,1,1,1,1} );
 
 	try{
 		isOk( sol );
@@ -256,8 +293,11 @@ TEST( , IS_OK_FAIL_12 ){
 
 	// You're using a car that doesn't exist
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,1,3,2,0};
-	sol.cars = new int[5]{0,1,1,1,2};
+	sol.addEnd( 0,0 );
+	sol.addEnd( 1,1 );
+	sol.addEnd( 3,1 );
+	sol.addEnd( 2,1 );
+	sol.addEnd( 0,2 );
 
 	try{
 		isOk( sol );
@@ -271,32 +311,13 @@ TEST( , IS_OK_FAIL_13 ){
 	numberCities_GLOBAL = 5;
 	numberCars_GLOBAL = 3;
 
-	// Cars vector ends before cities vector
+	// All values are null
 	Solution sol( 5 );
-	sol.cities = new int[5]{0,1,3,0,-1};
-	sol.cars = new int[5]{0,1,1,-1,2};
 
 	try{
 		isOk( sol );
 		FAIL();
 	}catch( runtime_error& exc ){
-		ASSERT_STREQ( "The cars vector ends before the cities vector.\n", exc.what() );
-	}
-}
-
-TEST( , IS_OK_FAIL_14 ){
-	numberCities_GLOBAL = 5;
-	numberCars_GLOBAL = 3;
-
-	// Cities vector ends before cars vector
-	Solution sol( 5 );
-	sol.cities = new int[5]{0,1,0,-1,-1};
-	sol.cars = new int[5]{0,1,1,1,-1};
-
-	try{
-		isOk( sol );
-		FAIL();
-	}catch( runtime_error& exc ){
-		ASSERT_STREQ( "The cities vector ends before the cars vector.\n", exc.what() );
+		ASSERT_STREQ( "Solution is null.\n", exc.what() );
 	}
 }

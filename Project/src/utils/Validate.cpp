@@ -1,37 +1,13 @@
 #include "Validate.h"
 
 void verifyQuota( Solution sol ){
-	if( sol.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+	if( sol.getSatisfaction() < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		string s = "Quota value is less than the minimum allowed.\nSatisfaction of Solution: "
-				+ to_string( sol.satisfaction )
+				+ to_string( sol.getSatisfaction() )
 				+ "\tMinimal satisfaction: "
 				+ to_string( minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
 		throw runtime_error( s );
 	}
-}
-
-int findFinalPosition( Solution sol ){
-	int finalPosition = -1;
-
-	for( int i = 0; i < sol.sizeSolution; i++ ){
-		if( sol.cities[ i ] == -1 && sol.cars[ i ] != -1 ){
-			string s = "The cities vector ends before the cars vector.\n";
-			throw runtime_error( s );
-		}
-		if( sol.cars[ i ] == -1 && sol.cities[ i ] != -1 ){
-			string s = "The cars vector ends before the cities vector.\n";
-			throw runtime_error( s );
-		}
-		if( sol.cities[ i ] == -1 && sol.cars[ i ] == -1 ){
-			finalPosition = i;
-			break;
-		}
-	}
-	if( finalPosition == -1 ){
-		finalPosition = sol.sizeSolution;
-	}
-
-	return finalPosition;
 }
 
 void checkStartAndEnd( Solution sol, int finalPosition ){
@@ -59,11 +35,11 @@ void checkStartAndEnd( Solution sol, int finalPosition ){
 
 void checkCitiesAndCars( Solution sol, int finalPosition ){
 	for( int i = 0; i < finalPosition; i++ ){
-		if( sol.cities[ i ] < -1 || sol.cities[ i ] >= numberCities_GLOBAL ){
+		if( sol.cities[ i ] < 0 || sol.cities[ i ] >= numberCities_GLOBAL ){
 			string s = "Invalid value for city: " + to_string( sol.cities[i] ) + ".\n";
 			throw runtime_error( s );
 		}
-		if( sol.cars[ i ] < -1 || sol.cars[ i ] >= numberCars_GLOBAL ){
+		if( sol.cars[ i ] < 0 || sol.cars[ i ] >= numberCars_GLOBAL ){
 			string s = "Invalid value for car: " + to_string( sol.cars[i] ) + ".\n";
 			throw runtime_error( s );
 		}
@@ -106,8 +82,7 @@ void checkRepetition( Solution sol, int finalPosition ){
 }
 
 void isOk( Solution sol ) throw (runtime_error) {
-	int finalPosition = -1;
-	finalPosition = findFinalPosition( sol );
+	int finalPosition = sol.getSize();
 	checkStartAndEnd( sol, finalPosition );
 	checkCitiesAndCars( sol, finalPosition );
 	checkRepetition( sol, finalPosition );
@@ -120,6 +95,7 @@ void checkPopulation( vector< Solution > population ){
 			population[i].calculeSatisfaction();
 			verifyQuota( population[i] );
 		} catch (exception &e) {
+			myPrint("**********Error**********", 0 );
 			myPrint( i, 0 );
 			myPrint( e.what(), 0 );
 			myPrint( population[i].toString(), 0 );

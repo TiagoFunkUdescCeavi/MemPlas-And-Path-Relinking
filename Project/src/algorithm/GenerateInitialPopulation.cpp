@@ -9,7 +9,7 @@ vector< Solution > generateInitialPopulation( int sizePopulation ){
 	bool firstCity;
 	int pos;
 	int myCar, destinyCity, nextCity;
-	Solution mySolution;
+	Solution mySolution( numberCities_GLOBAL+1 );
 	vector< int > carsNotUsed;
 	vector< int > citiesNotVisited;
 	vector< Solution > population( sizePopulation );
@@ -41,7 +41,7 @@ vector< Solution > generateInitialPopulation( int sizePopulation ){
 			}while( destinyCity != nextCity );
 
 			mySolution.calculeSatisfaction();
-		}while( mySolution.satisfaction < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
+		}while( mySolution.getSatisfaction() < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL );
 
 		mySolution.addEnd( 0, myCar );
 

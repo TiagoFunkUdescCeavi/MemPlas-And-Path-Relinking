@@ -6,32 +6,24 @@ vector< Solution > plasmid( vector< Solution > population, double sizePlas, vect
 	int numberOfSolutions = elite.size();
 	int sizeSolution = -1;
 	int randomNumber = -1;
-//	int *plasCities = 0, *plasCars = 0;
-	Solution sElite;
-	Solution sNormal;
-	Solution newSol;
-	Solution better;
+	Solution sElite( numberCities_GLOBAL+1 );
+	Solution sNormal( numberCities_GLOBAL+1 );
+	Solution newSol( numberCities_GLOBAL+1 );
+	Solution better( numberCities_GLOBAL+1 );
 	vector< Solution > offspring( numberOfSolutions );
 
 	for( int i = 0; i < numberOfSolutions; i++ ){
 		sElite = elite[i];
 		sNormal = population[i];
-		better = 0;
+		better = Solution( numberCities_GLOBAL+1 );
 
-		sizeSolution = ( (sElite.position <= sNormal.position) ? sElite.position-1 : sNormal.position-1 );
+		sizeSolution = ( (sElite.getSize() <= sNormal.getSize()) ? sElite.getSize()-1 : sNormal.getSize()-1 );
 		randomNumber = sizeSolution * sizePlas;
 		randomNumber = ( rand() % (sizeSolution-randomNumber) );
 
-//		plasCities = new int[ sizePlas ];
-//		plasCars = new int[ sizePlas ];
-//		for( int j = randomNumber; j < ( randomNumber + sizePlas ); j++ ){
-//			plasCities[ j ] = sElite->cities[ j ];
-//			plasCars[ j ] = sElite->cars[ j ];
-//		}
+		newSol = Solution( numberCities_GLOBAL+1 );
 
-		newSol = Solution( sElite.sizeSolution );
-
-		for( int j = 0; j < sNormal.position; j++ ){
+		for( int j = 0; j < sNormal.getSize(); j++ ){
 			if( j == randomNumber ){
 				for(int k = 0; k < sizePlas; k++ ){
 					newSol.addEnd( sElite.cities[ j ], sElite.cars[ j ] );

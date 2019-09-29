@@ -3,6 +3,7 @@
 
 #include <string>
 #include <stdexcept>
+#include <vector>
 
 #include "../GLOBAL.h"
 
@@ -12,16 +13,17 @@ class Solution{
 private:
 	bool calculatedFitness = false;
 
-public:
-	int sizeSolution = 0;
-	int *cities = 0;
-	int *cars = 0;
+	int size = 0;
+	int maxSize = 0;
 	int fitness = 0;
 	int satisfaction = 0;
-	int position = 0;
+
+public:
+	vector< int > cities;
+	vector< int > cars;
 
 	Solution();
-	Solution( int sizeSolution );
+	Solution( int maxSizeSolution );
 	~Solution();
 
 	void calculeFitness();
@@ -33,6 +35,10 @@ public:
 	void addCityAndCarAt( int index, int city, int car );
 	void insertCityAt( int index, int city );
 	void insertCarAt( int index, int car );
+
+	int getSize();
+	int getFitness();
+	int getSatisfaction();
 
 	Solution copy();
 	string toString();

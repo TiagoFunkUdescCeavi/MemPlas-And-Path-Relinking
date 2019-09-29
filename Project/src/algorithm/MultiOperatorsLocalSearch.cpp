@@ -8,8 +8,8 @@
 vector< Solution > removeSaving( vector< Solution > population ){
 	bool go_ahead;
 	int posMin, minCitySatisfaction;
-	Solution son;
-	Solution dad;
+	Solution son( numberCities_GLOBAL+1 );
+	Solution dad( numberCities_GLOBAL+1 );
 	vector< Solution > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
@@ -21,7 +21,7 @@ vector< Solution > removeSaving( vector< Solution > population ){
 			posMin = -1;
 			minCitySatisfaction = INT_MAX;
 
-			for( int j = 1; j < son.position-1; j++ ){
+			for( int j = 1; j < son.getSize()-1; j++ ){
 				if( son.cities[ j ] == -1 ){
 					break;
 				} else if( bonus_satisfaction_GLOBAL[ son.cities[ j ] ] < minCitySatisfaction ){
@@ -30,10 +30,11 @@ vector< Solution > removeSaving( vector< Solution > population ){
 				}
 			}
 
+			son.calculeSatisfaction();
 			dad.calculeFitness();
 			son.calculeSatisfaction();
 
-			if( son.satisfaction - minCitySatisfaction
+			if( son.getSatisfaction() - minCitySatisfaction
 						< minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 				go_ahead = false;
 			}else {
@@ -44,7 +45,7 @@ vector< Solution > removeSaving( vector< Solution > population ){
 		son.calculeFitness();
 		dad.calculeFitness();
 
-		if( son.fitness < dad.fitness ){
+		if( son.getFitness() < dad.getFitness() ){
 			newPopulation[i] = son;
 		}else{
 			newPopulation[i] = dad;
@@ -54,15 +55,15 @@ vector< Solution > removeSaving( vector< Solution > population ){
 }
 
 vector< Solution > invertSolution( vector< Solution > population ){
-	Solution son;
-	Solution dad;
+	Solution son( numberCities_GLOBAL+1 );
+	Solution dad( numberCities_GLOBAL+1 );
 	vector< Solution > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
 		dad = population[ i ].copy();
-		son = Solution( dad.sizeSolution );
+		son = Solution( dad.getSize() );
 
-		for( int j = dad.position-1; j >= 0; j-- ){
+		for( int j = dad.getSize()-1; j >= 0; j-- ){
 			if( dad.cars[ j ] != dad.cars[ j-1 ] && j != 0 ){
 				son.addEnd( dad.cities[ j ], dad.cars[ j-1 ] );
 			}else{
@@ -73,7 +74,7 @@ vector< Solution > invertSolution( vector< Solution > population ){
 		son.calculeFitness();
 		dad.calculeFitness();
 
-		if( son.fitness < dad.fitness ){
+		if( son.getFitness() < dad.getFitness() ){
 			newPopulation[i] = son;
 		}else{
 			newPopulation[i] = dad;
@@ -84,8 +85,8 @@ vector< Solution > invertSolution( vector< Solution > population ){
 
 vector< Solution > insertSavingCity( vector< Solution > population ){
 	bool visitedCities[ numberCities_GLOBAL ];
-	Solution son;
-	Solution better;
+	Solution son( numberCities_GLOBAL+1 );
+	Solution better( numberCities_GLOBAL+1 );
 	vector< Solution > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
@@ -95,20 +96,23 @@ vector< Solution > insertSavingCity( vector< Solution > population ){
 		for( int j = 0; j < numberCities_GLOBAL; j++ ){
 			visitedCities[ j ] = false;
 		}
-		for( int j = 0; j < son.position; j++ ){
+		for( int j = 0; j < son.getSize(); j++ ){
 			visitedCities[ son.cities[ j ] ] = true;
 		}
 		for( int j = 0; j < numberCities_GLOBAL; j++ ){
 			if( !visitedCities[ j ] ){
 
-				for( int k = 1; k < son.position-1; k++ ){
+				for( int k = 1; k < son.getSize()-1; k++ ){
 					son.addCityAt( k, j );
 
+					son.calculeSatisfaction();
 					son.calculeFitness();
 					better.calculeFitness();
 
-					if( son.fitness < better.fitness ){
-						better = son.copy();
+					if( son.getSatisfaction() >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+						if( son.getFitness() < better.getFitness() ){
+							better = son.copy();
+						}
 					}
 					son.removeIndex( k );
 				}
@@ -122,8 +126,8 @@ vector< Solution > insertSavingCity( vector< Solution > population ){
 vector< Solution > replaceSavingCity( vector< Solution > population ){
 	int oldCity = -1;
 	bool visitedCities[ numberCities_GLOBAL ];
-	Solution son;
-	Solution better;
+	Solution son( numberCities_GLOBAL+1 );
+	Solution better( numberCities_GLOBAL+1 );
 	vector< Solution > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
@@ -133,21 +137,24 @@ vector< Solution > replaceSavingCity( vector< Solution > population ){
 		for( int j = 0; j < numberCities_GLOBAL; j++ ){
 			visitedCities[ j ] = false;
 		}
-		for( int j = 0; j < son.position; j++ ){
+		for( int j = 0; j < son.getSize(); j++ ){
 			visitedCities[ son.cities[ j ] ] = true;
 		}
 		for( int j = 0; j < numberCities_GLOBAL; j++ ){
 			if( !visitedCities[ j ] ){
 
-				for( int k = 1; k < son.position-1; k++ ){
+				for( int k = 1; k < son.getSize()-1; k++ ){
 					oldCity = son.cities[ k ];
 					son.insertCityAt( k, j );
 
+					son.calculeSatisfaction();
 					son.calculeFitness();
 					better.calculeFitness();
 
-					if( son.fitness < better.fitness ){
-						better = son;
+					if( son.getSatisfaction() >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+						if( son.getFitness() < better.getFitness() ){
+							better = son;
+						}
 					}
 					son.insertCityAt( k, oldCity );
 				}
@@ -160,8 +167,8 @@ vector< Solution > replaceSavingCity( vector< Solution > population ){
 
 vector< Solution > replaceSavingCar( vector< Solution > population ){
 	bool usedCars[ numberCars_GLOBAL ];
-	Solution better;
-	Solution actual;
+	Solution better( numberCities_GLOBAL+1 );
+	Solution actual( numberCities_GLOBAL+1 );
 	vector< Solution > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
@@ -171,21 +178,24 @@ vector< Solution > replaceSavingCar( vector< Solution > population ){
 		for( int j = 0; j < numberCars_GLOBAL; j++ ){
 			usedCars[ j ] = false;
 		}
-		for( int j = 0; j < actual.position; j++ ){
+		for( int j = 0; j < actual.getSize(); j++ ){
 			usedCars[ actual.cars[ j ] ] = true;
 		}
 		for( int j = 0; j < numberCars_GLOBAL; j++ ){
 			if( !usedCars[ j ] ){
 
-				for( int k = 0; k < actual.position; k++ ){
+				for( int k = 0; k < actual.getSize(); k++ ){
 					actual.insertCarAt( k, j );
 					usedCars[j] = true;
 
+					actual.calculeSatisfaction();
 					actual.calculeFitness();
 					better.calculeFitness();
 
-					if( actual.fitness < better.fitness ){
-						better = actual.copy();
+					if( actual.getSatisfaction() >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
+						if( actual.getFitness() < better.getFitness() ){
+							better = actual.copy();
+						}
 					}
 				}
 			}
@@ -196,11 +206,10 @@ vector< Solution > replaceSavingCar( vector< Solution > population ){
 }
 
 vector< Solution > operator_2opt( vector< Solution > population ){
-	int count = -1;
-	int myVector[ numberCities_GLOBAL+1 ];
-	Solution backup;
-	Solution better;
-	Solution actual;
+	Solution backup( numberCities_GLOBAL+1 );
+	Solution better( numberCities_GLOBAL+1 );
+	Solution actual( numberCities_GLOBAL+1 );
+	vector< int > myVector( numberCities_GLOBAL+1 );
 	vector< Solution > newPopulation( population.size() );
 
 	for( int i = 0; i < (int) population.size(); i++ ){
@@ -208,27 +217,29 @@ vector< Solution > operator_2opt( vector< Solution > population ){
 		better = actual.copy();
 		backup = actual.copy();
 
-		for( int j = 1; j < actual.position-2; j++ ){
-			count = 0;
+		for( int j = 1; j < actual.getSize()-2; j++ ){
+//			myPrint( to_string(i)+"-"+to_string(j), 1 );
+			myVector.clear();
 
-			myVector[ count++ ] = actual.cities[ 0 ];
-			for( int k = j+1; k < actual.position-1; k++ ){
-				myVector[ count++ ] = actual.cities[ k ];
+			myVector.push_back( actual.cities[ 0 ] );
+			for( int k = j+1; k < actual.getSize()-1; k++ ){
+				myVector.push_back(  actual.cities[ k ] );
 			}
 
 			for( int k = 1; k <= j; k++ ){
-				myVector[ count++ ] = actual.cities[ k ];
+				myVector.push_back( actual.cities[ k ] );
 			}
 
-			myVector[ count++ ] = actual.cities[ actual.position-1 ];
-			myVector[ count++ ] = actual.cities[ actual.position ];
-			for( int i = 0; i < numberCities_GLOBAL+1; i++ ){
-				actual.cities[i] = myVector[i];
-			}
+			myVector.push_back( actual.cities[ actual.getSize()-1 ] );
+			myVector.push_back( actual.cities[ actual.getSize() ] );
+			actual.cities = myVector;
+//			for( int k = 0; k < numberCities_GLOBAL+1; k++ ){
+//				actual.cities[k] = myVector[k];
+//			}
 			actual.calculeFitness();
 			better.calculeFitness();
 
-			if( actual.fitness < better.fitness ){
+			if( actual.getFitness() < better.getFitness() ){
 				better = actual;
 			}
 			actual = backup;
@@ -239,9 +250,9 @@ vector< Solution > operator_2opt( vector< Solution > population ){
 }
 
 vector< Solution > multiOperatorsLocalSearch( vector< Solution > population){
-	vector< Solution > sol;
+	vector< Solution > sol = population;
 	myPrint( "removeSaving", 1 );
-	sol = removeSaving( population );
+	sol = removeSaving( sol );
 	myPrint( "invertSolution", 1 );
 	sol = invertSolution( sol );
 	myPrint( "insertSavingCity", 1 );

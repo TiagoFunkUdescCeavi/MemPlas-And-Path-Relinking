@@ -3,21 +3,16 @@
 #include "../utils/Prints.h"
 
 Solution::Solution(){
+
 }
 
-Solution::Solution( int sizeSolution ){
-	this->sizeSolution = sizeSolution;
-	cities = new int[ sizeSolution ];
-	cars = new int[ sizeSolution ];
-	for( int i = 0; i < sizeSolution; i++ ){
-		cities[ i ] = -1;
-		cars[ i ] = -1;
-	}
+Solution::Solution( int maxSizeSolution ){
+	this->maxSize = maxSizeSolution;
+	this->cities.reserve( maxSizeSolution );
+	this->cars.reserve( maxSizeSolution );
 }
 
 Solution::~Solution(){
-//	delete [] cities;
-//	delete [] cars;
 }
 
 void Solution::calculeFitness(){
@@ -30,7 +25,7 @@ void Solution::calculeFitness(){
 
 		rent_city = this->cities[0];
 		previous_car = this->cars[0];
-		for( int i = 0; i < this->position-1; i++ ){
+		for( int i = 0; i < this->size-1; i++ ){
 			actual_city = this->cities[i];
 			actual_car = this->cars[ i ];
 			myCar = cars_GLOBAL[ actual_car ];
@@ -55,107 +50,55 @@ void Solution::calculeFitness(){
 
 void Solution::calculeSatisfaction(){
 	this->satisfaction = 0;
-	for( int i = 0; i < this->position; i++ ){
-		if( i != this->position-1 || (i == this->position-1 && this->cities[ i ] != 0) ){
+	for( int i = 0; i < this->size; i++ ){
+		if( i != this->size-1 || (i == this->size-1 && this->cities[ i ] != 0) ){
 			this->satisfaction += bonus_satisfaction_GLOBAL[ cities[ i ] ];
 		}
 	}
 }
 
 void Solution::addEnd( int city, int car ){
-	if( this->position == this->sizeSolution ){
+	if( this->size == this->maxSize ){
 		throw runtime_error( "Attempting to add to a full solution" );
 	}
-	this->cities[ position ] = city;
-	this->cars[ position ] = car;
-	this->position++;
+	this->cities.push_back( city );
+	this->cars.push_back( car );
+	this->size++;
 	this->calculatedFitness = false;
 }
 
 void Solution::removeIndex( int index ){
-	if( index < 0 || index > this->sizeSolution-1 ){
+	if( index < 0 || index >= this->size ){
 		throw runtime_error( "Index for city/car pair removal in solution is not valid. " );
 	}
-	if( index == this->sizeSolution-1 && this->position == this->sizeSolution ){
-		this->cities[ index ] = -1;
-		this->cars[ index  ] = -1;
-		this->position--;
-		this->calculatedFitness = false;
-	}else if( this->position == this->sizeSolution && index < this->position ){
-		for( int i = 0; i < this->sizeSolution; i++ ){
-			if( i >= index ){
-				this->cities[ i ] = this->cities[ i+1 ];
-				this->cars[ i ] = this->cars[ i+1 ];
-			}
-		}
-		this->cities[ this->sizeSolution-1 ] = -1;
-		this->cars[ this->sizeSolution-1 ] = -1;
-		this->position--;
-		this->calculatedFitness = false;
-	}else if( index < this->position ){
-		for( int i = 0; i < this->sizeSolution; i++ ){
-			if( i >= index ){
-				this->cities[ i ] = this->cities[ i+1 ];
-				this->cars[ i ] = this->cars[ i+1 ];
-			}
-			if( this->cities[ i ] == -1 ){
-				break;
-			}
-		}
-		this->position--;
-		this->calculatedFitness = false;
-	}
+	this->cities.erase( this->cities.begin() + index );
+	this->cars.erase( this->cars.begin() + index );
+	this->size--;
+	this->calculatedFitness = false;
 }
 
 void Solution::addCityAt( int index, int city ){
-	if( index < 0 || index >= this->position ){
+	if( index < 0 || index >= this->size ){
 		throw runtime_error( "Invalid index to add city.\n" );
 	}
-	if( index == this->position ){
-		this->cities[ index ] = city;
-	}else{
-		for( int i = this->position; i >= 0; i-- ){
-			if( i > index ){
-				this->cities[ i+1 ] = this->cities[ i ];
-				this->cars[ i+1 ] = this->cars[ i ];
-			}else if( i == index ){
-				this->cities[ i+1 ] = this->cities[ i ];
-				this->cars[ i+1 ] = this->cars[ i ];
-				this->cities[ i ] = city;
-				break;
-			}
-		}
-	}
-	this->position++;
+	this->cities.insert( this->cities.begin() + index, city );
+	this->cars.insert( this->cars.begin() + index, cars[index] );
+	this->size++;
 	this->calculatedFitness = false;
 }
 
 void Solution::addCityAndCarAt( int index, int city, int car ){
-	if( index < 0 || index >= this->position ){
+	if( index < 0 || index >= this->size ){
 		throw runtime_error( "Invalid index to add car.\n" );
 	}
-	if( index == this->position ){
-		this->cars[ index ] = car;
-	}else{
-		for( int i = this->position; i >= 0; i-- ){
-			if( i > index ){
-				this->cities[ i+1 ] = this->cities[ i ];
-				this->cars[ i+1 ] = this->cars[ i ];
-			}else if( i == index ){
-				this->cities[ i+1 ] = this->cities[ i ];
-				this->cars[ i+1 ] = this->cars[ i ];
-				this->cities[ i ] = city;
-				this->cars[ i ] = car;
-				break;
-			}
-		}
-	}
-	this->position++;
+	this->cities.insert( this->cities.begin() + index, city );
+	this->cars.insert( this->cars.begin() + index, car );
+	this->size++;
 	this->calculatedFitness = false;
 }
 
 void Solution::insertCityAt( int index, int city ){
-	if( index < 0 || index > this->position ){
+	if( index < 0 || index > this->size ){
 		throw runtime_error( "Invalid index to insert city.\n" );
 	}
 	this->cities[ index ] = city;
@@ -163,36 +106,43 @@ void Solution::insertCityAt( int index, int city ){
 }
 
 void Solution::insertCarAt( int index, int car ){
-	if( index < 0 || index > this->position ){
+	if( index < 0 || index > this->size ){
 		throw runtime_error( "Invalid index to insert car.\n" );
 	}
 	this->cars[ index ] = car;
 	this->calculatedFitness = false;
 }
 
-Solution Solution::copy(){
-	Solution s;
+int Solution::getSize(){
+	return this->size;
+}
 
-	s.sizeSolution = this->sizeSolution;
-	s.cities = new int[ s.sizeSolution ];
-	s.cars = new int[ s.sizeSolution ];
-	s.position = this->position;
+int Solution::getFitness(){
+	return this->fitness;
+}
+
+int Solution::getSatisfaction(){
+	return this->satisfaction;
+}
+
+Solution Solution::copy(){
+	Solution s( numberCities_GLOBAL+1 );
+
+	s.calculatedFitness = this->calculatedFitness;
+	s.size = this->size;
+	s.maxSize = this->maxSize;
 	s.fitness = this->fitness;
 	s.satisfaction = this->satisfaction;
-	s.sizeSolution = this->sizeSolution;
-	s.calculatedFitness = this->calculatedFitness;
+	s.cities = vector< int >( this->cities );
+	s.cars = vector< int >( this->cars );
 
-	for( int i = 0; i < sizeSolution; i++ ){
-		s.cities[ i ] = this->cities[ i ];
-		s.cars[ i ] = this->cars[ i ];
-	}
 	return s;
 }
 
 string Solution::toString(){
 	string s = ">";
 	string s2 = "*";
-	for( int i = 0; i < sizeSolution; i++ ){
+	for( int i = 0; i < size; i++ ){
 		s += to_string( cities[i] ) + "\t";
 		s2 += to_string( cars[i] ) + "\t";
 	}

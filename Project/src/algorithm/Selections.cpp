@@ -44,7 +44,7 @@ Solution selectBetter( vector< Solution > population ){
 	better.calculeFitness();
 	for( int i = 1; i < population.size(); i++ ){
 		population[i].calculeFitness();
-		if( better.fitness <= population[i].fitness ){
+		if( better.getFitness() <= population[i].getFitness() ){
 			better = population[i];
 		}
 	}

@@ -2,8 +2,7 @@
 #include "model/Solution.h"
 #include "utils/InstanceReader.h"
 
-
-TEST( , TEST_FITNESS_SATISFACTOIN_1 ) {
+TEST( , TEST_FITNESS_SATISFACTION_1 ) {
 	const char* file = "/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/AfricaSul11n.pcar";
 
 	try{
@@ -18,10 +17,10 @@ TEST( , TEST_FITNESS_SATISFACTOIN_1 ) {
 		sol->addEnd(0,2);
 
 		sol->calculeSatisfaction();
-		EXPECT_EQ( sol->satisfaction, 347 );
+		EXPECT_EQ( sol->getSatisfaction(), 347 );
 
 		sol->calculeFitness();
-		EXPECT_EQ( sol->fitness, 569 );
+		EXPECT_EQ( sol->getFitness(), 569 );
 	} catch (exception &e) {
 		cout << e.what() << endl;
 		FAIL();
@@ -43,10 +42,10 @@ TEST( , TEST_FITNESS_SATISFACTOIN_2 ) {
 		sol->addEnd(0,3);
 
 		sol->calculeSatisfaction();
-		EXPECT_EQ( sol->satisfaction, 280 );
+		EXPECT_EQ( sol->getSatisfaction(), 280 );
 
 		sol->calculeFitness();
-		EXPECT_EQ( sol->fitness, 1826 );
+		EXPECT_EQ( sol->getFitness(), 1826 );
 	} catch (exception &e) {
 		cout << e.what() << endl;
 		FAIL();
@@ -68,10 +67,10 @@ TEST( , TEST_FITNESS_SATISFACTOIN_3 ) {
 		sol->addEnd(0,3);
 
 		sol->calculeSatisfaction();
-		EXPECT_EQ( sol->satisfaction, 204 );
+		EXPECT_EQ( sol->getSatisfaction(), 204 );
 
 		sol->calculeFitness();
-		EXPECT_EQ( sol->fitness, 691 );
+		EXPECT_EQ( sol->getFitness(), 691 );
 	} catch (exception &e) {
 		cout << e.what() << endl;
 		FAIL();
@@ -96,10 +95,10 @@ TEST( , TEST_FITNESS_SATISFACTOIN_4 ) {
 		sol->addEnd(0,2);
 
 		sol->calculeSatisfaction();
-		EXPECT_EQ( sol->satisfaction, 456 );
+		EXPECT_EQ( sol->getSatisfaction(), 456 );
 
 		sol->calculeFitness();
-		EXPECT_EQ( sol->fitness, 694 );
+		EXPECT_EQ( sol->getFitness(), 694 );
 	} catch (exception &e) {
 		cout << e.what() << endl;
 		FAIL();
@@ -118,7 +117,7 @@ TEST( , TEST_SATISFACTION_PURE_1 ) {
 		sol->addEnd(0,2);
 
 		sol->calculeSatisfaction();
-		EXPECT_EQ( sol->satisfaction, 29 );
+		EXPECT_EQ( sol->getSatisfaction(), 29 );
 
 	} catch (exception &e) {
 		cout << e.what() << endl;
@@ -137,7 +136,7 @@ TEST( , TEST_SATISFACTION_PURE_2 ) {
 		sol->addEnd(4,1);
 
 		sol->calculeSatisfaction();
-		EXPECT_EQ( sol->satisfaction, 29 );
+		EXPECT_EQ( sol->getSatisfaction(), 29 );
 
 	} catch (exception &e) {
 		cout << e.what() << endl;
