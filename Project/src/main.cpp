@@ -50,6 +50,7 @@ int main( int argc, char* argv[] ){
 
 	finalTime = clock();
 	clock_t time = ( (finalTime - initialTime) / (double) CLOCKS_PER_SEC ) * 1000;
+	file = file.substr( file.find_last_of("/")+1, file.find_last_of(".") - file.find_last_of("/") -1 );
 	myPrint( file + "," + strategy + "," + to_string( best.getFitness() ) + "," + to_string( time ), 0, true );
 	return 0;
 }
