@@ -1,3 +1,3 @@
-1 1 1 /home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/Arabia14n.pcar  --strategy m --sizePopulation 150 --elite  0.3 --limitIterations 100 --sizePlasmideo 0.2 --cross 0.4
+1 1 1 /home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/Arabia14n.pcar  --strategy m --sizePopulation 150 --elite  0.3 --limitIterations 100 --sizePlasmideo 0.2 --cross 0.4
 
-1 1 1 /home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/Arabia14n.pcar  --strategy pr --sizePopulation 150 --elite 0.3 --limitIterations 100 --selectionStrategy a --intermediaryStrategy steb
+1 1 1 /home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/Arabia14n.pcar  --strategy pr --sizePopulation 150 --elite 0.3 --limitIterations 100 --selectionStrategy a --intermediaryStrategy steb

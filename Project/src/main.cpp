@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <time.h>
 
 #include "utils/InstanceReader.h"
 #include "utils/Argumentsreader.h"
@@ -11,6 +12,9 @@
 using namespace std;
 
 int main( int argc, char* argv[] ){
+
+	clock_t initialTime = 0, finalTime = 0;
+	initialTime = clock();
 
 	myPrint( "parameters:", 1 );
 	ArgumentReader arg( argc, argv );
@@ -25,42 +29,27 @@ int main( int argc, char* argv[] ){
 	string intermediaryStrategy = arg.getValue( "--intermediaryStrategy" );
 	myPrint( "ok:", 1 );
 
+	Solution best;
+
 	srand( 0 );
-//	myPrint( "My Seed: " + to_string( seed ), 0 );
 
 	try{
 		myPrint( "instance read:", 1 );
 		readInstance( file );
 		myPrint( "ok", 1 );
 
-//		Solution s1( 10+1 );
-//		s1.addEnd(0,1);
-//		s1.addEnd(4,1);
-//		s1.addEnd(8,3);
-//		s1.addEnd(5,3);
-//		s1.addEnd(6,3);
-//		s1.addEnd(0,3);
-//
-//		Solution s2( 10+1 );
-//		s2.addEnd(0,2);
-//		s2.addEnd(2,2);
-//		s2.addEnd(7,2);
-//		s2.addEnd(6,3);
-//		s2.addEnd(4,3);
-//		s2.addEnd(3,3);
-//		s2.addEnd(0,3);
-//
-//		Solution r = startToEnd( s1, s2 );
-//		myPrint( ">>>>>>>>>>>>\n" + r.toString(), 0 );
-
 		Algorithm a( strategy, sizePopulation, elite, limitIterations,
 					 sizePlasmideo, cross, selectionStrategy, intermediaryStrategy);
-		a.lets_go();
+		best = a.lets_go();
 
 	} catch (exception &e) {
 		cout << e.what() << endl;
 		return 1;
 	}
 	myPrint( "end of execution", 1 );
+
+	finalTime = clock();
+	clock_t time = ( (finalTime - initialTime) / (double) CLOCKS_PER_SEC ) * 1000;
+	myPrint( file + "," + strategy + "," + to_string( best.getFitness() ) + "," + to_string( time ), 0, true );
 	return 0;
 }

@@ -19,7 +19,7 @@ Algorithm::Algorithm(
 
 }
 
-void Algorithm::lets_go(){
+Solution Algorithm::lets_go(){
 	myPrint( "generation of population:", 1 );
 	population = generateInitialPopulation( sizePopulation );
 	checkPopulation( population );
@@ -60,9 +60,9 @@ void Algorithm::lets_go(){
 		checkPopulation( population );
 		myPrint( "ok", 1 );
 
-		Solution sol = selectBetter( population );
-		myPrint( sol.getFitness(), 0 );
 	}
+
+	return selectBetter( population );
 }
 
 void Algorithm::applyMemplasAndCrossover( int interation ){

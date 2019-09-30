@@ -38,7 +38,7 @@ public:
 		string strategy, int sizePopulation, double elite, int limitIterations,
 		double sizePlasmideo, double cross, string selectionStrategy, string intermediaryStrategy );
 
-	void lets_go();
+	Solution lets_go();
 };
 
 #endif /* ALGORITHM_H_ */
