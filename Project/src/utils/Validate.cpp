@@ -1,6 +1,7 @@
 #include "Validate.h"
 
 void verifyQuota( Solution sol ){
+	sol.calculeSatisfaction();
 	if( sol.getSatisfaction() < minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL ){
 		string s = "Quota value is less than the minimum allowed.\nSatisfaction of Solution: "
 				+ to_string( sol.getSatisfaction() )
@@ -92,7 +93,6 @@ void checkPopulation( vector< Solution > population ){
 	for( int i = 0; i < (int) population.size(); i++ ){
 		try{
 			isOk( population[ i ] );
-			population[i].calculeSatisfaction();
 			verifyQuota( population[i] );
 		} catch (exception &e) {
 			myPrint("**********Error**********", 0 );
@@ -107,6 +107,7 @@ void checkPopulation( vector< Solution > population ){
 bool isValid( Solution mySolution ){
 	try{
 		isOk( mySolution );
+		verifyQuota( mySolution );
 		return true;
 	}catch( runtime_error &e ){
 		return false;

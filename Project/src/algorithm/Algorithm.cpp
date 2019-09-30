@@ -88,16 +88,8 @@ void Algorithm::applyMemplasAndCrossoverAndPathRelinking( int iteretion ){
 }
 
 void Algorithm::applyPathRelinking( int interation ){
-	for( unsigned int i = 0; i < elitePopulation.size(); i++ ){
-		elitePopulation[i].calculeFitness();
-		myPrint( elitePopulation[i].getFitness(), 1 );
-	}
 	myPrint( to_string( interation ) + "-path relinking: ", 1 );
 	offspring = pathRelinking( elitePopulation, selectionStrategy, intermediaryStrategy );
 	checkPopulation( offspring );
 	myPrint( "ok", 1 );
-	for( unsigned int i = 0; i < offspring.size(); i++ ){
-		offspring[i].calculeFitness();
-		myPrint( offspring[i].getFitness(), 1 );
-	}
 }

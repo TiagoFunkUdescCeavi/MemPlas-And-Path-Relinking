@@ -14,13 +14,8 @@ Solution startToEnd( Solution initial, Solution goal ){
 	}else{
 		better = goal.copy();
 	}
-	myPrint( "Init Inicial\n" + initial.toString(), 0 );
-	myPrint( "Init Better\n" + better.toString(), 0 );
 
 	for( int i = 0; i < initial.getSize(); i++ ){
-//		myPrint( "Initial\n" + initial.toString(), 0 );
-//		myPrint( "Goal\n" + goal.toString(), 0 );
-//		myPrint( "Better\n" + better.toString(), 0 );
 
 		if( i < goal.getSize()-1 ){
 			goal.insertCityAt( i, initial.cities[i] );
@@ -35,24 +30,121 @@ Solution startToEnd( Solution initial, Solution goal ){
 			if( goal.getFitness() >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL &&
 					goal.getFitness() < better.getFitness() ){
 				better = goal.copy();
-				myPrint( "Trocou", 0 );
 			}
 		}
 	}
-	myPrint( "Return Inicial\n" + initial.toString(), 0 );
-	myPrint( "Return Better\n" + better.toString(), 0 );
-	string s = ">";
-	string s2 = "*";
 	return better;
 }
 
-vector< Solution > startToEndBackward( vector< Solution > elite ){
+Solution endToStart( Solution initial, Solution goal ){
+	Solution better = goal;
+
+	initial.calculeFitness();
+	goal.calculeFitness();
+	if( initial.getFitness() < goal.getFitness() ){
+		better = initial.copy();
+	}else{
+		better = goal.copy();
+	}
+
+	for( int i = initial.getSize()-1; i >= 0; i-- ){
+
+		if( i < goal.getSize()-1 ){
+			goal.insertCityAt( i, initial.cities[i] );
+			goal.insertCarAt( i, initial.cars[i] );
+		}else{
+			goal.addCityAndCarAt( i, initial.cities[i], initial.cars[i] );
+		}
+
+		if( isValid( goal ) ){
+			goal.calculeFitness();
+
+			if( goal.getFitness() >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL &&
+					goal.getFitness() < better.getFitness() ){
+				better = goal.copy();
+			}
+		}
+	}
+	return better;
+}
+
+Solution random( Solution initial, Solution goal ){
+	int aux = 0, randomNumber = 0;
+	int indexes[ initial.getSize() ];
+	Solution better = goal;
+
+	initial.calculeFitness();
+	goal.calculeFitness();
+	if( initial.getFitness() < goal.getFitness() ){
+		better = initial.copy();
+	}else{
+		better = goal.copy();
+	}
+
+	for( int i = 0; i < initial.getSize(); i++ ){
+		indexes[i] = i;
+	}
+	for( int i = 0; i < initial.getSize(); i++ ){
+		randomNumber = rand() % initial.getSize();
+		aux = indexes[ randomNumber ];
+		indexes[ randomNumber ] = indexes[ i ];
+		indexes[ i ] = aux;
+	}
+
+	for( int i = 0; i < initial.getSize(); i++ ){
+
+		if( indexes[ i ] < goal.getSize()-1 ){
+			goal.insertCityAt( indexes[ i ], initial.cities[ indexes[ i ] ] );
+			goal.insertCarAt( indexes[ i ], initial.cars[ indexes[ i ] ] );
+		}else{
+			goal.addCityAndCarAt( indexes[ i ], initial.cities[i], initial.cars[ indexes[ i ] ] );
+		}
+
+		if( isValid( goal ) ){
+			goal.calculeFitness();
+
+			if( goal.getFitness() >= minimal_satisfaction_GLOBAL*satisfaction_total_GLOBAL &&
+					goal.getFitness() < better.getFitness() ){
+				better = goal.copy();
+			}
+		}
+	}
+	return better;
+}
+
+Solution selector( Solution s1, Solution s2, string intermediaryStrategy, bool betterForWorse ){
+	Solution newSolution( numberCities_GLOBAL+1 );
+	if( intermediaryStrategy == "stef" || intermediaryStrategy == "steb"){
+		if( betterForWorse ){
+			newSolution = startToEnd( s1, s2 ).copy();
+		}else{
+			newSolution = startToEnd( s2, s1 ).copy();
+		}
+	}else if( intermediaryStrategy == "etsf" || intermediaryStrategy == "etsb" ){
+		if( betterForWorse ){
+			newSolution = endToStart( s1, s2 ).copy();
+		}else{
+			newSolution = endToStart( s2, s1 ).copy();
+		}
+	}else if( intermediaryStrategy == "rf" || intermediaryStrategy == "rb"){
+		if( betterForWorse ){
+			newSolution = random( s1, s2 ).copy();
+		}else{
+			newSolution = random( s2, s1 ).copy();
+		}
+	}
+	return newSolution;
+}
+
+vector< Solution > pathRelinking( vector< Solution > elite, string selectionStrategy, string intermediaryStrategy ){
+	bool betterForWorse = intermediaryStrategy == "stef" ||
+			intermediaryStrategy == "etsf" ||
+			intermediaryStrategy == "rf";
 	Solution newSolution( numberCities_GLOBAL+1 );
 
 	for( unsigned int i = 1; i < elite.size(); i++ ){
 		elite = quicksort( elite );
-		newSolution = startToEnd( elite[0], elite[i] ).copy();
-		myPrint( "Return Inicial\n" + newSolution.toString(), 0 );
+		newSolution = selector( elite[0], elite[i], intermediaryStrategy, betterForWorse );
 		newSolution.calculeFitness();
 		for( unsigned int j = 0; j < elite.size(); j++ ){
 			elite[i].calculeFitness();
@@ -66,21 +158,4 @@ vector< Solution > startToEndBackward( vector< Solution > elite ){
 		}
 	}
 	return elite;
-}
-
-vector< Solution > pathRelinking( vector< Solution > elite, string selectionStrategy, string intermediaryStrategy ){
-	if( intermediaryStrategy == "stef" ){
-
-	}else if( intermediaryStrategy == "steb" ){
-		return startToEndBackward( elite );
-	}else if( intermediaryStrategy == "etsf" ){
-
-	}else if( intermediaryStrategy == "etsb" ){
-
-	}else if( intermediaryStrategy == "rf" ){
-
-	}else if( intermediaryStrategy == "rb" ){
-
-	}
-	throw runtime_error( "Invalid strategy for path relinking: " + intermediaryStrategy );
 }
