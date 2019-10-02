@@ -37,6 +37,7 @@ Solution startToEnd( Solution initial, Solution goal ){
 }
 
 Solution endToStart( Solution initial, Solution goal ){
+	int size = initial.getSize() <= goal.getSize() ? initial.getSize() : goal.getSize();
 	Solution better = goal;
 
 	initial.calculeFitness();
@@ -47,7 +48,7 @@ Solution endToStart( Solution initial, Solution goal ){
 		better = goal.copy();
 	}
 
-	for( int i = initial.getSize()-1; i >= 0; i-- ){
+	for( int i =size-1; i >= 0; i-- ){
 
 		if( i < goal.getSize()-1 ){
 			goal.insertCityAt( i, initial.cities[i] );
@@ -69,8 +70,9 @@ Solution endToStart( Solution initial, Solution goal ){
 }
 
 Solution random( Solution initial, Solution goal ){
+	int size = initial.getSize() <= goal.getSize() ? initial.getSize() : goal.getSize();
 	int aux = 0, randomNumber = 0;
-	int indexes[ initial.getSize() ];
+	int indexes[ size ];
 	Solution better = goal;
 
 	initial.calculeFitness();
@@ -81,17 +83,17 @@ Solution random( Solution initial, Solution goal ){
 		better = goal.copy();
 	}
 
-	for( int i = 0; i < initial.getSize(); i++ ){
+	for( int i = 0; i < size; i++ ){
 		indexes[i] = i;
 	}
-	for( int i = 0; i < initial.getSize(); i++ ){
+	for( int i = 0; i < size; i++ ){
 		randomNumber = rand() % initial.getSize();
 		aux = indexes[ randomNumber ];
 		indexes[ randomNumber ] = indexes[ i ];
 		indexes[ i ] = aux;
 	}
 
-	for( int i = 0; i < initial.getSize(); i++ ){
+	for( int i = 0; i < size; i++ ){
 
 		if( indexes[ i ] < goal.getSize()-1 ){
 			goal.insertCityAt( indexes[ i ], initial.cities[ indexes[ i ] ] );
