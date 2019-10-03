@@ -87,7 +87,7 @@ Solution random( Solution initial, Solution goal ){
 		indexes[i] = i;
 	}
 	for( int i = 0; i < size; i++ ){
-		randomNumber = rand() % initial.getSize();
+		randomNumber = rand() % size;
 		aux = indexes[ randomNumber ];
 		indexes[ randomNumber ] = indexes[ i ];
 		indexes[ i ] = aux;

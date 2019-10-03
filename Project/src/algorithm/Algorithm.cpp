@@ -22,17 +22,17 @@ Algorithm::Algorithm(
 Solution Algorithm::lets_go(){
 	myPrint( "generation of population:", 1 );
 	population = generateInitialPopulation( sizePopulation );
-	checkPopulation( population );
+//	checkPopulation( population );
 	myPrint( "ok" , 1 );
 
 	myPrint( "multi operator local search:", 1 );
 	population = multiOperatorsLocalSearch( population );
-	checkPopulation( population );
+//	checkPopulation( population );
 	myPrint( "ok" , 1 );
 
 	myPrint( "select elite:", 1 );
 	elitePopulation = selectElite( elite, population );
-	checkPopulation( elitePopulation );
+//	checkPopulation( elitePopulation );
 	myPrint( "ok" , 1 );
 
 
@@ -47,17 +47,17 @@ Solution Algorithm::lets_go(){
 
 		myPrint( to_string(i) + "-multi operator local search: ", 1 );
 		offspring = multiOperatorsLocalSearch( offspring );
-		checkPopulation( population );
+//		checkPopulation( population );
 		myPrint( "ok" , 1 );
 
 		myPrint( to_string(i) + "-binary tournament: ", 1 );
 		population = binaryTournament( population, offspring );
-		checkPopulation( population );
+//		checkPopulation( population );
 		myPrint( "ok" , 1 );
 
 		myPrint( to_string(i) + "-select elite: ", 1 );
 		elitePopulation = selectElite( elite, population );
-		checkPopulation( population );
+//		checkPopulation( population );
 		myPrint( "ok", 1 );
 
 	}
@@ -79,7 +79,7 @@ void Algorithm::applyMemplasAndCrossover( int interation ){
 	}
 	myPrint( to_string( interation ) + "-restoring operations: ", 1 );
 	offspring = restoringOperations( offspring );
-	checkPopulation( offspring );
+//	checkPopulation( offspring );
 	myPrint( "ok", 1 );
 }
 
@@ -90,6 +90,6 @@ void Algorithm::applyMemplasAndCrossoverAndPathRelinking( int iteretion ){
 void Algorithm::applyPathRelinking( int interation ){
 	myPrint( to_string( interation ) + "-path relinking: ", 1 );
 	offspring = pathRelinking( elitePopulation, selectionStrategy, intermediaryStrategy );
-	checkPopulation( offspring );
+//	checkPopulation( offspring );
 	myPrint( "ok", 1 );
 }
