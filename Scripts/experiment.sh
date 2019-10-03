@@ -12,6 +12,6 @@ do
 	if [ -f "$file" ]
 	then
 		echo "$file"
-		./../Project/Debug/Project 1 1 1 "$PWD/$file" --strategy m --sizePopulation 150 --elite  0.3 --limitIterations 100 --sizePlasmideo 0.2 --cross 0.4 >> $log && echo "Ok"
+		./../Project/Debug/Project 1 1 1 "$PWD/$file" -strategy pr --sizePopulation 150 --elite 0.3 --limitIterations 100 --selectionStrategy a --intermediaryStrategy rf >> $log && echo "Ok"
 	fi
 done
