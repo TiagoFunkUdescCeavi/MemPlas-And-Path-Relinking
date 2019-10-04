@@ -1,0 +1,18 @@
+  key   value
+0   a       1
+1   a       2
+2   a       3
+3   b      10
+4   b      11
+5   c      20
+>>>>>>>>>
+      value
+key        
+a         6
+b        21
+c        20
+      value
+key        
+a         1
+b        10
+c        20
