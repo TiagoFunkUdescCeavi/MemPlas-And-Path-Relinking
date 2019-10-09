@@ -144,8 +144,8 @@ vector< Solution > pathRelinking( vector< Solution > elite, string selectionStra
 			intermediaryStrategy == "rf";
 	Solution newSolution( numberCities_GLOBAL+1 );
 
+	elite = quicksort( elite );
 	for( unsigned int i = 1; i < elite.size(); i++ ){
-		elite = quicksort( elite );
 		newSolution = selector( elite[0], elite[i], intermediaryStrategy, betterForWorse );
 		newSolution.calculeFitness();
 		for( unsigned int j = 0; j < elite.size(); j++ ){

@@ -37,13 +37,13 @@ Solution Algorithm::lets_go(){
 
 
 	for ( int i = 0; i < limitIterations; i++ ){
-		if( strategy == "m" ){
-			applyMemplasAndCrossover( i );
-		}else if( strategy == "mpr" ){
-			applyMemplasAndCrossoverAndPathRelinking( i );
-		}else if( strategy == "pr" ){
-			applyPathRelinking( i );
-		}
+//		if( strategy == "m" ){
+//			applyMemplasAndCrossover( i );
+//		}else if( strategy == "mpr" ){
+//			applyMemplasAndCrossoverAndPathRelinking( i );
+//		}else if( strategy == "pr" ){
+//			applyPathRelinking( i );
+//		}
 
 		myPrint( to_string(i) + "-multi operator local search: ", 1 );
 		offspring = multiOperatorsLocalSearch( offspring );

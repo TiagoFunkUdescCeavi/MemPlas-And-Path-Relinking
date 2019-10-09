@@ -1,9 +1,9 @@
 # name					switch		     			type		values							[conditions (using R syntax)]
 #strategy				"--strategy "				c			(m,mpr,pr)
 strategy				"--strategy "				c			(pr)
-sizePopulation			"--sizePopulation "			i			(100,200)
+sizePopulation			"--sizePopulation "			i			(100,300)
 elite					"--elite "					r			(0.1,0.9)
-limitIterations			"--limitIterations "		i			(100,500)
+limitIterations			"--limitIterations "		i			(100,2000)
 sizePlasmideo			"--sizePlasmideo "			r			(0.3,0.7)						| strategy == "m" 	| strategy == "mpr"
 cross					"--cross "					r			(0.1, 0.9)						| strategy == "m" 	| strategy == "mpr"
 selectionStrategy		"--selectionStrategy "		c			(a)								| strategy == "mpr" | strategy == "pr"
