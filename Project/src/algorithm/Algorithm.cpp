@@ -83,8 +83,23 @@ void Algorithm::applyMemplasAndCrossover( int interation ){
 	myPrint( "ok", 1 );
 }
 
-void Algorithm::applyMemplasAndCrossoverAndPathRelinking( int iteretion ){
-
+void Algorithm::applyMemplasAndCrossoverAndPathRelinking( int interation ){
+	if( interation % 10 != 0 ){
+			myPrint( to_string( interation ) + "-crossover:", 1 );
+			selection = selectPopulation( cross, population );
+			offspring = crossover( selection );
+			myPrint( "ok", 1 );
+		}else{
+			myPrint( to_string( interation ) + "-plasmid: ", 1 );
+			selection = selectPopulation( elite, population );
+			offspring = plasmid( selection, sizePlasmideo, elitePopulation );
+			myPrint( "ok", 1 );
+		}
+		myPrint( to_string( interation ) + "-restoring operations: ", 1 );
+		offspring = restoringOperations( offspring );
+		offspring = pathRelinking( offspring, selectionStrategy, intermediaryStrategy );
+	//	checkPopulation( offspring );
+		myPrint( "ok", 1 );
 }
 
 void Algorithm::applyPathRelinking( int interation ){
