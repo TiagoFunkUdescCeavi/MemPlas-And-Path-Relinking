@@ -3,10 +3,10 @@
 cd $HOME
 cd "Repositorios/Github/MemPlas-And-Path-Relinking/Instances/"
 
-log=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Logs/results_memplas_path_1.csv"
+log=$HOME"/Repositorios/Github/MemPlas-And-Path-Relinking/Logs/results_memplas_path_4.csv"
 
 echo "instance,strategy,result,time" > $log
-for n in $(seq 1 8)
+for n in $(seq 1 7)
 do
     for file in *
     do
