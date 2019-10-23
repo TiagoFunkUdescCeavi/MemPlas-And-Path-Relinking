@@ -1,18 +1,9 @@
+import sys
 import pandas as pd
 
-# state_of_art = pd.read_csv('../expected.csv')
-
-# results = pd.read_csv('../Logs/results.csv')
-
-# together = pd.merge(results, state_of_art, how ='inner', on ='instance')
-
-# groups = together.groupby(['instance'])
-
-# average = groups.mean()
-# print( average )
-
 # Leio o arquivo com os dados
-data = pd.read_csv("../Logs/results_memplas.csv")
+# "../Logs/results_memplas.csv"
+data = pd.read_csv( sys.argv[1] )
 # print( '>>>>>>>>> Data' )
 # print( data )
 
@@ -52,15 +43,20 @@ average.columns = ['instance','average']
 # print( '>>>>>>>>> Average' )
 # print( average )
 
+time_average = groups['time'].mean().reset_index()
+time_average.columns = ['instance','time_average']
+# print( '>>>>>>>>> time average' )
+# print( time_average )
+
 # # Encontro o menor valor dos grupos
 minimun = groups['result'].min().reset_index()
-minimun.columns = ['instance','min']
+minimun.columns = ['instance','minimal']
 # print( '>>>>>>>>> Minimun' )
 # print( minimun )
 
 # # Calculo quantas vezes o grupo chegou no resultado.
 number_bests = groups['number_bests'].sum().reset_index()
-number_bests.columns = ['instance','n_b']
+number_bests.columns = ['instance','bests']
 # print( '>>>>>>>>> number_bests' )
 # print( number_bests )
 
@@ -74,7 +70,13 @@ final = pd.merge(final, number_bests, how ='inner', on ='instance')
 # print( '>>>>>>>>> Final' )
 # print( final )
 
-# # Junto com os valores.
+# # Junto com os melhores valores.
 final = pd.merge(best, final, how ='inner', on ='instance')
-print( '>>>>>>>>> Final' )
-print( final )
+
+# # Junto com a média de tempo.
+final = pd.merge(final, time_average, how ='inner', on ='instance')
+# print( '>>>>>>>>> Final' )
+# print( final )
+
+# ./Logs/results_memplas_e.csv
+csv = final.to_csv( sys.argv[2], index=False )
