@@ -12,7 +12,7 @@ import pandas as pd
 # print( average )
 
 # Leio o arquivo com os dados
-data = pd.read_csv("../Logs/backup/results_memplas_2_bkp.csv")
+data = pd.read_csv("../Logs/results_memplas.csv")
 # print( '>>>>>>>>> Data' )
 # print( data )
 
