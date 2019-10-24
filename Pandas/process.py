@@ -75,8 +75,8 @@ final = pd.merge(best, final, how ='inner', on ='instance')
 
 # # Junto com a média de tempo.
 final = pd.merge(final, time_average, how ='inner', on ='instance')
+final = final.round(3)
 # print( '>>>>>>>>> Final' )
 # print( final )
 
-# ./Logs/results_memplas_e.csv
-csv = final.to_csv( sys.argv[2], index=False )
+csv = final.to_csv( sys.argv[2], index=False, float_format='%.3f' )
