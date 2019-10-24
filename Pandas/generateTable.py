@@ -9,8 +9,8 @@ caption = caption.replace("_","\_")
 label = label.replace("_","\_")
 
 info = "\caption{"+caption+"}\n\label{tab:"+label+"}\n"
-header = "\\begin{table}[htb]\n"+info+"\\begin{tabular}{@{}llllll@{}}\n\\toprule\n"
-footer = "\\bottomrule\n\end{tabular}\n\end{table}\n"
+header = "\\begin{landscape}\n\\begin{table}[htb]\n\n"+info+"\\begin{tabular}{@{}lrrrrrrrrr@{}}\n\\toprule\n"
+footer = "\\bottomrule\n\end{tabular}\n\end{table}\n\end{landscape}\n"
 
 with open(fileOutput, 'w') as output:
     with open(fileInput) as fp:
