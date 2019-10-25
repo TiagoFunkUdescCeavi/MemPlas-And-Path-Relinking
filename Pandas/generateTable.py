@@ -9,7 +9,8 @@ caption = caption.replace("_","\_")
 label = label.replace("_","\_")
 
 info = "\caption{"+caption+"}\n\label{tab:"+label+"}\n"
-header = "\\begin{landscape}\n\\begin{table}[htb]\n\n"+info+"\\begin{tabular}{@{}lrrrrrrrrr@{}}\n\\toprule\n"
+header = "\\begin{landscape}\n\\begin{table}[htb]\n\n"+info+"\\begin{tabular}{@{}lr|rr|rr|rr|rr@{}}\n\\toprule\n"
+header += "\multicolumn{2}{c}{Problemas}&\multicolumn{2}{c}{Memplas}&\multicolumn{2}{c}{Path Relinking}&\multicolumn{2}{c}{Memplas + Path R.}&\multicolumn{2}{c}{Buscas locais}\\\\\\midrule\n"
 footer = "\\bottomrule\n\end{tabular}\n\end{table}\n\end{landscape}\n"
 
 with open(fileOutput, 'w') as output:
