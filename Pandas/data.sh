@@ -41,7 +41,4 @@ anova() {
 	echo "ok"
 }
 
-process
-joinTables
-generateTables
 anova

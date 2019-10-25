@@ -20,16 +20,11 @@ together = pd.concat([data1, data2, data3, data4 ])
 
 groups = together.groupby(['strategy'])
 
-max = groups['result'].max().reset_index()
-print( max )
-
 data = pd.DataFrame(groups.get_group("m")["result"])
 data["x"] = groups.get_group("pr")["result"]
 data["y"] = groups.get_group("mpr")["result"]
 data["z"] = groups.get_group("ols")["result"]
 data.columns = ["Memplas", "Path Relinking", "Memplas + Path R.","Locals searchs"]
-print( data )
-
 plot = data.boxplot(column=["Memplas", "Path Relinking", "Memplas + Path R.","Locals searchs"], grid=False)
 fig = plot.get_figure()
 fig.savefig("fig.pdf")
