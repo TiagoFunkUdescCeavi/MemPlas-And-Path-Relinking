@@ -2,19 +2,13 @@ import sys
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
-
-# data = pd.read_csv( "../Logs/test_anova.csv")
-# plot = data.boxplot(column=['a', 'b', 'c', 'd'], grid=False)
-# fig = plot.get_figure()
-# fig.savefig("fig.pdf")
-# fvalue, pvalue = stats.f_oneway( data["a"], data["b"], data["c"], data["d"] )
-# print( fvalue )
-# print( pvalue )
+import matplotlib.pyplot as plt
 
 data1 = pd.read_csv( sys.argv[1] )
 data2 = pd.read_csv( sys.argv[2] )
 data3 = pd.read_csv( sys.argv[3] )
 data4 = pd.read_csv( sys.argv[4] )
+name_fig = sys.argv[5]
 
 together = pd.concat([data1, data2, data3, data4 ])
 
@@ -26,9 +20,12 @@ data["y"] = groups.get_group("mpr")["result"]
 data["z"] = groups.get_group("ols")["result"]
 data.columns = ["Memplas", "Path Relinking", "Memplas + Path R.","Locals searchs"]
 plot = data.boxplot(column=["Memplas", "Path Relinking", "Memplas + Path R.","Locals searchs"], grid=False)
+# plot.set_title("Boxplot dos resultados para cada algoritmo")
+plt.ylabel("Qualidade da melhor resposta")
+plt.xlabel("Algoritmos")
 fig = plot.get_figure()
-fig.savefig("fig.pdf")
+fig.savefig(name_fig+".pdf")
 
 fvalue, pvalue = stats.f_oneway( groups.get_group("m")["result"], groups.get_group("pr")["result"], groups.get_group("mpr")["result"], groups.get_group("ols")["result"] )
-print( fvalue )
+# print( fvalue )
 print( pvalue )

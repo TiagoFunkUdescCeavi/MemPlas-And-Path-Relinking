@@ -36,9 +36,19 @@ generateTables() {
 }
 
 anova() {
-	echo "ANOVA"
-	python3 anova.py "../Logs/results_memplas_e.csv" "../Logs/results_memplas_path_e.csv" "../Logs/results_operators_local_search_e.csv" "../Logs/results_path_e.csv"
+	#echo "ANOVA"
+	echo -n "Euclidianas: "
+	python3 anova.py "../Logs/results_memplas_e.csv" "../Logs/results_memplas_path_e.csv" "../Logs/results_operators_local_search_e.csv" "../Logs/results_path_e.csv" "boxplot_todos_eucliadianos"
+	echo -n "Não Euclidianas: "
+	python3 anova.py "../Logs/results_memplas_n.csv" "../Logs/results_memplas_path_n.csv" "../Logs/results_operators_local_search_n.csv" "../Logs/results_path_n.csv" "boxplot_todos_nao_eucliadianos"
+	#echo "ok"
+}
+
+anova_all() {
+	echo "ANOVA All"
+	python3 anova_all.py "../Logs/results_memplas_e.csv" "../Logs/results_memplas_path_e.csv" "../Logs/results_operators_local_search_e.csv" "../Logs/results_path_e.csv"
+	#python3 anova_all.py "../Logs/results_memplas_n.csv" "../Logs/results_memplas_path_n.csv" "../Logs/results_operators_local_search_n.csv" "../Logs/results_path_n.csv"
 	echo "ok"
 }
 
-anova
+anova_all

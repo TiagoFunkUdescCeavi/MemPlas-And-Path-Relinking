@@ -25,10 +25,10 @@ Solution Algorithm::lets_go(){
 //	checkPopulation( population );
 	myPrint( "ok" , 1 );
 
-	myPrint( "multi operator local search:", 1 );
-	population = multiOperatorsLocalSearch( population );
-//	checkPopulation( population );
-	myPrint( "ok" , 1 );
+//	myPrint( "multi operator local search:", 1 );
+//	population = multiOperatorsLocalSearch( population );
+////	checkPopulation( population );
+//	myPrint( "ok" , 1 );
 
 	myPrint( "select elite:", 1 );
 	elitePopulation = selectElite( elite, population );
@@ -45,10 +45,10 @@ Solution Algorithm::lets_go(){
 //			applyPathRelinking( i );
 //		}
 
-		myPrint( to_string(i) + "-multi operator local search: ", 1 );
-		offspring = multiOperatorsLocalSearch( offspring );
+//		myPrint( to_string(i) + "-multi operator local search: ", 1 );
+//		offspring = multiOperatorsLocalSearch( offspring );
 //		checkPopulation( population );
-		myPrint( "ok" , 1 );
+//		myPrint( "ok" , 1 );
 
 		myPrint( to_string(i) + "-binary tournament: ", 1 );
 		population = binaryTournament( population, offspring );
