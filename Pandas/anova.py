@@ -18,10 +18,10 @@ data = pd.DataFrame(groups.get_group("m")["result"])
 data["x"] = groups.get_group("pr")["result"]
 data["y"] = groups.get_group("mpr")["result"]
 data["z"] = groups.get_group("ols")["result"]
-data.columns = ["Memplas", "Path Relinking", "Memplas + Path R.","Locals searchs"]
-plot = data.boxplot(column=["Memplas", "Path Relinking", "Memplas + Path R.","Locals searchs"], grid=False)
+data.columns = ["Plasmídeo", "Path Relinking", "Plasmídeo + Path R.","Buscas Locais"]
+plot = data.boxplot(column=["Plasmídeo", "Path Relinking", "Plasmídeo + Path R.","Buscas Locais"], grid=False)
 # plot.set_title("Boxplot dos resultados para cada algoritmo")
-plt.ylabel("Qualidade da melhor resposta")
+plt.ylabel("Qualidade da melhor solução")
 plt.xlabel("Algoritmos")
 fig = plot.get_figure()
 fig.savefig(name_fig+".pdf")
