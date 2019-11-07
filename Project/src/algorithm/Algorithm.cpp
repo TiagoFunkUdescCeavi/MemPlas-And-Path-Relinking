@@ -35,15 +35,15 @@ Solution Algorithm::lets_go(){
 //	checkPopulation( elitePopulation );
 	myPrint( "ok" , 1 );
 
-
 	for ( int i = 0; i < limitIterations; i++ ){
-//		if( strategy == "m" ){
-//			applyMemplasAndCrossover( i );
-//		}else if( strategy == "mpr" ){
-//			applyMemplasAndCrossoverAndPathRelinking( i );
-//		}else if( strategy == "pr" ){
-//			applyPathRelinking( i );
-//		}
+		if( strategy == "om" ){
+			applyMemplasAndCrossover( i );
+		}else if( strategy == "ompr" ){
+			applyMemplasAndCrossoverAndPathRelinking( i );
+		}else if( strategy == "opr" ){
+			applyPathRelinking( i );
+		}
+
 
 //		myPrint( to_string(i) + "-multi operator local search: ", 1 );
 //		offspring = multiOperatorsLocalSearch( offspring );

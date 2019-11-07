@@ -3,15 +3,16 @@ import operator
 
 fileInput1 = "log1"
 fileInput2 = "log2"
-fileOutput1 = "anova.tex"
-fileOutput2 = "tukey.tex"
+fileOutput1 = "anova_new.tex"
+fileOutput2 = "tukey_new.tex"
 
 listOfPairs = []
 listOfLines = []
 
-info_anova = "\caption{Resultados do teste do ANOVA}\n\label{tab:resultados_anova}\n"
-header_anova = "\\begin{table}[htb]\n\n"+info_anova+"\\begin{tabular}{@{}lr|lr@{}}\n\\toprule\n"
-header_anova += "Instancia&Valor P (\%)&Instancia&Valor p (\%)\\\\\\midrule\n"
+info_anova = "\caption{Resultados do teste do ANOVA por instância}\n\label{tab:resultados_anova}\n"
+header_anova = "\\begin{table}[htb]\n"+info_anova+"\\begin{tabular}{@{}lr|lr@{}}\n\\toprule\n"
+header_anova += "\multicolumn{2}{c|}{Euclidianas}&\multicolumn{2}{|c}{Não Euclidianas}\\\\"
+header_anova += "Inst\^ancia&p (\%)&Inst\^ancia&p (\%)\\\\\\midrule\n"
 footer_anova = "\\bottomrule\n\end{tabular}\n\end{table}\n"
 content_anova = ""
 
@@ -20,8 +21,8 @@ info_tukey = "\caption{Resultados do teste de Tukey}\n\label{tab:resultados_tuke
 header_tukey = "\\begin{landscape}\n\\begin{table}[htb]\n\n"+info_tukey+"\\begin{tabular}{@{}l|rr|rr|rr|rr|rr|rr@{}}\n\\toprule\n"
 header_tukey += "Instancia&\multicolumn{2}{|c|}{m-mpr}&\multicolumn{2}{|c|}{m-ols}&\multicolumn{2}{|c|}{m-pr}&\multicolumn{2}{|c|}{mpr-ols}&"
 header_tukey += "\multicolumn{2}{|c|}{mpr-pr}&\multicolumn{2}{|c|}{ols-pr}\\\\\n"
-header_tukey += "&Dif. Media&Valor p (\%)&Dif. Media&Valor p (\%)&"
-header_tukey += "Dif. Media&Valor p (\%)&Dif. Media&Valor p (\%)&Dif. Media&Valor p (\%)&Dif. Media&Valor p (\%)\\\\\\midrule\n"
+header_tukey += "&D.M.&p (\%)&D.M.&p (\%)&"
+header_tukey += "D.M.&p (\%)&D.M.&p (\%)&D.M.&p (\%)&D.M.&p (\%)\\\\\\midrule\n"
 footer_tukey = "\\bottomrule\n\end{tabular}\n\end{table}\n\end{landscape}\n"
 content_tukey = ""
 
@@ -79,8 +80,8 @@ for c, p in enumerate( listOfPairs ):
         content_anova += "\\\\\n"
 content_anova = content_anova.replace("nan","100.00")
 
-# file = open( fileOutput1, "w")
-# file.write( header_anova + content_anova + footer_anova )
+file = open( fileOutput1, "w")
+file.write( header_anova + content_anova + footer_anova )
 
-file = open( fileOutput2, "w")
-file.write( header_tukey + content_tukey + footer_tukey )
+# file = open( fileOutput2, "w")
+# file.write( header_tukey + content_tukey + footer_tukey )

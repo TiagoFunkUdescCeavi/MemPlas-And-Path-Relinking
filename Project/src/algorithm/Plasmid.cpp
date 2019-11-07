@@ -3,6 +3,7 @@
 #include "../utils/Prints.h"
 
 vector< Solution > plasmid( vector< Solution > population, double sizePlas, vector< Solution > elite ){
+	myPrint( "########", 2 );
 	int numberOfSolutions = elite.size();
 	int sizeSolution = -1;
 	int randomNumber = -1;
@@ -20,6 +21,7 @@ vector< Solution > plasmid( vector< Solution > population, double sizePlas, vect
 		sizeSolution = ( (sElite.getSize() <= sNormal.getSize()) ? sElite.getSize()-1 : sNormal.getSize()-1 );
 		randomNumber = sizeSolution * sizePlas;
 		randomNumber = ( rand() % (sizeSolution-randomNumber) );
+
 
 		newSol = Solution( numberCities_GLOBAL+1 );
 
