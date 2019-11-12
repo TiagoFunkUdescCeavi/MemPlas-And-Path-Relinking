@@ -1,2 +1,2 @@
-Euclidianas: 0.3751048587532172
-Não Euclidianas: 0.1353444610627215
+Euclidianas: 0.31587039141757906
+Não Euclidianas: 0.0

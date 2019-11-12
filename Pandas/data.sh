@@ -37,7 +37,7 @@ joinTables() {
 	echo "Join Tables"
 	python3 joinTables.py "../Logs/Results/memplas_e.csv" "../Logs/Results/memplas_path_e.csv" "../Logs/Results/path_e.csv" "../Logs/Results/operators_local_search_e.csv" "../Logs/Results/only_memplas_e.csv" "../Logs/Results/only_path_e.csv" "../Logs/Results/only_memplas_path_e.csv" "../expected.csv" "../Logs/Results/together_e.csv"
 	python3 joinTables.py "../Logs/Results/memplas_n.csv" "../Logs/Results/memplas_path_n.csv" "../Logs/Results/path_n.csv" "../Logs/Results/operators_local_search_n.csv" "../Logs/Results/only_memplas_n.csv" "../Logs/Results/only_path_n.csv" "../Logs/Results/only_memplas_path_n.csv" "../expected.csv" "../Logs/Results/together_n.csv"
-echo "Ok"
+	echo "Ok"
 }
 
 generateTables() {
@@ -50,9 +50,9 @@ generateTables() {
 anova() {
 	#echo "ANOVA"
 	echo -n "Euclidianas: "
-	python3 anova.py "../Logs/results_memplas_e.csv" "../Logs/results_memplas_path_e.csv" "../Logs/results_operators_local_search_e.csv" "../Logs/results_path_e.csv" "boxplot_todos_eucliadianos"
+	python3 anova.py "../Logs/results_memplas_e.csv" "../Logs/results_path_e.csv" "../Logs/results_memplas_path_e.csv" "../Logs/results_operators_local_search_e.csv" "../Logs/results_only_memplas_e.csv" "../Logs/results_only_memplas_path_e.csv" "../Logs/results_only_path_e.csv" "boxplot_todos_eucliadianos"
 	echo -n "Não Euclidianas: "
-	python3 anova.py "../Logs/results_memplas_n.csv" "../Logs/results_memplas_path_n.csv" "../Logs/results_operators_local_search_n.csv" "../Logs/results_path_n.csv" "boxplot_todos_nao_eucliadianos"
+	python3 anova.py "../Logs/results_memplas_n.csv" "../Logs/results_path_n.csv" "../Logs/results_memplas_path_n.csv" "../Logs/results_operators_local_search_n.csv" "../Logs/results_only_memplas_n.csv" "../Logs/results_only_memplas_path_n.csv" "../Logs/results_only_path_n.csv" "boxplot_todos_nao_eucliadianos"
 	#echo "ok"
 }
 
@@ -63,4 +63,7 @@ anova_all() {
 	echo "ok"
 }
 
+process
+joinTables
 generateTables
+anova
