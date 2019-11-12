@@ -17,14 +17,26 @@ process() {
 	python3 process.py "../Logs/results_path_e.csv" "../Logs/Results/path_e.csv"
 	python3 process.py "../Logs/results_path_n.csv" "../Logs/Results/path_n.csv"
 	echo "path"
+	
+	python3 process.py "../Logs/results_only_memplas_e.csv" "../Logs/Results/only_memplas_e.csv"
+	python3 process.py "../Logs/results_only_memplas_n.csv" "../Logs/Results/only_memplas_n.csv"
+	echo "only memplas"
+
+	python3 process.py "../Logs/results_only_memplas_path_e.csv" "../Logs/Results/only_memplas_path_e.csv"
+	python3 process.py "../Logs/results_only_memplas_path_n.csv" "../Logs/Results/only_memplas_path_n.csv"
+	echo "only memplas and path"
+
+	python3 process.py "../Logs/results_only_path_e.csv" "../Logs/Results/only_path_e.csv"
+	python3 process.py "../Logs/results_only_path_n.csv" "../Logs/Results/only_path_n.csv"
+	echo "only path"
 
 	echo "Ok"
 }
 
 joinTables() {
 	echo "Join Tables"
-	python3 joinTables.py "../Logs/Results/memplas_e.csv" "../Logs/Results/memplas_path_e.csv" "../Logs/Results/operators_local_search_e.csv" "../Logs/Results/path_e.csv" "../expected.csv" "../Logs/Results/together_e.csv"
-	python3 joinTables.py "../Logs/Results/memplas_n.csv" "../Logs/Results/memplas_path_n.csv" "../Logs/Results/operators_local_search_n.csv" "../Logs/Results/path_n.csv" "../expected.csv" "../Logs/Results/together_n.csv"
+	python3 joinTables.py "../Logs/Results/memplas_e.csv" "../Logs/Results/memplas_path_e.csv" "../Logs/Results/path_e.csv" "../Logs/Results/operators_local_search_e.csv" "../Logs/Results/only_memplas_e.csv" "../Logs/Results/only_path_e.csv" "../Logs/Results/only_memplas_path_e.csv" "../expected.csv" "../Logs/Results/together_e.csv"
+	python3 joinTables.py "../Logs/Results/memplas_n.csv" "../Logs/Results/memplas_path_n.csv" "../Logs/Results/path_n.csv" "../Logs/Results/operators_local_search_n.csv" "../Logs/Results/only_memplas_n.csv" "../Logs/Results/only_path_n.csv" "../Logs/Results/only_memplas_path_n.csv" "../expected.csv" "../Logs/Results/together_n.csv"
 echo "Ok"
 }
 
@@ -51,4 +63,4 @@ anova_all() {
 	echo "ok"
 }
 
-anova
+generateTables
