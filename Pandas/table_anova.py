@@ -40,7 +40,7 @@ def anova_test( line ):
 
 def tukey_test( listOfLines, index ):
     content = listOfLines[i-1].split(";")[0] + "&"
-    for j in range(4, 10):
+    for j in range(4, 7):
         x = listOfLines[ index+j ]
         x = x.split(" ")
         x = [ s.strip() for s in x if s.strip() != ""]
@@ -66,7 +66,7 @@ while( i < len( listOfLines ) ):
     # print( listOfLines[i],"--->",i )
     if listOfLines[i].find("Multiple") != -1:
         content_tukey += tukey_test( listOfLines, i )
-        i += 11
+        i += 8
     else:
         anova_test( listOfLines[i] )
         i += 1
@@ -83,5 +83,5 @@ content_anova = content_anova.replace("nan","100.00")
 file = open( fileOutput1, "w")
 file.write( header_anova + content_anova + footer_anova )
 
-# file = open( fileOutput2, "w")
-# file.write( header_tukey + content_tukey + footer_tukey )
+file = open( fileOutput2, "w")
+file.write( header_tukey + content_tukey + footer_tukey )

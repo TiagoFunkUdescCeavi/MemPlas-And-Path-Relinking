@@ -58,12 +58,9 @@ anova() {
 
 anova_all() {
 	echo "ANOVA All"
-	python3 anova_all.py "../Logs/results_memplas_e.csv" "../Logs/results_memplas_path_e.csv" "../Logs/results_operators_local_search_e.csv" "../Logs/results_path_e.csv" > log1
-	python3 anova_all.py "../Logs/results_memplas_n.csv" "../Logs/results_memplas_path_n.csv" "../Logs/results_operators_local_search_n.csv" "../Logs/results_path_n.csv" > log2
+	python3 anova_all.py "../Logs/results_memplas_e.csv" "../Logs/results_memplas_path_e.csv" "../Logs/results_operators_local_search_e.csv" "../Logs/results_path_e.csv" "../Logs/results_only_memplas_e.csv" "../Logs/results_only_path_e.csv" "../Logs/results_only_memplas_path_e.csv" > log1
+	python3 anova_all.py "../Logs/results_memplas_n.csv" "../Logs/results_memplas_path_n.csv" "../Logs/results_operators_local_search_n.csv" "../Logs/results_path_n.csv" "../Logs/results_only_memplas_n.csv" "../Logs/results_only_path_n.csv" "../Logs/results_only_memplas_path_n.csv" > log2
 	echo "ok"
 }
 
-process
-joinTables
-generateTables
-anova
+anova_all

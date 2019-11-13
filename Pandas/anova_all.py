@@ -9,8 +9,14 @@ data1 = pd.read_csv( sys.argv[1] )
 data2 = pd.read_csv( sys.argv[2] )
 data3 = pd.read_csv( sys.argv[3] )
 data4 = pd.read_csv( sys.argv[4] )
+data5 = pd.read_csv( sys.argv[5] )
+data6 = pd.read_csv( sys.argv[6] )
+data7 = pd.read_csv( sys.argv[7] )
 
-together = pd.concat([data1, data2, data3, data4 ])
+together = pd.concat([
+    # data1, data2, data3, data4, 
+    data5, data6, data7 
+  ])
 
 groups = together.groupby(["instance",'strategy'])
 
@@ -21,10 +27,13 @@ algorithms = together["strategy"].unique()
 
 for inst in instances:
     fvalue, pvalue = stats.f_oneway( 
-        groups.get_group( (inst,"m") )["result"], 
-        groups.get_group( (inst,"pr") )["result"], 
-        groups.get_group((inst,"mpr"))["result"],
-        groups.get_group((inst,"ols"))["result"] 
+        # groups.get_group( (inst,"m") )["result"], 
+        # groups.get_group( (inst,"pr") )["result"], 
+        # groups.get_group( (inst,"mpr") )["result"],
+        # groups.get_group( (inst,"ols") )["result"],
+        groups.get_group( (inst,"om") )["result"],
+        groups.get_group( (inst,"opr") )["result"],
+        groups.get_group( (inst,"ompr") )["result"]
     )
     print( inst+";"+str(round(pvalue,4)) )
 
