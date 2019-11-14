@@ -1,13 +1,13 @@
 import re
 
 def is_e( name ):
-    if re.search("e$", name):
+    if re.search("e$", name) and name != "att48Ae":
         return True
     else:
         return False
 
 def is_n( name ):
-    if re.search("n$", name):
+    if re.search("n$", name) and name != "att48An":
         return True
     else:
         return False

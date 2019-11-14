@@ -5,6 +5,10 @@ import instance_separator
 import process
 import joinTables
 import generateTable
+import graphics
+import anova_all
+import anova_one_to_one
+import table_anova
 
 fm = "../Logs/results_memplas.csv"
 fpr = "../Logs/results_path.csv"
@@ -49,7 +53,7 @@ generateTable.generateTable(
     ), 
     "Resultados nas instâncias euclidianas", 
     "resultadosEuclidianas", 
-    "../Logs/Results/tex/together_e.tex"
+    "../Logs/Results/together_e.tex"
 )
 
 generateTable.generateTable(
@@ -59,6 +63,56 @@ generateTable.generateTable(
     ),
     "Resultados nas instâncias não euclidianas",
     "resultadosNaoEuclidianas",
-    "../Logs/Results/tex/together_n.tex"
+    "../Logs/Results/together_n.tex"
 )
 print( "Join tables and Generates tables")
+
+graphics.graphics(
+    "../Logs/Results/boxplot_todos_eucliadianos.pdf",
+    #m_e, pr_e, mpr_e, ols_e,
+    om_e, opr_e, ompr_e
+)
+
+graphics.graphics(
+    "../Logs/Results/boxplot_todos_nao_eucliadianos.pdf",
+    #m_n, pr_n, mpr_n, ols_n,
+    om_n, opr_n, ompr_n
+)
+
+print( "graphics" )
+
+anova_all.anova_all(
+    "e", "../Logs/Results/pvalues.txt",
+    #m_e, pr_e, mpr_e, ols_e,
+    om_e, opr_e, ompr_e
+)
+anova_all.anova_all(
+    "n", "../Logs/Results/pvalues.txt",
+    #m_n, pr_n, mpr_n, ols_n,
+    om_n, opr_n, ompr_n
+)
+print( "anova")
+
+anova_one_to_one.anova_one_to_one(
+    True,
+    "../Logs/Results/anova.txt",
+    "../Logs/Results/tukey.txt",
+    om_e, opr_e, ompr_e
+)
+anova_one_to_one.anova_one_to_one(
+    False,
+    "../Logs/Results/anova.txt",
+    "../Logs/Results/tukey.txt",
+    om_n, opr_n, ompr_n
+)
+
+print( "anova_one_to_one" )
+
+table_anova.table_anova(
+    "../Logs/Results/anova.txt", 
+    "../Logs/Results/tukey.txt",
+    "../Logs/Results/anova.tex",
+    "../Logs/Results/tukey.tex"
+)
+
+print( "table_anova_tukey" )

@@ -1,43 +1,25 @@
-import sys
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
-from statsmodels.stats.multicomp import pairwise_tukeyhsd
-from statsmodels.stats.multicomp import MultiComparison
+import matplotlib.pyplot as plt
 
-data1 = pd.read_csv( sys.argv[1] )
-data2 = pd.read_csv( sys.argv[2] )
-data3 = pd.read_csv( sys.argv[3] )
-data4 = pd.read_csv( sys.argv[4] )
-data5 = pd.read_csv( sys.argv[5] )
-data6 = pd.read_csv( sys.argv[6] )
-data7 = pd.read_csv( sys.argv[7] )
-
-together = pd.concat([
-    # data1, data2, data3, data4, 
-    data5, data6, data7 
-  ])
-
-groups = together.groupby(["instance",'strategy'])
-
-other_groups = together.groupby(["instance"])
-
-instances = together["instance"].unique()
-algorithms = together["strategy"].unique()
-
-for inst in instances:
-    fvalue, pvalue = stats.f_oneway( 
-        # groups.get_group( (inst,"m") )["result"], 
-        # groups.get_group( (inst,"pr") )["result"], 
-        # groups.get_group( (inst,"mpr") )["result"],
-        # groups.get_group( (inst,"ols") )["result"],
-        groups.get_group( (inst,"om") )["result"],
-        groups.get_group( (inst,"opr") )["result"],
-        groups.get_group( (inst,"ompr") )["result"]
+def anova_all( type, file_output, *datas ):
+    together = pd.DataFrame()
+    for d in datas:
+        together = pd.concat( [together, d] )
+    
+    groups = together.groupby(['strategy'])
+    
+    fvalue, pvalue = stats.f_oneway(
+        # groups.get_group("m")["result"],
+        # groups.get_group("pr")["result"],
+        # groups.get_group("mpr")["result"],
+        # groups.get_group("ols")["result"],
+        groups.get_group("om")["result"],
+        groups.get_group("opr")["result"],
+        groups.get_group("ompr")["result"]
     )
-    print( inst+";"+str(round(pvalue,4)) )
+    
+    file = open( file_output, "a" )
+    file.write( type + ":" + str( pvalue ) + "\n" )
 
-    if pvalue < 0.05:
-        mc = MultiComparison( other_groups.get_group(inst)["result"], other_groups.get_group(inst)["strategy"] )
-        mc_results = mc.tukeyhsd()
-        print(mc_results.summary())

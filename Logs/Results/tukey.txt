@@ -169,7 +169,6 @@ group1 group2 meandiff p-adj   lower  upper  reject
     om    opr     -0.9    0.9 -13.477 11.677  False
   ompr    opr    -14.2 0.0229 -26.777 -1.623   True
 ---------------------------------------------------
-EUA17e;0.6339
 India16e;0.0
  Multiple Comparison of Means - Tukey HSD, FWER=0.05 
 =====================================================
@@ -287,3 +286,282 @@ group1 group2 meandiff p-adj  lower   upper  reject
     om    opr  15.7476  0.001 6.2521 25.2431   True
   ompr    opr   4.5333 0.3496 -3.249 12.3157  False
 ---------------------------------------------------
+AfricaSul11n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj  lower    upper   reject
+-----------------------------------------------------
+    om   ompr  87.5667 0.001   71.338 103.7954   True
+    om    opr    120.5 0.001 104.2713 136.7287   True
+  ompr    opr  32.9333 0.001  16.7046   49.162   True
+-----------------------------------------------------
+Angola12n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05
+==================================================
+group1 group2 meandiff p-adj  lower  upper  reject
+--------------------------------------------------
+    om   ompr   2.5333 0.001  1.5872 3.4795   True
+    om    opr   2.5333 0.001  1.5872 3.4795   True
+  ompr    opr      0.0   0.9 -0.9462 0.9462  False
+--------------------------------------------------
+Arabia14n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05  
+======================================================
+group1 group2 meandiff p-adj   lower    upper   reject
+------------------------------------------------------
+    om   ompr 218.4333  0.001 155.3047  281.562   True
+    om    opr    283.7  0.001 220.5714 346.8286   True
+  ompr    opr  65.2667 0.0411    2.138 128.3953   True
+------------------------------------------------------
+Argelia15n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj   lower   upper   reject
+-----------------------------------------------------
+    om   ompr     74.9  0.001 50.4707  99.3293   True
+    om    opr  87.7333  0.001  63.304 112.1626   True
+  ompr    opr  12.8333 0.4275 -11.596  37.2626  False
+-----------------------------------------------------
+Argentina16n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj  lower    upper   reject
+-----------------------------------------------------
+    om   ompr    136.4 0.001 110.8775 161.9225   True
+    om    opr    188.0 0.001 162.4775 213.5225   True
+  ompr    opr     51.6 0.001  26.0775  77.1225   True
+-----------------------------------------------------
+Australia16n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05  
+======================================================
+group1 group2 meandiff p-adj   lower    upper   reject
+------------------------------------------------------
+    om   ompr 220.9667  0.001 164.9314 277.0019   True
+    om    opr 236.3333  0.001 180.2981 292.3686   True
+  ompr    opr  15.3667 0.7705 -40.6686  71.4019  False
+------------------------------------------------------
+Bolivia10n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+====================================================
+group1 group2 meandiff p-adj   lower   upper  reject
+----------------------------------------------------
+    om   ompr  37.2794  0.001 14.8129 59.7459   True
+    om    opr    44.15  0.001 23.2993 65.0007   True
+  ompr    opr   6.8706 0.5514 -9.0368  22.778  False
+----------------------------------------------------
+Brasil16n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj  lower    upper   reject
+-----------------------------------------------------
+    om   ompr    142.5 0.001  61.9258 223.0742   True
+    om    opr 169.7333 0.001  89.1591 250.3075   True
+  ompr    opr  27.2333 0.684 -53.3409 107.8075  False
+-----------------------------------------------------
+BrasilAM26n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+====================================================
+group1 group2 meandiff p-adj   lower   upper  reject
+----------------------------------------------------
+    om   ompr     36.5  0.001 27.9533 45.0467   True
+    om    opr     47.9  0.001 39.3533 56.4467   True
+  ompr    opr     11.4 0.0057  2.8533 19.9467   True
+----------------------------------------------------
+BrasilMG30n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+====================================================
+group1 group2 meandiff p-adj   lower   upper  reject
+----------------------------------------------------
+    om   ompr  38.4333  0.001 27.7776 49.0891   True
+    om    opr     46.2  0.001 35.5443 56.8557   True
+  ompr    opr   7.7667 0.1971 -2.8891 18.4224  False
+----------------------------------------------------
+BrasilRJ14n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05
+===================================================
+group1 group2 meandiff p-adj  lower   upper  reject
+---------------------------------------------------
+    om   ompr  12.9333 0.001   9.874 15.9926   True
+    om    opr  13.7667 0.001 10.7074  16.826   True
+  ompr    opr   0.8333 0.773  -2.226  3.8926  False
+---------------------------------------------------
+Canada17n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05  
+======================================================
+group1 group2 meandiff p-adj   lower    upper   reject
+------------------------------------------------------
+    om   ompr    251.9  0.001 165.4322 338.3678   True
+    om    opr 364.0333  0.001 277.5655 450.5011   True
+  ompr    opr 112.1333 0.0074  25.6655 198.6011   True
+------------------------------------------------------
+Cazaquistao15n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05  
+======================================================
+group1 group2 meandiff p-adj   lower    upper   reject
+------------------------------------------------------
+    om   ompr    214.6  0.001 147.6636 281.5364   True
+    om    opr 312.7667  0.001 245.8303 379.7031   True
+  ompr    opr  98.1667 0.0021  31.2303 165.1031   True
+------------------------------------------------------
+Chade12n;0.0151
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj   lower    upper  reject
+-----------------------------------------------------
+    om   ompr     43.9 0.0127   7.8819 79.9181   True
+    om    opr     29.8  0.125  -6.2181 65.8181  False
+  ompr    opr    -14.1 0.6114 -50.1181 21.9181  False
+-----------------------------------------------------
+China17n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj   lower    upper  reject
+-----------------------------------------------------
+    om   ompr  29.6667  0.001  14.2652 45.0682   True
+    om    opr  32.9667  0.001  17.5652 48.3682   True
+  ompr    opr      3.3 0.8519 -12.1015 18.7015  False
+-----------------------------------------------------
+Colombia11n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05
+===================================================
+group1 group2 meandiff p-adj  lower   upper  reject
+---------------------------------------------------
+    om   ompr  53.7333 0.001 43.7084 63.7582   True
+    om    opr     64.1 0.001 54.0751 74.1249   True
+  ompr    opr  10.3667 0.041  0.3418 20.3916   True
+---------------------------------------------------
+Congo15n;0.0088
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj   lower    upper  reject
+-----------------------------------------------------
+    om   ompr  17.6667  0.007   4.1378 31.1956   True
+    om    opr  11.5333 0.1105  -1.9956 25.0622  False
+  ompr    opr  -6.1333 0.5275 -19.6622  7.3956  False
+-----------------------------------------------------
+EUA17n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+====================================================
+group1 group2 meandiff p-adj   lower   upper  reject
+----------------------------------------------------
+    om   ompr     29.3  0.001 24.9621 33.6379   True
+    om    opr     36.0  0.001 31.6621 40.3379   True
+  ompr    opr      6.7 0.0012  2.3621 11.0379   True
+----------------------------------------------------
+Egito9n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj   lower   upper   reject
+-----------------------------------------------------
+    om   ompr     45.1 0.0064 10.8944  79.3056   True
+    om    opr  96.0667  0.001 61.8611 130.2723   True
+  ompr    opr  50.9667 0.0018 16.7611  85.1723   True
+-----------------------------------------------------
+Etiopia10n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+====================================================
+group1 group2 meandiff p-adj   lower   upper  reject
+----------------------------------------------------
+    om   ompr  48.3333  0.001 36.8542 59.8124   True
+    om    opr  51.3667  0.001 39.8876 62.8458   True
+  ompr    opr   3.0333 0.7841 -8.4458 14.5124  False
+----------------------------------------------------
+India16n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05  
+======================================================
+group1 group2 meandiff p-adj   lower    upper   reject
+------------------------------------------------------
+    om   ompr    158.1  0.001 106.2276 209.9724   True
+    om    opr    180.3  0.001 128.4276 232.1724   True
+  ompr    opr     22.2 0.5619 -29.6724  74.0724  False
+------------------------------------------------------
+Indonesia14n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj  lower    upper   reject
+-----------------------------------------------------
+    om   ompr     83.3 0.001  55.2856 111.3144   True
+    om    opr  82.1333 0.001  54.1189 110.1477   True
+  ompr    opr  -1.1667   0.9 -29.1811  26.8477  False
+-----------------------------------------------------
+Ira13n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj  lower    upper   reject
+-----------------------------------------------------
+    om   ompr 149.3333 0.001  91.2084 207.4582   True
+    om    opr    144.5 0.001  86.3751 202.6249   True
+  ompr    opr  -4.8333   0.9 -62.9582  53.2916  False
+-----------------------------------------------------
+Libia14n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+====================================================
+group1 group2 meandiff p-adj   lower   upper  reject
+----------------------------------------------------
+    om   ompr     33.3  0.001 23.3378 43.2622   True
+    om    opr     39.7  0.001 29.7378 49.6622   True
+  ompr    opr      6.4 0.2816 -3.5622 16.3622  False
+----------------------------------------------------
+Mali11n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj  lower    upper   reject
+-----------------------------------------------------
+    om   ompr    205.6 0.001 171.8391 239.3609   True
+    om    opr 258.8667 0.001 225.1058 292.6276   True
+  ompr    opr  53.2667 0.001  19.5058  87.0276   True
+-----------------------------------------------------
+Mexico14n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05  
+======================================================
+group1 group2 meandiff p-adj   lower    upper   reject
+------------------------------------------------------
+    om   ompr    216.0  0.001 167.9322 264.0678   True
+    om    opr 237.6333  0.001 189.5656 285.7011   True
+  ompr    opr  21.6333 0.5319 -26.4344  69.7011  False
+------------------------------------------------------
+Mongolia13n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj   lower   upper   reject
+-----------------------------------------------------
+    om   ompr  63.9333  0.001 45.6842  82.1825   True
+    om    opr  83.6667  0.001 65.4175 101.9158   True
+  ompr    opr  19.7333 0.0309  1.4842  37.9825   True
+-----------------------------------------------------
+Niger12n;0.0
+Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+====================================================
+group1 group2 meandiff p-adj   lower   upper  reject
+----------------------------------------------------
+    om   ompr  42.8667  0.001 22.5014 63.2319   True
+    om    opr  56.9667  0.001 36.6014 77.3319   True
+  ompr    opr     14.1 0.2303 -6.2652 34.4652  False
+----------------------------------------------------
+Peru13n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj   lower   upper   reject
+-----------------------------------------------------
+    om   ompr  74.4667  0.001 47.0787 101.8546   True
+    om    opr  98.2667  0.001 70.8787 125.6546   True
+  ompr    opr     23.8 0.1017  -3.588   51.188  False
+-----------------------------------------------------
+Russia17n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj  lower    upper   reject
+-----------------------------------------------------
+    om   ompr 144.6333 0.001  77.6889 211.5778   True
+    om    opr 174.3667 0.001 107.4222 241.3111   True
+  ompr    opr  29.7333  0.54 -37.2111  96.6778  False
+-----------------------------------------------------
+Sudao15n;0.0
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05 
+=====================================================
+group1 group2 meandiff p-adj   lower   upper   reject
+-----------------------------------------------------
+    om   ompr     97.6  0.001 57.2291 137.9709   True
+    om    opr 128.3667  0.001 87.9958 168.7376   True
+  ompr    opr  30.7667 0.1701 -9.6042  71.1376  False
+-----------------------------------------------------
