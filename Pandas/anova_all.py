@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
-import matplotlib.pyplot as plt
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+from statsmodels.stats.multicomp import MultiComparison
 
 def anova_all( type, file_output, *datas ):
     together = pd.DataFrame()
@@ -20,6 +21,15 @@ def anova_all( type, file_output, *datas ):
         groups.get_group("ompr")["result"]
     )
     
-    file = open( file_output, "a" )
-    file.write( type + ":" + str( pvalue ) + "\n" )
+    f = open( file_output, "a" )
+    f.write( type + ":" + str( pvalue ) + "\n" )
+
+    if pvalue < 0.05:
+        mc = MultiComparison(
+            together["result"],
+            together["strategy"]
+        )
+        mc_results = mc.tukeyhsd()
+        print( str( round( pvalue, 4 ) ), file=f )
+        print( mc_results, file=f )
 

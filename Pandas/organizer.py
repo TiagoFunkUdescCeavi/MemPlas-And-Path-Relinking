@@ -68,14 +68,14 @@ generateTable.generateTable(
 print( "Join tables and Generates tables")
 
 graphics.graphics(
-    "../Logs/Results/boxplot_todos_eucliadianos.pdf",
-    #m_e, pr_e, mpr_e, ols_e,
+    "../Logs/Results/boxplot_todos_mesmo_eucliadianos.pdf",
+    m_e, pr_e, mpr_e, ols_e,
     om_e, opr_e, ompr_e
 )
 
 graphics.graphics(
-    "../Logs/Results/boxplot_todos_nao_eucliadianos.pdf",
-    #m_n, pr_n, mpr_n, ols_n,
+    "../Logs/Results/boxplot_todos_mesmo_nao_eucliadianos.pdf",
+    m_n, pr_n, mpr_n, ols_n,
     om_n, opr_n, ompr_n
 )
 

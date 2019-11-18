@@ -10,19 +10,20 @@ def graphics( fig_name, *datas ):
     
     groups = together.groupby(['strategy'])
     
-    # data = pd.DataFrame(groups.get_group("m")["result"])
-    # data["x"] = groups.get_group("pr")["result"]
-    # data["y"] = groups.get_group("mpr")["result"]
-    # data["z"] = groups.get_group("ols")["result"]
-    data = pd.DataFrame(groups.get_group("om")["result"])
+    data = pd.DataFrame(groups.get_group("m")["result"])
+    data["x"] = groups.get_group("pr")["result"]
+    data["y"] = groups.get_group("mpr")["result"]
+    data["z"] = groups.get_group("ols")["result"]
+    data["a"] = groups.get_group("om")["result"]
+    # data = pd.DataFrame(groups.get_group("om")["result"])
     data["b"] = groups.get_group("opr")["result"]
     data["c"] = groups.get_group("ompr")["result"]
     data.columns = [
-    #    "M", "PR", "M + PR","BL",
+        "M", "PR", "M + PR","BL",
         "OM", "OPR", "OMPR"
     ]
     plot = data.boxplot(column=[
-    #    "M", "PR", "M + PR","BL", 
+        "M", "PR", "M + PR","BL", 
         "OM", "OPR", "OMPR"
     ], grid=False )
     

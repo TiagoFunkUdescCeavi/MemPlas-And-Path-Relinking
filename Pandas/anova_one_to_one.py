@@ -14,7 +14,6 @@ def anova_one_to_one( clear, file_anova, file_tukey, *datas ):
     other_groups = together.groupby(["instance"])
     
     instances = together["instance"].unique()
-    algorithms = together["strategy"].unique()
 
     if clear :
         fa = open( file_anova, "w")
