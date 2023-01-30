@@ -1,3 +1,5 @@
+# script for parallel execution of instances
+
 import concurrent.futures
 import time
 import os

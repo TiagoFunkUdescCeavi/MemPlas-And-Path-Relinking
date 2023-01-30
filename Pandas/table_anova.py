@@ -1,4 +1,3 @@
-import sys
 import operator
 
 def table_anova( in1, in2, out1, out2 ):

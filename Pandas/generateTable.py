@@ -1,4 +1,3 @@
-import sys
 
 def generateTable( data, caption, label, file_output ):
     caption = caption.replace("_","\_")
