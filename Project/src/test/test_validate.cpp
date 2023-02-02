@@ -1,7 +1,6 @@
-#include <utils/Validate.h>
-#include "gtest/gtest.h"
-
-#include "../src/GLOBAL.h"
+#include "../utils/Validate.h"
+#include "gtest.h"
+#include "../GLOBAL.h"
 
 #include <vector>
 

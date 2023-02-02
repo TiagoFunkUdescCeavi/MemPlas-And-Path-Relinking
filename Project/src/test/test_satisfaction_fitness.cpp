@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
-#include "model/Solution.h"
-#include "utils/InstanceReader.h"
+#include "gtest.h"
+#include "../model/Solution.h"
+#include "../utils/InstanceReader.h"
 
 TEST( , TEST_FITNESS_SATISFACTION_1 ) {
 	const char* file = "/home/tiago/Repositorios/Github/MemPlas-And-Path-Relinking/Instances/n/AfricaSul11n.pcar";

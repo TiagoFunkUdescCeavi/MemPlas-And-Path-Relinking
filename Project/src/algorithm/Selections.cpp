@@ -42,7 +42,7 @@ vector< Solution > selectPopulation( double proportion, vector< Solution > popul
 Solution selectBetter( vector< Solution > population ){
 	Solution better = population[0];
 	better.calculeFitness();
-	for( int i = 1; i < population.size(); i++ ){
+	for( unsigned int i = 1; i < population.size(); i++ ){
 		population[i].calculeFitness();
 		if( better.getFitness() <= population[i].getFitness() ){
 			better = population[i];
