@@ -121,11 +121,14 @@ ARGUMENTS = ["-std=c++11", "-c", "-O3", "-Wall", "-fmessage-length=0"]
 PROGRAM_NAME = "memplas"
 PROGRAM_PATH = f"{FILES_DIR}{PROGRAM_NAME}"
 
-files_arguments_exceptions = {
-   # "main": ["-D", "REALIZE_TEST"] 
-}
+files_arguments_exceptions = {}
 
 if sys.argv[1] == "build":
+    remove_file("src/main.o")
+    build( files_arguments_exceptions )
+elif sys.argv[1] == "test":
+    remove_file("src/main.o")
+    files_arguments_exceptions["main"] = ["-D", "REALIZE_TEST"]
     build( files_arguments_exceptions )
 elif sys.argv[1] == "clean":
      clean()
