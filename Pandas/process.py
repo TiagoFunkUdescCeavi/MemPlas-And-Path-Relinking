@@ -1,6 +1,6 @@
 import pandas as pd
 
-def process( data, fileOutput ):
+def process( data ):
     groups = data.groupby(['instance'])
     
     average = groups['result'].mean().reset_index()

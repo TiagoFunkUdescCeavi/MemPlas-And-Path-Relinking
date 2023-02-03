@@ -1,5 +1,5 @@
-#include <model/Solution.h>
-#include "gtest/gtest.h"
+#include "../model/Solution.h"
+#include "gtest.h"
 
 
 TEST( , SETUP_SOLUTION ) {

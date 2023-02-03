@@ -1,4 +1,3 @@
-import sys
 import pandas as pd
 
 import instance_separator
@@ -28,20 +27,20 @@ ompr_e, ompr_n = instance_separator.separate( pd.read_csv( fompr ) )
 
 print( "instance separator")
 
-p_m_e = process.process( m_e, "../Logs/Results/m_e.csv" )
-p_m_n = process.process( m_n, "../Logs/Results/m_n.csv" )
-p_pr_e = process.process( pr_e, "../Logs/Results/pr_e.csv" )
-p_pr_n = process.process( pr_n, "../Logs/Results/pr_n.csv" )
-p_mpr_e = process.process( mpr_e, "../Logs/Results/mpr_e.csv" )
-p_mpr_n = process.process( mpr_n, "../Logs/Results/mpr_n.csv" )
-p_ols_e = process.process( ols_e, "../Logs/Results/ols_e.csv" )
-p_ols_n = process.process( ols_n, "../Logs/Results/ols_n.csv" )
-p_om_e = process.process( om_e, "../Logs/Results/om_e.csv" )
-p_om_n = process.process( om_n, "../Logs/Results/om_n.csv" )
-p_opr_e = process.process( opr_e, "../Logs/Results/opr_e.csv" )
-p_opr_n = process.process( opr_n, "../Logs/Results/opr_n.csv" )
-p_ompr_e = process.process( ompr_e, "../Logs/Results/ompr_e.csv" )
-p_ompr_n = process.process( ompr_n, "../Logs/Results/ompr_n.csv" )
+p_m_e = process.process( m_e )
+p_m_n = process.process( m_n )
+p_pr_e = process.process( pr_e )
+p_pr_n = process.process( pr_n )
+p_mpr_e = process.process( mpr_e )
+p_mpr_n = process.process( mpr_n )
+p_ols_e = process.process( ols_e )
+p_ols_n = process.process( ols_n )
+p_om_e = process.process( om_e )
+p_om_n = process.process( om_n )
+p_opr_e = process.process( opr_e )
+p_opr_n = process.process( opr_n )
+p_ompr_e = process.process( ompr_e )
+p_ompr_n = process.process( ompr_n )
 
 print( "process" )
 

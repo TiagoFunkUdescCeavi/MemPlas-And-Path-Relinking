@@ -18,7 +18,7 @@ int **createMatrix( int a, int b ){
 }
 
 void readInstanceNotEuclidean( string fileName ){
-	int cities, cars;
+	int cities = 0, cars = 0;
 	int satisfaction_sum;
 	int *vector;
 	int **matrix;

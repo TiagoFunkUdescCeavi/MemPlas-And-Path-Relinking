@@ -1,3 +1,17 @@
+#ifdef REALIZE_TEST
+
+#include <stdio.h>
+#include "test/gtest.h"
+
+GTEST_API_ int main(int argc, char **argv) {
+	printf("testes");
+	printf("Running main() from gtest_main.cc\n");
+	testing::InitGoogleTest();
+	return RUN_ALL_TESTS();
+}
+
+#else
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -12,7 +26,7 @@
 using namespace std;
 
 int main( int argc, char* argv[] ){
-
+	printf("testes");
 	clock_t initialTime = 0, finalTime = 0;
 	initialTime = clock();
 
@@ -55,3 +69,5 @@ int main( int argc, char* argv[] ){
 //	myPrint( best.getFitness(), 0, true );
 	return 0;
 }
+
+#endif

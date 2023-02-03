@@ -1,7 +1,5 @@
 import pandas as pd
-import numpy as np
 import scipy.stats as stats
-from statsmodels.stats.multicomp import pairwise_tukeyhsd
 from statsmodels.stats.multicomp import MultiComparison
 
 def anova_one_to_one( clear, file_anova, file_tukey, *datas ):
