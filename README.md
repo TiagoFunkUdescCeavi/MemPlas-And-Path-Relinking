@@ -2,6 +2,8 @@
 
 Aqui esta o código do meu TCC. Eu implementei o algoritmo [memplas](https://www.sciencedirect.com/science/article/abs/pii/S0020025516303516) (algoritmo evolucionário) presente nesse artigo e adicionei um componente Path Relinking para o problema Quota Car Traveling Salesman (QCars). Eu utilizei a linguagem C++.
 
+Para uma versão melhorada deste repositório, ver esta [aqui](https://github.com/tiagofunk/Qcars-Interface).
+
 # Conteúdo das pastas
 
 - Instances: cenários de execução que o algoritmo será submetido.
